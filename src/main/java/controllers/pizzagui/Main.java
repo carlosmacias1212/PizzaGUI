@@ -1,13 +1,18 @@
 package controllers.pizzagui;
 
+import com.google.gson.Gson;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import list.JsonController;
 import management.Staff;
+import static list.JsonController.*;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main extends Application {
     @Override
@@ -20,14 +25,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        Staff newStaff = new Staff("Albert", "Villalobos", "lobos", "200408625");
-        JsonController json = new JsonController();
         try {
-            json.serializeAStaffList(newStaff);
+         staffList = deserializeAStaffList("Staff.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //launch();
+        launch();
     }
 }

@@ -1,14 +1,10 @@
 package customer_info;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import list.JsonController;
+import list.JsonController.*;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Customer {
     String firstName;
@@ -71,39 +67,39 @@ public class Customer {
         this.creditCard = creditCard;
     }
 
-////    w/o generics
-//    public static boolean createNewCustomer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) throws IOException {
-//
-//        Customer customer = new Customer(firstName, lastName, address, phoneNumber, creditCard);
-//
-////        re-writes the json file to add the new customer
-//        JsonController.serializeACustomerList(customer);
-//
-//        return true;
-//    }
-
-//    with generics
+    //    with generics
     public static boolean createNewCustomer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) throws IOException {
-        JsonController controller = new JsonController();
+
+        for (Customer c : JsonController.customerList) {
+            if (c.phoneNumber.equals(phoneNumber)) {
+                return false;
+            }
+        }
 
         Customer customer = new Customer(firstName, lastName, address, phoneNumber, creditCard);
 
 //        re-writes the json file to add the new customer
-        controller.serializeAList(customer);
+        JsonController.customerList.add(customer);
+
+        JsonController.serializeACustomerList(customer);
 
         return true;
     }
 
-//    public static boolean removeCustomer(String phoneNumber){
-////        Use list.JsonController.customerList to make updates to the class list to be used in the json file
-//
-////        searches for the customer by phone number and removes them
-//        for(int i = 0; i < customerList.size(); i++){
-//
-//            if (customerList.get(i).phoneNumber.equals(phoneNumber)){
-//                customerList.remove(i);
-//            }
-//        }
-//        return true;
-//    }
+    public static boolean removeCustomer(String phoneNumber) throws IOException {
+//        Use list.JsonController.customerList to make updates to the class list to be used in the json file
+
+        boolean temp = false;
+
+        for (Customer c : JsonController.customerList) {
+            if (c.phoneNumber.equals(phoneNumber)) {
+                JsonController.customerList.remove(c);
+                temp = true;
+            }
+        }
+
+        JsonController.serializeACustomerList();
+
+        return temp;
+    }
 }

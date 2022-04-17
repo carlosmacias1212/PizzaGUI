@@ -7,4 +7,6 @@ module controllers.pizzagui {
 
     opens controllers.pizzagui to javafx.fxml;
     exports controllers.pizzagui;
+    exports management;
+    opens management to javafx.fxml;
 }

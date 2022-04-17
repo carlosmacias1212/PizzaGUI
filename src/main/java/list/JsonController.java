@@ -3,8 +3,6 @@ package list;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import customer_info.Customer;
-import customer_info.customerAddress;
-import customer_info.customerCreditCard;
 import management.Manager;
 import management.Order;
 import management.Staff;

@@ -1,13 +1,8 @@
 package management;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import customer_info.Customer;
 import list.JsonController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static list.JsonController.*;
 
