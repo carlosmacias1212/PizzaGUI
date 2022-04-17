@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.UpdateCustomerController">
+   <children>
+      <BorderPane layoutX="236.0" layoutY="129.0" prefHeight="171.0" prefWidth="164.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Label text="Label" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <Label text="Label" BorderPane.alignment="CENTER" />
+         </left>
+         <bottom>
+            <Label text="Label" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <Label text="Label" BorderPane.alignment="CENTER" />
+         </center>
+         <right>
+            <Label text="Label" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
