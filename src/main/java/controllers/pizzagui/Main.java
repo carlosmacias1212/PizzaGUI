@@ -26,6 +26,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         try {
+            orderList = deserializeAnOrderList("Order.json");
          staffList = deserializeAStaffList("Staff.json");
         } catch (IOException e) {
             e.printStackTrace();
