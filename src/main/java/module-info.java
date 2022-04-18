@@ -7,6 +7,16 @@ module controllers.pizzagui {
 
     opens controllers.pizzagui to javafx.fxml, com.google.gson;
     exports controllers.pizzagui;
+
     exports management;
     opens management to javafx.fxml, com.google.gson;
+
+    exports customer_info;
+    opens customer_info to javafx.fxml, com.google.gson;
+
+    exports food;
+    opens food to javafx.fxml, com.google.gson;
+
+    exports list;
+    opens list to javafx.fxml, com.google.gson;
 }
