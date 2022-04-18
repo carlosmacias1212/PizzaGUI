@@ -66,7 +66,4 @@ public class AddNewCustomerController {
         stg.show();
     }
 
-    public void switchToStaffView() throws IOException {
-
-    }
 }
