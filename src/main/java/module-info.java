@@ -5,8 +5,8 @@ module controllers.pizzagui {
     requires org.controlsfx.controls;
     requires com.google.gson;
 
-    opens controllers.pizzagui to javafx.fxml;
+    opens controllers.pizzagui to javafx.fxml, com.google.gson;
     exports controllers.pizzagui;
     exports management;
-    opens management to javafx.fxml;
+    opens management to javafx.fxml, com.google.gson;
 }
