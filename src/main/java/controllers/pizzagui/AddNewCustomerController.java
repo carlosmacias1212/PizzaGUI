@@ -1,4 +1,5 @@
 package controllers.pizzagui;
+import customer_info.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +8,13 @@ import javafx.scene.control.Label;
 import com.google.gson.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import list.JsonController;
+import static list.JsonController.*;
 
 import java.io.IOException;
 
 public class AddNewCustomerController {
+
 
     @FXML
     private TextField firstName;
@@ -42,11 +46,64 @@ public class AddNewCustomerController {
     @FXML
     private TextField ccvNumber;
 
+    @FXML
+    private TextField cardExpiration;
+
+    @FXML
+    private TextField nameOnCard;
+
 
     public void addNewCustomer(ActionEvent actionEvent) {
+        customerAddress newAddress = new customerAddress(streetNum.getText()+" "+streetName.getText(),
+                                                         cityName.getText(),
+                                                         stateName.getText(),
+                                                         zipCode.getText());
+        customerCreditCard newCreditCard;
+        Customer newCustomer;
+        if(creditNumber.getText() == null) {
+            newCustomer = new Customer(firstName.getText(),
+                                                lastName.getText(),
+                                                newAddress,
+                                                phoneNumber.getText(),
+                                       null);
+        }
+        else {
+            newCreditCard = new customerCreditCard(nameOnCard.getText(),
+                                                   creditNumber.getText(),
+                                                   ccvNumber.getText(),
+                                                   cardExpiration.getText());
+
+            newCustomer = new Customer(firstName.getText(),
+                                       lastName.getText(),
+                                       newAddress,
+                                       phoneNumber.getText(),
+                                       newCreditCard);
+        }
+
+        customerList.add(newCustomer);
+        try {
+            serializeACustomerList();
+            goBackToStaffScreen();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson gson = new Gson();
+
+        System.out.println(gson.toJson("Customer.json"));
+
     }
 
     public void goBackToStaffScreen(ActionEvent actionEvent) throws IOException{
+        Stage window = (Stage) firstName.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("Staff View");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+    }
+    public void goBackToStaffScreen() throws IOException{
         Stage window = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
