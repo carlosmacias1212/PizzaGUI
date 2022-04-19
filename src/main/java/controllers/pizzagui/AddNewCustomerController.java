@@ -49,8 +49,7 @@ public class AddNewCustomerController {
     @FXML
     private TextField cardExpiration;
 
-    @FXML
-    private TextField nameOnCard;
+
 
 
     public void addNewCustomer(ActionEvent actionEvent) {
@@ -68,7 +67,7 @@ public class AddNewCustomerController {
                                        null);
         }
         else {
-            newCreditCard = new customerCreditCard(nameOnCard.getText(),
+            newCreditCard = new customerCreditCard(firstName.getText(),
                                                    creditNumber.getText(),
                                                    ccvNumber.getText(),
                                                    cardExpiration.getText());
@@ -88,9 +87,7 @@ public class AddNewCustomerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Gson gson = new Gson();
 
-        System.out.println(gson.toJson("Customer.json"));
 
     }
 
