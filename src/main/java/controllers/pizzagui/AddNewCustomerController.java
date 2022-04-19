@@ -51,42 +51,50 @@ public class AddNewCustomerController {
 
 
     public void addNewCustomer(ActionEvent actionEvent) {
-        customerAddress newAddress = new customerAddress(streetAddress.getText(),
-                                                         cityName.getText(),
-                                                         stateName.getText(),
-                                                         zipCode.getText());
-        customerCreditCard newCreditCard;
-        Customer newCustomer;
-        if(creditNumber.getText() == null) {
-            newCustomer = new Customer(firstName.getText(),
-                                                lastName.getText(),
-                                                newAddress,
-                                                phoneNumber.getText(),
-                                       null);
+        if (firstName.getText().equals("")) {
+            try {
+                goBackToStaffScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         else {
-            newCreditCard = new customerCreditCard(nameOnCard.getText(),
-                                                   creditNumber.getText(),
-                                                   ccvNumber.getText(),
-                                                   cardExpiration.getText());
+            customerAddress newAddress = new customerAddress(streetAddress.getText(),
+                    cityName.getText(),
+                    stateName.getText(),
+                    zipCode.getText());
+            customerCreditCard newCreditCard;
+            Customer newCustomer;
+            if (creditNumber.getText().equals("")) {
+                newCustomer = new Customer(firstName.getText(),
+                        lastName.getText(),
+                        newAddress,
+                        phoneNumber.getText(),
+                        null);
+            } else {
+                newCreditCard = new customerCreditCard(nameOnCard.getText(),
+                        creditNumber.getText(),
+                        ccvNumber.getText(),
+                        cardExpiration.getText());
 
-            newCustomer = new Customer(firstName.getText(),
-                                       lastName.getText(),
-                                       newAddress,
-                                       phoneNumber.getText(),
-                                       newCreditCard);
+                newCustomer = new Customer(firstName.getText(),
+                        lastName.getText(),
+                        newAddress,
+                        phoneNumber.getText(),
+                        newCreditCard);
+            }
+
+            customerList.add(newCustomer);
+            try {
+                serializeACustomerList();
+                goBackToStaffScreen();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
-
-        customerList.add(newCustomer);
-        try {
-            serializeACustomerList();
-            goBackToStaffScreen();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     public void goBackToStaffScreen(ActionEvent actionEvent) throws IOException{
