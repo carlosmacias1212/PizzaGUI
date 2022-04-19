@@ -4,19 +4,10 @@ import management.Menu;
 
 import java.util.List;
 
-public class Pizza {
+public class Pizza extends FoodItems {
 
     String pizzaType;
     String size;
-    private float price = 0;
-//    private float small = 5.00f;
-//    private float medium = 7.50f;
-//    private float large = 10.00f;
-
-//  Specialty food.Pizza constructor
-    public Pizza(){
-
-    }
 
     public Pizza(String pizzaType, String size){
         if (size.equalsIgnoreCase("small")) {
@@ -34,6 +25,8 @@ public class Pizza {
             this.size = size;
             price = Menu.getLargeSpecialtyPizza();
         }
+
+        setFoodName(pizzaType);
     }
 
     //This constructor is a constructor used in food.BYO so that PizzaType is not needed

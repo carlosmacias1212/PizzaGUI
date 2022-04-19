@@ -57,7 +57,7 @@ public class LoginController {
         ////Sets employee attribute in the controller to the user here
         staffViewController.setEmployee(user);
         ////This sets the Current userName in the top lefthand corner
-        staffViewController.displayName(staffViewController.getCurrentUser().getText()+": "+username.getText());
+        staffViewController.displayName(username.getText());
 
         Stage window = (Stage) username.getScene().getWindow();
         Scene scene = new Scene(root,900,600);

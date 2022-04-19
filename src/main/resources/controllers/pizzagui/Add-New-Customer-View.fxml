@@ -13,7 +13,7 @@
             <top>
                 <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A#F4B06A;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label layoutX="13.0" layoutY="11.0" text="Add New Cutomer" textFill="WHITE">
+                        <Label layoutX="13.0" layoutY="11.0" text="Add New Customer" textFill="WHITE">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="29.0" />
                             </font>

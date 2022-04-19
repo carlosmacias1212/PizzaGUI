@@ -35,4 +35,12 @@ public class OrderMenuController {
         window.setResizable(false);
         window.show();
     }
+
+    public void logOutButton(ActionEvent actionEvent) {
+    }
+
+    public void addToOrder(ActionEvent actionEvent) {
+    }
+
+
 }
