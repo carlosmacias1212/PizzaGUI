@@ -4,11 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import com.google.gson.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import list.JsonController;
+
 import static list.JsonController.*;
 
 import java.io.IOException;
@@ -23,10 +21,7 @@ public class AddNewCustomerController {
     private TextField lastName;
 
     @FXML
-    private TextField streetNum;
-
-    @FXML
-    private TextField streetName;
+    private TextField streetAddress;
 
     @FXML
     private TextField stateName;
@@ -49,11 +44,14 @@ public class AddNewCustomerController {
     @FXML
     private TextField cardExpiration;
 
+    @FXML
+    private TextField nameOnCard;
+
 
 
 
     public void addNewCustomer(ActionEvent actionEvent) {
-        customerAddress newAddress = new customerAddress(streetNum.getText()+" "+streetName.getText(),
+        customerAddress newAddress = new customerAddress(streetAddress.getText(),
                                                          cityName.getText(),
                                                          stateName.getText(),
                                                          zipCode.getText());
@@ -67,7 +65,7 @@ public class AddNewCustomerController {
                                        null);
         }
         else {
-            newCreditCard = new customerCreditCard(firstName.getText(),
+            newCreditCard = new customerCreditCard(nameOnCard.getText(),
                                                    creditNumber.getText(),
                                                    ccvNumber.getText(),
                                                    cardExpiration.getText());
