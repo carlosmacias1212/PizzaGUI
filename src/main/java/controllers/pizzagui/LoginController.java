@@ -39,7 +39,7 @@ public class LoginController {
 
         }
         else{
-            failedText.setText("WRONG BITCH");
+            failedText.setText("Please try again");
 
         }
 
