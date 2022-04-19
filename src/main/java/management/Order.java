@@ -33,6 +33,10 @@ public class Order {
 
     }
 
+    public Order() {
+
+    }
+
 
     public String getCustomerPhoneNumber() {
         return customerPhone;

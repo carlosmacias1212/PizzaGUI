@@ -60,7 +60,7 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <ToggleButton layoutX="541.0" layoutY="63.0" mnemonicParsing="false" text="Pep">
+                              <ToggleButton fx:id="pep" layoutX="541.0" layoutY="63.0" mnemonicParsing="false" text="Pep">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="PizzaTypes" />
                                  </toggleGroup>
@@ -130,7 +130,7 @@
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
-                              <ToggleButton layoutX="489.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Garlic Knots" toggleGroup="$sides">
+                              <ToggleButton layoutX="489.0" layoutY="72.0" mnemonicParsing="false" onAction="#sideToggleButton" prefHeight="25.0" prefWidth="108.0" text="Garlic Knots" toggleGroup="$sides">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
@@ -166,7 +166,7 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton layoutX="511.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Sprite" toggleGroup="$drink">
+                              <ToggleButton layoutX="511.0" layoutY="104.0" mnemonicParsing="false" onAction="#drinkToggleButton" prefHeight="25.0" prefWidth="108.0" text="Sprite" toggleGroup="$drink">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
