@@ -42,6 +42,9 @@ public class AddNewCustomerController {
     @FXML
     private TextField ccvNumber;
 
+    @FXML
+    private TextField cardExpiration;
+
 
     public void addNewCustomer(ActionEvent actionEvent) {
     }
