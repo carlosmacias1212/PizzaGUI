@@ -73,10 +73,6 @@ public class StaffViewController {
         return currentUser;
     }
 
-    public void setCurrentUser(Label currentUser) {
-        this.currentUser = currentUser;
-    }
-
     public Staff getEmployee() {
         return employee;
     }
