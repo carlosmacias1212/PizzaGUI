@@ -46,14 +46,20 @@ public class LoginController {
     }
 
     public void switchToStaffView() throws IOException {
-        Stage window = (Stage) username.getScene().getWindow();
+        ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+        ////This preloads the next fxml
         Parent root = fxmlLoader.load();
+        ////This grabs the controller being used in the current fxmlLoader
         StaffViewController staffViewController = fxmlLoader.getController();
+        ////This searches and returns a staff from the username
         Staff user = JsonController.searchAndReturn(username.getText());
+        ////Sets employee attribute in the controller to the user here
         staffViewController.setEmployee(user);
-        staffViewController.displayName(username.getText());
+        ////This sets the Current userName in the top lefthand corner
+        staffViewController.displayName(staffViewController.getCurrentUser().getText()+": "+username.getText());
 
+        Stage window = (Stage) username.getScene().getWindow();
         Scene scene = new Scene(root,900,600);
         window.setTitle("Staff View");
         window.setScene(scene);
