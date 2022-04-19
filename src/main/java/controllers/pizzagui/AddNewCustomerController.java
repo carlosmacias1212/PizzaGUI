@@ -50,6 +50,7 @@ public class AddNewCustomerController {
 
 
 
+
     public void addNewCustomer(ActionEvent actionEvent) {
         if (firstName.getText().equals("")) {
             try {
