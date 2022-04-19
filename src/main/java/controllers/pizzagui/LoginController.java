@@ -3,12 +3,15 @@ package controllers.pizzagui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import list.JsonController;
 import management.Staff;
+import static list.JsonController.*;
 
 import java.io.IOException;
 
@@ -45,7 +48,13 @@ public class LoginController {
     public void switchToStaffView() throws IOException {
         Stage window = (Stage) username.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        Parent root = fxmlLoader.load();
+        StaffViewController staffViewController = fxmlLoader.getController();
+        Staff user = JsonController.searchAndReturn(username.getText());
+        staffViewController.setEmployee(user);
+        staffViewController.displayName(username.getText());
+
+        Scene scene = new Scene(root,900,600);
         window.setTitle("Staff View");
         window.setScene(scene);
         window.setResizable(false);
