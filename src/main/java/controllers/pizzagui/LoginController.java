@@ -3,12 +3,15 @@ package controllers.pizzagui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import list.JsonController;
 import management.Staff;
+import static list.JsonController.*;
 
 import java.io.IOException;
 
@@ -36,15 +39,29 @@ public class LoginController {
 
         }
         else{
-            failedText.setText("WRONG BITCH");
+
+            failedText.setText("Please try again");
+
         }
 
     }
 
     public void switchToStaffView() throws IOException {
-        Stage window = (Stage) username.getScene().getWindow();
+        ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        ////This preloads the next fxml
+        Parent root = fxmlLoader.load();
+        ////This grabs the controller being used in the current fxmlLoader
+        StaffViewController staffViewController = fxmlLoader.getController();
+        ////This searches and returns a staff from the username
+        Staff user = JsonController.searchAndReturn(username.getText());
+        ////Sets employee attribute in the controller to the user here
+        staffViewController.setEmployee(user);
+        ////This sets the Current userName in the top lefthand corner
+        staffViewController.displayName(username.getText());
+
+        Stage window = (Stage) username.getScene().getWindow();
+        Scene scene = new Scene(root,900,600);
         window.setTitle("Staff View");
         window.setScene(scene);
         window.setResizable(false);

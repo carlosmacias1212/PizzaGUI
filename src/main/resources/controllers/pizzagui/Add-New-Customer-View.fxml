@@ -13,7 +13,7 @@
             <top>
                 <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A#F4B06A;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label layoutX="13.0" layoutY="11.0" text="Add New Cutomer" textFill="WHITE">
+                        <Label layoutX="13.0" layoutY="11.0" text="Add New Customer" textFill="WHITE">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="29.0" />
                             </font>
@@ -37,11 +37,11 @@
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font></Label>
-                  <Label layoutX="252.0" layoutY="125.0" text="Street Num:">
+                  <Label layoutX="252.0" layoutY="125.0" text="Street Address:">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font></Label>
-                  <Label layoutX="238.0" layoutY="165.0" text="Street Name:">
+                  <Label layoutX="289.0" layoutY="165.0" text="City:">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font></Label>
@@ -49,15 +49,15 @@
                       <font>
                           <Font name="Arial" size="13.0" />
                       </font></Label>
-                  <Label layoutX="260.0" layoutY="240.0" prefHeight="17.0" prefWidth="35.0" text="City:">
+                  <Label layoutX="260.0" layoutY="240.0" prefHeight="17.0" prefWidth="66.0" text="Zip Code:">
                       <font>
                           <Font name="Arial" size="13.0" />
                       </font></Label>
-                  <Label layoutX="260.0" layoutY="280.0" prefHeight="17.0" prefWidth="65.0" text="Zip Code:">
+                  <Label layoutX="260.0" layoutY="280.0" prefHeight="17.0" prefWidth="65.0" text="Phone #:">
                       <font>
                           <Font name="Arial" size="13.0" />
                       </font></Label>
-                  <Label layoutX="260.0" layoutY="320.0" prefHeight="17.0" prefWidth="53.0" text="Phone #">
+                  <Label layoutX="189.0" layoutY="324.0" prefHeight="17.0" prefWidth="143.0" text="Name on Credit Card:">
                       <font>
                           <Font name="Arial" size="13.0" />
                       </font></Label>
@@ -73,16 +73,46 @@
                       <font>
                           <Font name="Arial" size="13.0" />
                       </font></Label>
-                  <TextField fx:id="firstName" layoutX="362.0" layoutY="40.0" />
-                  <TextField fx:id="lastName" layoutX="362.0" layoutY="80.0" />
-                  <TextField fx:id="streetNum" layoutX="362.0" layoutY="120.0" />
-                  <TextField fx:id="streetName" layoutX="362.0" layoutY="160.0" />
-                  <TextField fx:id="stateName" layoutX="362.0" layoutY="200.0" />
-                  <TextField fx:id="cityName" layoutX="362.0" layoutY="240.0" />
-                  <TextField fx:id="zipCode" layoutX="362.0" layoutY="280.0" />
-                  <TextField fx:id="phoneNumber" layoutX="362.0" layoutY="320.0" />
-                  <TextField fx:id="creditNumber" layoutX="362.0" layoutY="360.0" />
-                  <TextField fx:id="ccvNumber" layoutX="362.0" layoutY="400.0" />
+                  <TextField fx:id="firstName" layoutX="362.0" layoutY="40.0">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></TextField>
+                  <TextField fx:id="lastName" layoutX="362.0" layoutY="80.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="streetAddress" layoutX="362.0" layoutY="120.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="cityName" layoutX="362.0" layoutY="160.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="stateName" layoutX="362.0" layoutY="200.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="zipCode" layoutX="362.0" layoutY="240.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="phoneNumber" layoutX="362.0" layoutY="280.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="nameOnCard" layoutX="362.0" layoutY="320.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="creditNumber" layoutX="362.0" layoutY="360.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
+                  <TextField fx:id="ccvNumber" layoutX="362.0" layoutY="400.0">
+                      <font>
+                          <Font name="Arial" size="13.0" />
+                      </font></TextField>
                   <Button layoutX="26.0" layoutY="466.0" mnemonicParsing="false" onAction="#goBackToStaffScreen" prefHeight="46.0" prefWidth="113.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Back" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="26.0" />
