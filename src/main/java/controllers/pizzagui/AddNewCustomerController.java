@@ -47,10 +47,6 @@ public class AddNewCustomerController {
     @FXML
     private TextField nameOnCard;
 
-
-
-
-
     public void addNewCustomer(ActionEvent actionEvent) {
         if (firstName.getText().equals("")) {
             try {
