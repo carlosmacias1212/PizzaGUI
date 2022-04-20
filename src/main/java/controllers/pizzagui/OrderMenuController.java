@@ -72,8 +72,17 @@ public class OrderMenuController {
         for (FoodItems food : list) {
             System.out.println(food.getFoodName());
         }
+    }
 
+    public void finishOrder(ActionEvent actionEvent) throws IOException {
 
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("Checkout");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
 
     }
 
@@ -111,7 +120,16 @@ public class OrderMenuController {
         window.show();
     }
 
-    public void logOutButton(ActionEvent actionEvent) {
+    public void logOutButton(ActionEvent actionEvent) throws IOException {
+
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("PieHackers Pizza Restaurant!");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+
     }
 
 
