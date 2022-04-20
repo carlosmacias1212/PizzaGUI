@@ -20,10 +20,10 @@
                <children>
                   <Label layoutX="14.0" layoutY="4.0" style="-fx-text-fill: #FFFFFF;" text="Order Menu">
                      <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Button layoutX="512.0" layoutY="4.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="78.0" text="LogOut" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
+                  <Button layoutX="512.0" layoutY="4.0" mnemonicParsing="false" onAction="#logOutButton" prefHeight="24.0" prefWidth="78.0" text="LogOut" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -60,7 +60,7 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <ToggleButton layoutX="541.0" layoutY="63.0" mnemonicParsing="false" text="Pep">
+                              <ToggleButton fx:id="pep" layoutX="541.0" layoutY="63.0" mnemonicParsing="false" text="Pep">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="PizzaTypes" />
                                  </toggleGroup>
@@ -113,12 +113,12 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <Label layoutX="427.0" layoutY="4.0" text="Sides">
+                              <Label layoutX="432.0" layoutY="18.0" text="Sides">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <ToggleButton layoutX="102.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Wings">
+                              <ToggleButton layoutX="101.0" layoutY="69.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Wings">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="sides" />
                                  </toggleGroup>
@@ -126,24 +126,24 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton layoutX="294.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Bread Sticks" toggleGroup="$sides">
+                              <ToggleButton layoutX="301.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Bread Sticks" toggleGroup="$sides">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
-                              <ToggleButton layoutX="490.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Garlic Knots" toggleGroup="$sides">
+                              <ToggleButton layoutX="489.0" layoutY="72.0" mnemonicParsing="false" onAction="#sideToggleButton" prefHeight="25.0" prefWidth="108.0" text="Garlic Knots" toggleGroup="$sides">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
-                              <ToggleButton layoutX="703.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Boneless Wings" toggleGroup="$sides">
+                              <ToggleButton layoutX="703.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Boneless Wings" toggleGroup="$sides">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
-                              <Separator layoutX="200.0" layoutY="121.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                              <Separator layoutX="200.0" layoutY="163.0" prefHeight="5.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Label layoutX="424.0" layoutY="-9.0" text="Drinks">
+                              <Label layoutX="428.0" layoutY="28.0" text="Drinks">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -151,6 +151,34 @@
                               <Button layoutX="27.0" layoutY="213.0" mnemonicParsing="false" onAction="#goBackToStaffView" prefHeight="63.0" prefWidth="153.0" text="Back">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="35.0" />
+                                 </font>
+                              </Button>
+                              <ToggleButton layoutX="118.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Coke">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="drink" />
+                                 </toggleGroup>
+                              </ToggleButton>
+                              <ToggleButton layoutX="313.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Diet Coke" toggleGroup="$drink">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </ToggleButton>
+                              <ToggleButton layoutX="511.0" layoutY="104.0" mnemonicParsing="false" onAction="#drinkToggleButton" prefHeight="25.0" prefWidth="108.0" text="Sprite" toggleGroup="$drink">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </ToggleButton>
+                              <ToggleButton layoutX="692.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Dr.Pepper" toggleGroup="$drink">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </ToggleButton>
+                              <Button layoutX="607.0" layoutY="219.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="48.0" prefWidth="266.0" text="Add To Order">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="31.0" />
                                  </font>
                               </Button>
                            </children></AnchorPane>

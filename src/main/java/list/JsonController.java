@@ -237,77 +237,14 @@ public class JsonController <T>{
         }
     }
 
-
-//    // getFileName might be redundant IF we as the developers are the ones controlling the json file name/location
-////    public static String getFileName() throws IOException {
-////        Scanner sc = new Scanner(System.in);
-////
-//////        System.out.println("enter path: ");
-//////        String path = sc.nextLine();
-////        System.out.println("enter file name: ");
-////        String fileName = sc.nextLine();
-////
-//////        String file = (path + "\\" + fileName);
-////        String file = (fileName);
-////
-////        return convertFileIntoString(file);
-////    }
-//
-//    public static String convertOrderJsonIntoString(String file) throws IOException {
-//
-////        If the file doesn't exist then create it and add the VERY important [] (to avoid a nullPointerException)
-//        File newFile = new File("Order.json");
-//        if(newFile.createNewFile()) {
-//            System.out.println(newFile.getName() + " has been created.");
-//
-//            try {
-//                FileWriter fileWriter = new FileWriter("Order.json");
-//                fileWriter.write("[]");
-//                fileWriter.flush();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        return new String(Files.readAllBytes(Paths.get(file)));
-//    }
-//
-//    public static String convertCustJsonIntoString(String file) throws IOException {
-//
-////        If the file doesn't exist then create it and add the VERY important [] (to avoid a nullPointerException)
-//        File newFile = new File("Customer.json");
-//        if(newFile.createNewFile()) {
-//            System.out.println(newFile.getName() + " has been created.");
-//
-//            try {
-//                FileWriter fileWriter = new FileWriter("Customer.json");
-//                fileWriter.write("[]");
-//                fileWriter.flush();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        return new String(Files.readAllBytes(Paths.get(file)));
-//    }
-//
-//    public static String convertStaffJsonIntoString(String file) throws IOException {
-//
-////        If the file doesn't exist then create it and add the VERY important [] (to avoid a nullPointerException)
-//        File newFile = new File("Staff.json");
-//        if(newFile.createNewFile()) {
-//            System.out.println(newFile.getName() + " has been created.");
-//
-//            try {
-//                FileWriter fileWriter = new FileWriter("Staff.json");
-//                fileWriter.write("[]");
-//                fileWriter.flush();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        return new String(Files.readAllBytes(Paths.get(file)));
-//    }
+    public static Staff searchAndReturn(String userName){
+        for (Staff staff: staffList) {
+            if(staff.employeeID.equals(userName))
+            {
+                return staff;
+            }
+        }
+        return null;
+    }
 
 }

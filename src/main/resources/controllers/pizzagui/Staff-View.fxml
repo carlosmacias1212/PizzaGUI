@@ -12,7 +12,7 @@
          <top>
             <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A#F4B06A;" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="13.0" layoutY="11.0" text="Current User: Employee" textFill="WHITE">
+                  <Label fx:id="currentUser" layoutX="13.0" layoutY="11.0" text="Current User: Employee" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="29.0" />
                      </font>
@@ -32,11 +32,6 @@
                      <font>
                         <Font name="Arial Rounded MT Bold" size="30.0" />
                      </font></Label>
-                  <Button layoutX="26.0" layoutY="466.0" mnemonicParsing="false" onAction="#goBackToLogin" prefHeight="46.0" prefWidth="113.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Back" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="26.0" />
-                     </font>
-                  </Button>
                   <Button layoutX="253.0" layoutY="71.0" mnemonicParsing="false" onAction="#createCustomerAccount" prefHeight="48.0" prefWidth="409.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Create Customer Acount" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="26.0" />
