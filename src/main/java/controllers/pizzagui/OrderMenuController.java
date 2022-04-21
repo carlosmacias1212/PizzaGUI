@@ -50,8 +50,8 @@ public class OrderMenuController {
     public void addToOrder(ActionEvent actionEvent) throws IOException {
         String size = "";
         String pizzaType = "";
-        String sides = "";
-        String drink = "";
+        String sides;
+        String drink;
 
         if(pep.equals(PizzaTypes.getSelectedToggle())){
             pizzaType = "pepperoni";
@@ -76,6 +76,33 @@ public class OrderMenuController {
         }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
             size = "xlarge";
         }
+
+        if(breadSticks.equals(sideGroup.getSelectedToggle())){
+            sides = "small";
+        }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
+            sides = "medium";
+        }else if (wings.equals(sideGroup.getSelectedToggle())){
+            sides = "large";
+        }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
+            sides = "xlarge";
+        }
+        else{
+            sides = "";
+        }
+
+        if(coke.equals(drinkGroup.getSelectedToggle())){
+            drink = "small";
+        }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
+            drink = "medium";
+        }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
+            drink = "large";
+        }else if (sprite.equals(drinkGroup.getSelectedToggle())){
+            drink = "xlarge";
+        }else{
+            drink = "";
+        }
+
+
 
 
 
@@ -136,23 +163,11 @@ public class OrderMenuController {
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+        changeView("Staff-View");
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+        changeView("Login-view-View");
     }
 
 
@@ -165,6 +180,16 @@ public class OrderMenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         window.setTitle("Staff View");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+    }
+
+    public void changeView(String viewName) throws IOException {
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle(viewName);
         window.setScene(scene);
         window.setResizable(false);
         window.show();
