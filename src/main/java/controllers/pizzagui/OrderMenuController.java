@@ -16,24 +16,35 @@ import java.util.List;
 
 public class OrderMenuController {
 
-     private List<FoodItems> list = new ArrayList<>();
+    private List<FoodItems> list = new ArrayList<>();
+    public ToggleButton supreme;
+    public ToggleButton cheese;
+    public ToggleButton sausage;
+    public ToggleButton veggie;
+    public ToggleButton marinara;
+    public ToggleButton small;
+    public ToggleButton medium;
+    public ToggleButton large;
+    public ToggleButton wings;
+    public ToggleButton breadSticks;
+    public ToggleButton garlicKnots;
+    public ToggleButton bonelessWings;
+    public ToggleButton coke;
+    public ToggleButton dietCoke;
+    public ToggleButton sprite;
+    public ToggleButton drPepper;
+    public ToggleButton xlarge;
 
-    @FXML
     public Label label;
 
-    @FXML
     public ToggleGroup PizzaTypes;
 
-    @FXML
     public ToggleGroup size;
 
-    @FXML
     public ToggleGroup sides;
 
-    @FXML
     public ToggleGroup drink;
 
-    @FXML
     public ToggleButton pep;
 
 
@@ -77,11 +88,7 @@ public class OrderMenuController {
 
     }
 
-    public void sizeToggleButton(ActionEvent actionEvent) {
-    }
 
-    public void SpecialtyToggleButton(ActionEvent actionEvent) {
-    }
 
     public void buildYourOwnButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Build-Your-Own-View.fxml"));
@@ -115,13 +122,10 @@ public class OrderMenuController {
     }
 
 
-    public void drinkToggleButton(ActionEvent actionEvent) {
-    }
-
-    public void sideToggleButton(ActionEvent actionEvent) {
-    }
-
     public void setList(List<FoodItems> list) {
         this.list = list;
+    }
+
+    public void finishOrder(ActionEvent actionEvent) {
     }
 }
