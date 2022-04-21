@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import management.Order;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,21 +72,8 @@ public class OrderMenuController {
         for (FoodItems food : list) {
             System.out.println(food.getFoodName());
         }
-    }
 
-    public void finishOrder(ActionEvent actionEvent) throws IOException {
 
-        Order order = new Order ("99", true);
-
-        order.items = list;
-
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Checkout");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
 
     }
 
@@ -125,16 +111,7 @@ public class OrderMenuController {
         window.show();
     }
 
-    public void logOutButton(ActionEvent actionEvent) throws IOException {
-
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("PieHackers Pizza Restaurant!");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
-
+    public void logOutButton(ActionEvent actionEvent) {
     }
 
 
