@@ -9,8 +9,7 @@ import management.Staff;
 
 import java.io.IOException;
 
-import static list.JsonController.deserializeAStaffList;
-import static list.JsonController.staffList;
+import static list.JsonController.*;
 
 public class Main extends Application {
     @Override
@@ -24,14 +23,21 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+//        try {
+//            //orderList = deserializeAnOrderList("Order.json");
+//            Staff newStaff = new Staff("Albert", "Villalobos", "200408625", "lobos");
+//            JsonController json = new JsonController();
+//            json.serializeAList(newStaff);
+//         staffList = deserializeAStaffList("Staff.json");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         try {
-            //orderList = deserializeAnOrderList("Order.json");
-            Staff newStaff = new Staff("Albert", "Villalobos", "200408625", "lobos");
-            JsonController json = new JsonController();
-            json.serializeAList(newStaff);
-         staffList = deserializeAStaffList("Staff.json");
+            staffList = deserializeAStaffList();
+            customerList = deserializeACustomerList();
+            orderList = deserializeAnOrderList();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         launch();
 
