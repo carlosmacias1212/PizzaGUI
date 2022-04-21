@@ -1,9 +1,7 @@
 package controllers.pizzagui;
 
 import food.FoodItems;
-import food.Pizza;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,10 +46,14 @@ public class OrderMenuController {
 
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
+        FoodItems newPizza;
+        FoodItems side;
+        FoodItems drink;
+
         String size = "";
         String pizzaType = "";
-        String sides;
-        String drink;
+        String sideType;
+        String drinkType;
 
         if(pep.equals(PizzaTypes.getSelectedToggle())){
             pizzaType = "pepperoni";
@@ -78,33 +80,29 @@ public class OrderMenuController {
         }
 
         if(breadSticks.equals(sideGroup.getSelectedToggle())){
-            sides = "small";
+            sideType = "small";
         }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
-            sides = "medium";
+            sideType = "medium";
         }else if (wings.equals(sideGroup.getSelectedToggle())){
-            sides = "large";
+            sideType = "large";
         }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
-            sides = "xlarge";
+            sideType = "xlarge";
         }
         else{
-            sides = "";
+            sideType = "";
         }
 
         if(coke.equals(drinkGroup.getSelectedToggle())){
-            drink = "small";
+            drinkType = "small";
         }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
-            drink = "medium";
+            drinkType = "medium";
         }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
-            drink = "large";
+            drinkType = "large";
         }else if (sprite.equals(drinkGroup.getSelectedToggle())){
-            drink = "xlarge";
+            drinkType = "xlarge";
         }else{
-            drink = "";
+            drinkType = "";
         }
-
-
-
-
 
 
 
