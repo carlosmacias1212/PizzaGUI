@@ -17,7 +17,7 @@ public class Order {
 
 
 
-    public List<FoodItems> items = new ArrayList<FoodItems>();
+    List<FoodItems> items = new ArrayList<FoodItems>();
     float orderTotal;
     String payment = "";
     String customerPhone;
@@ -87,7 +87,6 @@ public class Order {
     }
 
     public void selectPaymentMethod(String userSelection){
-
         payment = userSelection;
     }
 
@@ -114,6 +113,7 @@ public class Order {
         for (FoodItems f: items) {
             p += f.getPrice();
         }
+
 
         return p;
 
