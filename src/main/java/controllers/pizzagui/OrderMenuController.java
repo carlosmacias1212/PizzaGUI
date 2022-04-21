@@ -16,7 +16,12 @@ import java.util.List;
 
 public class OrderMenuController {
 
+    public ToggleGroup sideGroup;
+    public ToggleGroup drinkGroup;
+    public ToggleGroup sizeGroup;
+    public ToggleGroup PizzaTypes;
     private List<FoodItems> list = new ArrayList<>();
+    public ToggleButton pep;
     public ToggleButton supreme;
     public ToggleButton cheese;
     public ToggleButton sausage;
@@ -37,26 +42,48 @@ public class OrderMenuController {
 
     public Label label;
 
-    public ToggleGroup PizzaTypes;
-
-    public ToggleGroup size;
-
-    public ToggleGroup sides;
-
-    public ToggleGroup drink;
-
-    public ToggleButton pep;
 
 
 
 
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
+        String size = "";
+        String pizzaType = "";
+        String sides = "";
+        String drink = "";
 
-
-        if(PizzaTypes.getSelectedToggle() == pep){
-            list.add(new Pizza("pep","small"));
+        if(pep.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "pepperoni";
+        }else if (cheese.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "cheese";
+        }else if (veggie.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "veggie";
+        }else if (sausage.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "sausage";
+        }else if (marinara.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "marinara";
+        }else if (supreme.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "supreme";
         }
+
+        if(small.equals(sizeGroup.getSelectedToggle())){
+            size = "small";
+        }else if (medium.equals(sizeGroup.getSelectedToggle())){
+            size = "medium";
+        }else if (large.equals(sizeGroup.getSelectedToggle())){
+            size = "large";
+        }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
+            size = "xlarge";
+        }
+
+
+
+
+
+
+
+
 
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
@@ -118,7 +145,14 @@ public class OrderMenuController {
         window.show();
     }
 
-    public void logOutButton(ActionEvent actionEvent) {
+    public void logOutButton(ActionEvent actionEvent) throws IOException {
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("Staff View");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
     }
 
 
@@ -126,6 +160,13 @@ public class OrderMenuController {
         this.list = list;
     }
 
-    public void finishOrder(ActionEvent actionEvent) {
+    public void finishOrder(ActionEvent actionEvent) throws IOException {
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("Staff View");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
     }
 }
