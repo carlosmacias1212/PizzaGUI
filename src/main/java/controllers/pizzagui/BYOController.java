@@ -40,7 +40,7 @@ public class BYOController {
         OrderMenuController orderMenuController = fxmlLoader.getController();
         fxmlLoader.setController(orderMenuController);
         ////Sets employee attribute in the controller to the user here
-        orderMenuController.setList(list);
+        orderMenuController.setFoodList(list);
 
         Stage window = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(root,900,600);

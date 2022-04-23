@@ -10,9 +10,9 @@ public class Drink extends FoodItems {
     public Drink(String drinkType, String size) {
         if (drinkType.equalsIgnoreCase("coke")) {
             this.drinkType = drinkType;
-        } else if (drinkType.equalsIgnoreCase("diet coke")) {
+        } else if (drinkType.equalsIgnoreCase("dietCoke")) {
             this.drinkType = drinkType;
-        } else if (drinkType.equalsIgnoreCase("mountain dew")) {
+        } else if (drinkType.equalsIgnoreCase("mountainDew")) {
             this.drinkType = drinkType;
         } else if (drinkType.equalsIgnoreCase("sprite")) {
             this.drinkType = drinkType;
@@ -31,6 +31,19 @@ public class Drink extends FoodItems {
             this.size = size;
             price = Menu.getLargeDrink();
         }
+    }
+
+    public Drink(String drinkType) {
+        if (drinkType.equalsIgnoreCase("coke")) {
+            this.drinkType = drinkType;
+        } else if (drinkType.equalsIgnoreCase("dietCoke")) {
+            this.drinkType = drinkType;
+        } else if (drinkType.equalsIgnoreCase("mountainDew")) {
+            this.drinkType = drinkType;
+        } else if (drinkType.equalsIgnoreCase("sprite")) {
+            this.drinkType = drinkType;
+        }
+        setFoodName(drinkType);
     }
 
     public String getDrinkType() {
@@ -56,4 +69,6 @@ public class Drink extends FoodItems {
     public void setPrice(float price) {
         this.price = price;
     }
+
+
 }

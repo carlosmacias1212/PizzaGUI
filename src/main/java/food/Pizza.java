@@ -25,6 +25,11 @@ public class Pizza extends FoodItems {
             this.size = size;
             price = Menu.getLargeSpecialtyPizza();
         }
+        else if (size.equalsIgnoreCase("xlarge")){
+            this.pizzaType = pizzaType;
+            this.size = size;
+            price = Menu.getXtraLargeSpecialtyPizza();
+        }
 
         setFoodName(pizzaType);
     }

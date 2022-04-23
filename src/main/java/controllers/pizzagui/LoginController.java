@@ -68,4 +68,10 @@ public class LoginController {
         window.show();
     }
 
+    public void devLogIn(ActionEvent actionEvent) throws IOException {
+        username.setText("admin");
+        password.setText("admin");
+        switchToStaffView();
+    }
+
 }

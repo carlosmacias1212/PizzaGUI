@@ -4,6 +4,8 @@ public class Menu {
     public static float smallSpecialtyPizza = 5.00f;
     public static float mediumSpecialtyPizza = 7.50f;
     public static float largeSpecialtyPizza = 10.00f;
+
+    public static float xtraLargeSpecialtyPizza = 12.50f;
     public static float wings = 1.00f;
     public static float breadSticks = 1.50f;
     public static float garlicKnots = 2.00f;
@@ -34,6 +36,14 @@ public class Menu {
 
     public static void setLargeSpecialtyPizza(float largeSpecialtyPizza) {
         Menu.largeSpecialtyPizza = largeSpecialtyPizza;
+    }
+
+    public static float getXtraLargeSpecialtyPizza() {
+        return xtraLargeSpecialtyPizza;
+    }
+
+    public static void setXtraLargeSpecialtyPizza(float xtraLargeSpecialtyPizza) {
+        Menu.xtraLargeSpecialtyPizza = xtraLargeSpecialtyPizza;
     }
 
     public static float getWings() {
