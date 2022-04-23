@@ -25,8 +25,17 @@ public class Pizza extends FoodItems {
             this.size = size;
             price = Menu.getLargeSpecialtyPizza();
         }
+        else if (size.equalsIgnoreCase("xlarge")){
+            this.pizzaType = pizzaType;
+            this.size = size;
+            price = Menu.getXtraLargeSpecialtyPizza();
+        }
 
         setFoodName(pizzaType);
+    }
+
+    public Pizza(){
+
     }
 
     //This constructor is a constructor used in food.BYO so that PizzaType is not needed

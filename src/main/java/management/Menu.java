@@ -14,6 +14,26 @@ public class Menu {
     public static float mediumDrink = 1.50f;
     public static float largeDrink = 2.00f;
 
+    public static String PEPPERONI =  "Pepperoni";
+    public static String CHEESE = "Cheese";
+    public static String VEGGIE = "Veggie";
+    public static String SAUSAGE = "Sausage";
+    public static String MARINARA = "Marinara";
+    public static String SUPREME = "Supreme";
+    public static String BREAD_STICKS = "Bread Sticks";
+    public static String GARLIC_KNOTS = "Garlic Knots";
+    public static String WINGS = "Wings";
+    public static String BONELESS_WINGS = "Boneless Wings";
+    public static String COKE = "Coke";
+    public static String DIET_COKE = "Diet Coke";
+    public static String MOUNTAIN_DEW = "Mountain Dew";
+    public static String SPRITE = "Sprite";
+    public static String SMALL = "Small";
+    public static String MEDIUM = "Medium";
+    public static String LARGE = "Large";
+    public static String XLARGE = "Extra Large";
+
+
     public static float getSmallSpecialtyPizza() {
         return smallSpecialtyPizza;
     }

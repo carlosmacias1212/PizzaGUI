@@ -1,7 +1,9 @@
 package controllers.pizzagui;
 
+import food.Drink;
 import food.FoodItems;
 import food.Pizza;
+import food.Side;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,8 @@ import management.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static management.Menu.*;
 
 public class OrderMenuController {
 
@@ -69,7 +73,7 @@ public class OrderMenuController {
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
-        FoodItems newPizza = new FoodItems();
+        FoodItems newPizza;
         FoodItems side;
         FoodItems drink;
 
@@ -77,62 +81,79 @@ public class OrderMenuController {
         String pizzaType = "";
         String sideType;
         String drinkType;
+        String drinkSize;
 
         if(pep.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "pepperoni";
+            pizzaType = PEPPERONI;
         }else if (cheese.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "cheese";
+            pizzaType = CHEESE;
         }else if (veggie.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "veggie";
+            pizzaType = VEGGIE;
         }else if (sausage.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "sausage";
+            pizzaType = SAUSAGE;
         }else if (marinara.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "marinara";
+            pizzaType = MARINARA;
         }else if (supreme.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "supreme";
+            pizzaType = SUPREME;
         }
 
 
         if(small.equals(sizeGroup.getSelectedToggle())){
-            size = "small";
+            size = SMALL;
         }else if (medium.equals(sizeGroup.getSelectedToggle())){
-            size = "medium";
+            size = MEDIUM;
         }else if (large.equals(sizeGroup.getSelectedToggle())){
-            size = "large";
+            size = LARGE;
         }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
-            size = "xlarge";
+            size = XLARGE;
         }
 
 
         if(breadSticks.equals(sideGroup.getSelectedToggle())){
-            sideType = "small";
+            sideType = BREAD_STICKS;
         }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
-            sideType = "medium";
+            sideType = GARLIC_KNOTS;
         }else if (wings.equals(sideGroup.getSelectedToggle())){
-            sideType = "large";
+            sideType = WINGS;
         }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
-            sideType = "xlarge";
+            sideType = BONELESS_WINGS;
         }
         else{
             sideType = "";
         }
 
         if(coke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "small";
+            drinkType = SMALL;
         }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "medium";
+            drinkType = MEDIUM;
         }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "large";
+            drinkType = LARGE;
         }else if (sprite.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "xlarge";
+            drinkType = XLARGE;
         }else{
             drinkType = "";
         }
 
-        newPizza.setFoodName(pizzaType);
-        newPizza.setSize(size);
+        if(small.equals(sizeGroup.getSelectedToggle())){
+            size = SMALL;
+        }else if (medium.equals(sizeGroup.getSelectedToggle())){
+            size = MEDIUM;
+        }else if (large.equals(sizeGroup.getSelectedToggle())){
+            size = LARGE;
+        }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
+            size = XLARGE;
+        }
+
+        newPizza = new Pizza(pizzaType, size);
+        side = new Side(sideType);
+        Drink drink1 = new Drink(COKE, "medium");
+
 
         list.add(newPizza);
+        list.add(drink1);
+        list.add(side);
+
+
 
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
@@ -158,7 +179,7 @@ public class OrderMenuController {
 
 
         for (FoodItems f : list){
-            System.out.println("Food: " + f.getFoodName() + " Size: " + f.getSize());
+            System.out.println("Food: " + f.getFoodName() + "| Size: " + f.getSize());
         }
         System.out.println("-----------------------");
 
