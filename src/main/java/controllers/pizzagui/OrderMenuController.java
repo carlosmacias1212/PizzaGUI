@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import management.Order;
+import management.Menu;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +20,13 @@ public class OrderMenuController {
 
      private List<FoodItems> list = new ArrayList<>();
 
-    @FXML
-    public Label label;
 
+    @FXML
+    public ToggleGroup sideGroup;
+    @FXML
+    public ToggleGroup drinkGroup;
+    @FXML
+    public ToggleGroup sizeGroup;
     @FXML
     public ToggleGroup PizzaTypes;
 
@@ -37,16 +42,97 @@ public class OrderMenuController {
     @FXML
     public ToggleButton pep;
 
+    public ToggleButton supreme;
+    public ToggleButton cheese;
+    public ToggleButton sausage;
+    public ToggleButton veggie;
+    public ToggleButton marinara;
+    public ToggleButton small;
+    public ToggleButton medium;
+    public ToggleButton large;
+    public ToggleButton wings;
+    public ToggleButton breadSticks;
+    public ToggleButton garlicKnots;
+    public ToggleButton bonelessWings;
+    public ToggleButton coke;
+    public ToggleButton dietCoke;
+    public ToggleButton sprite;
+    public ToggleButton drPepper;
+    public ToggleButton xlarge;
+
+    @FXML
+    public Label label;
+
 
 
 
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
+        FoodItems newPizza = new FoodItems();
+        FoodItems side;
+        FoodItems drink;
 
-        if(PizzaTypes.getSelectedToggle() == pep){
-            list.add(new Pizza("pep","small"));
+        String size = "";
+        String pizzaType = "";
+        String sideType;
+        String drinkType;
+
+        if(pep.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "pepperoni";
+        }else if (cheese.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "cheese";
+        }else if (veggie.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "veggie";
+        }else if (sausage.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "sausage";
+        }else if (marinara.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "marinara";
+        }else if (supreme.equals(PizzaTypes.getSelectedToggle())){
+            pizzaType = "supreme";
         }
+
+
+        if(small.equals(sizeGroup.getSelectedToggle())){
+            size = "small";
+        }else if (medium.equals(sizeGroup.getSelectedToggle())){
+            size = "medium";
+        }else if (large.equals(sizeGroup.getSelectedToggle())){
+            size = "large";
+        }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
+            size = "xlarge";
+        }
+
+
+        if(breadSticks.equals(sideGroup.getSelectedToggle())){
+            sideType = "small";
+        }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
+            sideType = "medium";
+        }else if (wings.equals(sideGroup.getSelectedToggle())){
+            sideType = "large";
+        }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
+            sideType = "xlarge";
+        }
+        else{
+            sideType = "";
+        }
+
+        if(coke.equals(drinkGroup.getSelectedToggle())){
+            drinkType = "small";
+        }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
+            drinkType = "medium";
+        }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
+            drinkType = "large";
+        }else if (sprite.equals(drinkGroup.getSelectedToggle())){
+            drinkType = "xlarge";
+        }else{
+            drinkType = "";
+        }
+
+        newPizza.setFoodName(pizzaType);
+        newPizza.setSize(size);
+
+        list.add(newPizza);
 
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
@@ -70,9 +156,12 @@ public class OrderMenuController {
         window.show();
 
 
-        for (FoodItems food : list) {
-            System.out.println(food.getFoodName());
+        for (FoodItems f : list){
+            System.out.println("Food: " + f.getFoodName() + " Size: " + f.getSize());
         }
+        System.out.println("-----------------------");
+
+
     }
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
@@ -116,24 +205,12 @@ public class OrderMenuController {
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+        changeView("Staff-View.fxml");
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
 
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("PieHackers Pizza Restaurant!");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+        changeView("Login-view.fxml");
 
     }
 
@@ -146,5 +223,15 @@ public class OrderMenuController {
 
     public void setList(List<FoodItems> list) {
         this.list = list;
+    }
+
+    public void changeView(String viewName) throws IOException {
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle(viewName);
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
     }
 }

@@ -1,0 +1,30 @@
+[
+  {
+    "firstName": "r",
+    "lastName": "r",
+    "address": {
+      "streetAddress": "r",
+      "city": "r",
+      "state": "r",
+      "zipCode": "r"
+    },
+    "phoneNumber": "r",
+    "creditCard": {
+      "nameOnCard": "r",
+      "cardNumber": "r",
+      "securityCode": "r",
+      "expirationDate": "r"
+    }
+  },
+  {
+    "firstName": "r",
+    "lastName": "",
+    "address": {
+      "streetAddress": "",
+      "city": "",
+      "state": "",
+      "zipCode": ""
+    },
+    "phoneNumber": ""
+  }
+]
