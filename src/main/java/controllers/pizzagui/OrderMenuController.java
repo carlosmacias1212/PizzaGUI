@@ -10,10 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import management.Order;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static list.JsonController.*;
+
 
 public class OrderMenuController {
 
@@ -216,6 +220,12 @@ public class OrderMenuController {
     }
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
+        Order newOrder = new Order("5747", true);
+        newOrder.addToCart(foodList);
+        newOrder.setOrderTotal();
+        orderList.add(newOrder);
+        serializeOrders();
+
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);

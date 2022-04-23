@@ -81,7 +81,7 @@ public class Customer {
 //        re-writes the json file to add the new customer
         JsonController.customerList.add(customer);
 
-        JsonController.serializeACustomerList(customer);
+        JsonController.serializeCustomers();
 
         return true;
     }
@@ -98,7 +98,7 @@ public class Customer {
             }
         }
 
-        JsonController.serializeACustomerList();
+        JsonController.serializeCustomers();
 
         return temp;
     }

@@ -90,7 +90,7 @@ public class AddNewCustomerController {
             customerList.add(newCustomer);
 
             try {
-                serializeACustomerList();
+                serializeCustomers();
                 goBackToStaffScreen();
 
             } catch (IOException e) {

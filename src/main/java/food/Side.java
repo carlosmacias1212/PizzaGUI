@@ -23,7 +23,7 @@ public class Side extends FoodItems {
             price = Menu.getBonelessWings();
         }
 
-        setFoodName(sideSelection);
+        setFoodName("side");
     }
 
     public String getSideSelection() {

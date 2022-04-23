@@ -159,7 +159,7 @@ public class Staff {
 
         staffList.add(staff);
 
-        serializeAStaffList(staff);
+        serializeStaff();
 
         return true;
     }
@@ -177,7 +177,7 @@ public class Staff {
 
         staffList.add(staff);
 
-        serializeAStaffList(staff);
+        serializeStaff();
 
         return true;
     }
@@ -194,7 +194,7 @@ public class Staff {
             }
         }
 
-        JsonController.serializeAStaffList();
+        serializeStaff();
 
         return temp;
     }
@@ -211,7 +211,7 @@ public class Staff {
             }
         }
 
-        JsonController.serializeAStaffList();
+        serializeStaff();
 
         return temp;
     }

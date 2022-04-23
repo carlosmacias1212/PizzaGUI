@@ -1,32 +1,23 @@
 package food;
 
 public class FoodItems {
-        String foodName;
-        String size;
-        float price;
+    String foodName;
+    float price;
 
-
-        public void setFoodName(String food) {
-            foodName = food;
-        }
-
-        public String getFoodName() {
-            return foodName;
-        }
-
-    public String getSize() {
-        return size;
+    public void setFoodName(String food) {
+        foodName = food;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public String getFoodName() {
+        return foodName;
     }
+
 
     public void setPrice(float p) {
-            price = p;
-        }
+        price = p;
+    }
 
-        public float getPrice() {
-            return price;
-        }
+    public float getPrice() {
+        return price;
+    }
 }

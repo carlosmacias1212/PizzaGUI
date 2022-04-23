@@ -55,6 +55,10 @@ public class Order {
         this.orderTotal = calculatePrice();
     }
 
+    public List<FoodItems> getCart() {
+        return items;
+    }
+
     public Boolean getOrderType() {
         return pickup;
     }

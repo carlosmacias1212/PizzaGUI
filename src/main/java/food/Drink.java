@@ -18,7 +18,7 @@ public class Drink extends FoodItems {
             this.drinkType = drinkType;
         }
 
-        setFoodName(drinkType);
+        setFoodName("drink");
 
         if (size.equalsIgnoreCase("small")) {
             this.size = size;

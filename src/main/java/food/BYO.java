@@ -34,6 +34,7 @@ public class BYO extends FoodItems {
         price = price + calcToppingPrice();
 
         setPrice(price);
+        setFoodName("pizza");
 
     }
 

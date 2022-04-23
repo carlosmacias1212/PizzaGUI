@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import list.JsonController;
 import management.Staff;
-import static list.JsonController.*;
+import list.JsonController.*;
 
 import java.io.IOException;
 

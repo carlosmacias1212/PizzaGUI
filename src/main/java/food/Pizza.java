@@ -31,7 +31,7 @@ public class Pizza extends FoodItems {
             price = Menu.getXtraLargeSpecialtyPizza();
         }
 
-        setFoodName(pizzaType);
+        setFoodName("pizza");
     }
 
     //This constructor is a constructor used in food.BYO so that PizzaType is not needed
@@ -63,27 +63,5 @@ public class Pizza extends FoodItems {
         this.price = price;
     }
 
-//    public float getSmall() {
-//        return small;
-//    }
-//
-//    public void setSmall(float small) {
-//        this.small = small;
-//    }
-//
-//    public float getMedium() {
-//        return medium;
-//    }
-//
-//    public void setMedium(float medium) {
-//        this.medium = medium;
-//    }
-//
-//    public float getLarge() {
-//        return large;
-//    }
-//
-//    public void setLarge(float large) {
-//        this.large = large;
-//    }
+
 }
