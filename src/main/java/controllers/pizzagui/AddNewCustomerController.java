@@ -3,8 +3,10 @@ import customer_info.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import static list.JsonController.*;
@@ -46,15 +48,19 @@ public class AddNewCustomerController {
 
     @FXML
     private TextField nameOnCard;
+    @FXML
+    private Text errorText;
 
-    public void addNewCustomer(ActionEvent actionEvent) {
-        if (firstName.getText().equals("")) {
-            try {
-                goBackToStaffScreen();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+    public void addNewCustomer(ActionEvent actionEvent) throws IOException {
+
+        if (isFieldEmpty()) {
+            setUpController("empty field");
         }
+        else if(isDuplicate(phoneNumber.getText())){
+            setUpController("duplicate customer");
+        }
+
         else {
             customerAddress newAddress = new customerAddress(streetAddress.getText(),
                     cityName.getText(),
@@ -82,6 +88,7 @@ public class AddNewCustomerController {
             }
 
             customerList.add(newCustomer);
+
             try {
                 serializeACustomerList();
                 goBackToStaffScreen();
@@ -89,38 +96,96 @@ public class AddNewCustomerController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
-    public void goBackToStaffScreen(ActionEvent actionEvent) throws IOException{
+    public void setUpController(String update) throws IOException {
+
+        ////This get the fxml loader ready
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
+        ////This preloads the next fxml
+        Parent root = fxmlLoader.load();
+        ////This grabs the controller being used in the current fxmlLoader
+        AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
+        fxmlLoader.setController(addNewCustomerController);
+
+        ////Line to change
+        if(update.equals("empty field")) {
+            addNewCustomerController.errorText.setText("Please do not leave fields blank");
+        }
+        else if(update.equals("duplicate customer")){
+            addNewCustomerController.errorText.setText("Customer Already Exists");
+        }
+
+            /*
+        This will restart the order menu page after pressing Add to Cart
+         */
         Stage window = (Stage) firstName.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
+        Scene scene = new Scene(root,900,600);
+        window.setTitle("Staff-View.fxml");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
+
     }
-    public void goBackToStaffScreen() throws IOException{
+
+
+
+    public boolean isDuplicate(String newPhoneNumber) {
+        for (Customer c : customerList) {
+            if (c.getPhoneNumber().equals(newPhoneNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void changeView(String viewName) throws IOException {
         Stage window = (Stage) firstName.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
+        window.setTitle(viewName);
         window.setScene(scene);
         window.setResizable(false);
         window.show();
     }
 
-    public void logOut(ActionEvent actionEvent) throws IOException{
-        Stage stg = (Stage) firstName.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        stg.setTitle("PieHackers Pizza Restaurant!");
-        stg.setScene(scene);
-        stg.setResizable(false);
-        stg.show();
+    public void goBackToStaffScreen(ActionEvent actionEvent) throws IOException{
+        changeView("Staff-View.fxml");
     }
+    public void goBackToStaffScreen() throws IOException{
+        changeView("Staff-View.fxml");
+    }
+
+    public boolean isFieldEmpty() {
+        if(firstName.getText().equals("")){
+            return true;
+        }
+        else if(lastName.getText().equals("")){
+            return true;
+        }
+        else if(streetAddress.getText().equals("")){
+            return true;
+        }
+        else if(cityName.getText().equals("")){
+            return true;
+        }
+        else if(stateName.getText().equals("")){
+            return true;
+        }
+        else if(zipCode.getText().equals("")){
+            return true;
+        }
+        else return phoneNumber.getText().equals("");
+
+
+    }
+
+
+    public void logOut(ActionEvent actionEvent) throws IOException{
+        changeView("Login-view.fxml");
+    }
+
+
 
 }

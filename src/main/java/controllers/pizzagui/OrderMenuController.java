@@ -14,11 +14,12 @@ import java.util.List;
 
 public class OrderMenuController {
 
+    private List<FoodItems> list = new ArrayList<>();
     public ToggleGroup sideGroup;
     public ToggleGroup drinkGroup;
     public ToggleGroup sizeGroup;
     public ToggleGroup PizzaTypes;
-    private List<FoodItems> list = new ArrayList<>();
+
     public ToggleButton pep;
     public ToggleButton supreme;
     public ToggleButton cheese;
@@ -39,8 +40,6 @@ public class OrderMenuController {
     public ToggleButton xlarge;
 
     public Label label;
-
-
 
 
 
@@ -106,10 +105,6 @@ public class OrderMenuController {
 
 
 
-
-
-
-
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
         ////This preloads the next fxml
@@ -135,7 +130,6 @@ public class OrderMenuController {
         for (FoodItems food : list) {
             System.out.println(food.getFoodName());
         }
-
 
 
     }
