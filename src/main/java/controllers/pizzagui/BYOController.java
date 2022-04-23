@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,10 +17,18 @@ import java.util.List;
 
 public class BYOController {
 
+    public ToggleButton handTossed;
+    public ToggleGroup crustType;
+    public ToggleButton pan;
+    public ToggleButton stuffed;
+    public ToggleButton lightSauce;
+    public ToggleGroup sauceType;
+    public ToggleButton regularCheese;
+    public ToggleGroup cheeseType;
+    public ToggleButton lightCheese;
+    public ToggleButton xtraCheese;
     private List<FoodItems> list = new ArrayList<>();
 
-
-    @FXML
     public Label label;
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {

@@ -203,11 +203,11 @@ public class OrderMenuController {
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
-        changeView("Staff-View");
+        changeView("Staff-View.fxml");
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
-        changeView("Login-view-View");
+        changeView("Login-view-View.fxml");
     }
 
 
