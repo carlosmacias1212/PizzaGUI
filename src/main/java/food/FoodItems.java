@@ -13,20 +13,26 @@ public class FoodItems {
         public String getFoodName() {
             return foodName;
         }
+        public String getSize() {
+            return size;
+        }
 
-    public String getSize() {
-        return size;
-    }
+        public void setSize(String size) {
+            this.size = size;
+        }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public void setPrice(float p) {
+        public void setPrice(float p) {
             price = p;
         }
 
         public float getPrice() {
             return price;
         }
+
+        public String toString(){
+            System.out.println("Item: " + foodName);
+            return "Price: " + price;
+        }
+
+
 }

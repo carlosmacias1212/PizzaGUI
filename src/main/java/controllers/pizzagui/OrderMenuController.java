@@ -122,13 +122,13 @@ public class OrderMenuController {
         }
 
         if(coke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = SMALL;
+            drinkType = COKE;
         }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = MEDIUM;
+            drinkType = DIET_COKE;
         }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
-            drinkType = LARGE;
+            drinkType = DR_PEPPER;
         }else if (sprite.equals(drinkGroup.getSelectedToggle())){
-            drinkType = XLARGE;
+            drinkType = SPRITE;
         }else{
             drinkType = "";
         }
