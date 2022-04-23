@@ -196,12 +196,12 @@ public class OrderMenuController {
         window.setResizable(false);
         window.show();
 
-//        for (FoodItems item : foodList) {
-//            if(item.getFoodName() != null)
-//            {
-//                System.out.println(item.getFoodName());
-//            }
-//        }
+        for (FoodItems item : foodList) {
+            if(item.getFoodName() != null)
+            {
+                System.out.println(item.getFoodName());
+            }
+        }
 
     }
 
