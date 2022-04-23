@@ -1,7 +1,6 @@
 package controllers.pizzagui;
 
-import food.FoodItems;
-import food.Pizza;
+import food.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,32 +33,66 @@ public class CheckoutController {
 
         for (FoodItems item: cart) {
             if (item.getFoodName().equals("pizza")) {
-                if (item.getClass() == Pizza.class) {
+                String type;
 
-                    String type = ((Pizza) item).getPizzaType();
-                    pizzas.add(new Label(type));
+                if (item.getType().equals("Custom")) {
+                    type = "Custom";
+                } else {
+                    type = item.getType();
                 }
+
+                pizzas.add(new Label(type));
+
+
+            } else if (item.getFoodName().equals("side")) {
+                String type = item.getType();
+                pizzas.add(new Label(type));
+
+            } else if (item.getFoodName().equals("drink")) {
+                String type = item.getType();
+                sides.add(new Label(type));
             }
         }
 
     }
 
     @FXML
-    private VBox pizzaList = new VBox();
+    private VBox cartList = new VBox();
 
     @FXML void initialize() {
 
-        Label pizza = new Label("Pizzas");
-        pizzaList.getChildren().add(pizza);
+        populateLabels();
 
-        /*
+        Label pizza = new Label("PIZZAS");
+        cartList.getChildren().add(pizza);
+
+
+
         for (Label p: pizzas) {
+            System.out.println("yea");
             HBox hbox = new HBox();
             hbox.getChildren().add(p);
-            pizzaList.getChildren().add(hbox);
+            cartList.getChildren().add(hbox);
         }
 
-         */
+        Label Sides = new Label("SIDES");
+
+        for (Label s: sides) {
+            HBox hbox = new HBox();
+            hbox.getChildren().add(s);
+            cartList.getChildren().add(hbox);
+        }
+
+
+        Label Drinks = new Label("DRINKS");
+
+        for (Label d: drinks) {
+            HBox hbox = new HBox();
+            hbox.getChildren().add(d);
+            cartList.getChildren().add(hbox);
+        }
+
+
 
     }
 

@@ -3,19 +3,18 @@ package food;
 import management.Menu;
 
 public class Drink extends FoodItems {
-    String drinkType;
     String size;
 
     //    Sets the drink type, size, and the price
     public Drink(String drinkType, String size) {
         if (drinkType.equalsIgnoreCase("coke")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("dietCoke")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("mountainDew")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("sprite")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         }
 
         setFoodName("drink");
@@ -35,23 +34,23 @@ public class Drink extends FoodItems {
 
     public Drink(String drinkType) {
         if (drinkType.equalsIgnoreCase("coke")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("dietCoke")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("mountainDew")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("sprite")) {
-            this.drinkType = drinkType;
+            this.type = drinkType;
         }
-        setFoodName(drinkType);
+        setFoodName("drink");
     }
 
     public String getDrinkType() {
-        return drinkType;
+        return type;
     }
 
     public void setDrinkType(String drinkType) {
-        this.drinkType = drinkType;
+        this.type = drinkType;
     }
 
     public String getSize() {

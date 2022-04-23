@@ -6,27 +6,26 @@ import java.util.List;
 
 public class Pizza extends FoodItems {
 
-    String pizzaType;
     String size;
 
     public Pizza(String pizzaType, String size){
         if (size.equalsIgnoreCase("small")) {
-            this.pizzaType = pizzaType;
+            this.type = pizzaType;
             this.size = size;
             price = Menu.getSmallSpecialtyPizza();
         }
         else if (size.equalsIgnoreCase("medium")){
-            this.pizzaType = pizzaType;
+            this.type = pizzaType;
             this.size = size;
             price = Menu.getMediumSpecialtyPizza();
         }
         else if (size.equalsIgnoreCase("large")){
-            this.pizzaType = pizzaType;
+            this.type = pizzaType;
             this.size = size;
             price = Menu.getLargeSpecialtyPizza();
         }
         else if (size.equalsIgnoreCase("xlarge")){
-            this.pizzaType = pizzaType;
+            this.type = pizzaType;
             this.size = size;
             price = Menu.getXtraLargeSpecialtyPizza();
         }
@@ -39,12 +38,10 @@ public class Pizza extends FoodItems {
         this.size = size;
     }
 
-    public String getPizzaType() {
-        return pizzaType;
-    }
+
 
     public void setPizzaType(String pizzaType) {
-        this.pizzaType = pizzaType;
+        this.type = pizzaType;
     }
 
     public String getSize() {

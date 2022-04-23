@@ -5,8 +5,6 @@ import management.Menu;
 import java.util.List;
 
 public class BYO extends FoodItems {
-
-    String type = "Custom";
     String size;
     String crustType;
     String sauce;
@@ -27,6 +25,7 @@ public class BYO extends FoodItems {
             price = Menu.getLargeSpecialtyPizza();
         }
 
+        this.type = "custom";
         this.crustType = crustType;
         this.sauce = sauce;
         this.cheese = cheese;
@@ -40,6 +39,10 @@ public class BYO extends FoodItems {
 
     public float calcToppingPrice(){
         return (.50f * toppings.size());}
+
+    public String getPizzaType() {
+        return type;
+    }
 
     public String getCrustType() {
         return crustType;

@@ -1,13 +1,41 @@
 [
   {
-    "firstName": "d",
-    "lastName": "d",
+    "firstName": "Carlos",
+    "lastName": "Macias",
     "address": {
-      "streetAddress": "d",
-      "city": "d",
-      "state": "d",
-      "zipCode": "d"
+      "streetAddress": "1000 Chastain Rd NW",
+      "city": "Kennesaw",
+      "state": "Georgia",
+      "zipCode": "30144"
     },
-    "phoneNumber": "d"
+    "phoneNumber": "6782224444",
+    "creditCard": {
+      "nameOnCard": "Carlos Macias",
+      "cardNumber": "24978759749374",
+      "securityCode": "123",
+      "expirationDate": "05/25"
+    }
+  },
+  {
+    "firstName": "Ray",
+    "lastName": "Rosario",
+    "address": {
+      "streetAddress": "1000 Chastain Rd NW",
+      "city": "Kennesaw",
+      "state": "Georgia",
+      "zipCode": "30144"
+    },
+    "phoneNumber": "7794444444"
+  },
+  {
+    "firstName": "Nelso",
+    "lastName": "Villalobos",
+    "address": {
+      "streetAddress": "1000 Chastain Rd NW",
+      "city": "Kennesaw",
+      "state": "Georgia",
+      "zipCode": "30144"
+    },
+    "phoneNumber": "7703333333"
   }
 ]

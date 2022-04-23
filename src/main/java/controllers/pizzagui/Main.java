@@ -14,7 +14,7 @@ import static list.JsonController.*;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Order-Menu-View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Checkout-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("PieHackers Pizza Restaurant!");
         stage.setScene(scene);

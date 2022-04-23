@@ -2,6 +2,7 @@ package food;
 
 public class FoodItems {
     String foodName;
+    String type;
     float price;
 
     public void setFoodName(String food) {
@@ -19,5 +20,9 @@ public class FoodItems {
 
     public float getPrice() {
         return price;
+    }
+
+    public String getType() {
+        return type;
     }
 }
