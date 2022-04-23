@@ -2,23 +2,25 @@ package food;
 
 import management.Menu;
 
+import static management.Menu.*;
+
 public class Side extends FoodItems {
     String sideSelection;
 
     public Side(String sideSelection){
-        if(sideSelection.equalsIgnoreCase("wings")){
+        if(sideSelection.equalsIgnoreCase(WINGS)){
             this.sideSelection = sideSelection;
             price = Menu.getWings();
         }
-        else if(sideSelection.equalsIgnoreCase("breadSticks")){
+        else if(sideSelection.equalsIgnoreCase(BREAD_STICKS)){
             this.sideSelection = sideSelection;
             price = Menu.getBreadSticks();
         }
-        else if(sideSelection.equalsIgnoreCase("garlicKnots")){
+        else if(sideSelection.equalsIgnoreCase(GARLIC_KNOTS)){
             this.sideSelection = sideSelection;
             price = Menu.getGarlicKnots();
         }
-        else if(sideSelection.equalsIgnoreCase("bonelessWings")){
+        else if(sideSelection.equalsIgnoreCase(BONELESS_WINGS)){
             this.sideSelection = sideSelection;
             price = Menu.getBonelessWings();
         }

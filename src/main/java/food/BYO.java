@@ -1,7 +1,7 @@
 package food;
 
 import management.Menu;
-
+import static management.Menu.*;
 import java.util.List;
 
 public class BYO extends FoodItems {
@@ -14,15 +14,15 @@ public class BYO extends FoodItems {
     List<String> toppings;
 
     public BYO(String sauce, String cheese, String size, String crustType, List<String> toppings) {
-        if (size.equalsIgnoreCase("small")) {
+        if (size.equalsIgnoreCase(SMALL)) {
             this.size = size;
             price = Menu.getSmallSpecialtyPizza();
         }
-        else if (size.equalsIgnoreCase("medium")){
+        else if (size.equalsIgnoreCase(MEDIUM)){
             this.size = size;
             price = Menu.getMediumSpecialtyPizza();
         }
-        else if (size.equalsIgnoreCase("large")){
+        else if (size.equalsIgnoreCase(LARGE)){
             this.size = size;
             price = Menu.getLargeSpecialtyPizza();
         }

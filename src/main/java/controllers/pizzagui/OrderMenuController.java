@@ -22,10 +22,7 @@ import static management.Menu.*;
 
 public class OrderMenuController {
 
-     private List<FoodItems> list = new ArrayList<>();
-
-
-    @FXML
+    private List<FoodItems> foodList = new ArrayList<>();
     public ToggleGroup sideGroup;
     @FXML
     public ToggleGroup drinkGroup;
@@ -97,17 +94,19 @@ public class OrderMenuController {
             pizzaType = SUPREME;
         }
 
-
         if(small.equals(sizeGroup.getSelectedToggle())){
             size = SMALL;
+            foodList.add(new Pizza(pizzaType,size));
         }else if (medium.equals(sizeGroup.getSelectedToggle())){
             size = MEDIUM;
+            foodList.add(new Pizza(pizzaType,size));
         }else if (large.equals(sizeGroup.getSelectedToggle())){
             size = LARGE;
+            foodList.add(new Pizza(pizzaType,size));
         }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
             size = XLARGE;
+            foodList.add(new Pizza(pizzaType,size));
         }
-
 
         if(breadSticks.equals(sideGroup.getSelectedToggle())){
             sideType = BREAD_STICKS;
@@ -134,24 +133,45 @@ public class OrderMenuController {
             drinkType = "";
         }
 
-        if(small.equals(sizeGroup.getSelectedToggle())){
-            size = SMALL;
-        }else if (medium.equals(sizeGroup.getSelectedToggle())){
-            size = MEDIUM;
-        }else if (large.equals(sizeGroup.getSelectedToggle())){
-            size = LARGE;
-        }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
-            size = XLARGE;
+
+        switch (sideType) {
+            case "Bread Sticks" -> {
+                side = new Side(BREAD_STICKS);
+                foodList.add(side);
+            }
+            case "Garlic Knots" -> {
+                side = new Side(GARLIC_KNOTS);
+                foodList.add(side);
+            }
+            case "Wings" -> {
+                side = new Side(WINGS);
+                foodList.add(side);
+            }
+            case "Boneless Wings" -> {
+                side = new Side(BONELESS_WINGS);
+                foodList.add(side);
+            }
         }
 
-        newPizza = new Pizza(pizzaType, size);
-        side = new Side(sideType);
-        Drink drink1 = new Drink(COKE, "medium");
+        switch (drinkType) {
+            case "Coke" -> {
+                drink = new Drink(COKE);
+                foodList.add(drink);
+            }
+            case "Diet Coke" -> {
+                drink = new Drink(DIET_COKE);
+                foodList.add(drink);
+            }
+            case "Dr. Pepper" -> {
+                drink = new Drink(DR_PEPPER);
+                foodList.add(drink);
+            }
+            case "Sprite" -> {
+                drink = new Drink(SPRITE);
+                foodList.add(drink);
+            }
+        }
 
-
-        list.add(newPizza);
-        list.add(drink1);
-        list.add(side);
 
 
 
@@ -163,8 +183,7 @@ public class OrderMenuController {
         OrderMenuController orderMenuController = fxmlLoader.getController();
         fxmlLoader.setController(orderMenuController);
         ////Sets employee attribute in the controller to the user here
-        orderMenuController.setList(list);
-
+        orderMenuController.setFoodList(foodList);
 
 
         /*
@@ -177,12 +196,12 @@ public class OrderMenuController {
         window.setResizable(false);
         window.show();
 
-
-        for (FoodItems f : list){
-            System.out.println("Food: " + f.getFoodName() + "| Size: " + f.getSize());
-        }
-        System.out.println("-----------------------");
-
+//        for (FoodItems item : foodList) {
+//            if(item.getFoodName() != null)
+//            {
+//                System.out.println(item.getFoodName());
+//            }
+//        }
 
     }
 
@@ -190,7 +209,7 @@ public class OrderMenuController {
 
         Order order = new Order ("99", true);
 
-        order.items = list;
+        order.items = foodList;
 
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
@@ -216,7 +235,7 @@ public class OrderMenuController {
         BYOController byoController = fxmlLoader.getController();
         fxmlLoader.setController(byoController);
         ////Sets employee attribute in the controller to the user here
-        byoController.setList(list);
+        byoController.setList(foodList);
 
         Stage window = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(root,900,600);
@@ -231,20 +250,12 @@ public class OrderMenuController {
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
-
         changeView("Login-view.fxml");
-
     }
 
 
-    public void drinkToggleButton(ActionEvent actionEvent) {
-    }
-
-    public void sideToggleButton(ActionEvent actionEvent) {
-    }
-
-    public void setList(List<FoodItems> list) {
-        this.list = list;
+    public void setFoodList(List<FoodItems> foodList) {
+        this.foodList = foodList;
     }
 
     public void changeView(String viewName) throws IOException {

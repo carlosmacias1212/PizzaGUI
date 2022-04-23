@@ -4,38 +4,36 @@ import management.Menu;
 
 import java.util.List;
 
+import static management.Menu.*;
+
 public class Pizza extends FoodItems {
 
     String pizzaType;
     String size;
 
     public Pizza(String pizzaType, String size){
-        if (size.equalsIgnoreCase("small")) {
+        if (size.equalsIgnoreCase(SMALL)) {
             this.pizzaType = pizzaType;
             this.size = size;
             price = Menu.getSmallSpecialtyPizza();
         }
-        else if (size.equalsIgnoreCase("medium")){
+        else if (size.equalsIgnoreCase(MEDIUM)){
             this.pizzaType = pizzaType;
             this.size = size;
             price = Menu.getMediumSpecialtyPizza();
         }
-        else if (size.equalsIgnoreCase("large")){
+        else if (size.equalsIgnoreCase(LARGE)){
             this.pizzaType = pizzaType;
             this.size = size;
             price = Menu.getLargeSpecialtyPizza();
         }
-        else if (size.equalsIgnoreCase("xlarge")){
+        else if (size.equalsIgnoreCase(XLARGE)){
             this.pizzaType = pizzaType;
             this.size = size;
             price = Menu.getXtraLargeSpecialtyPizza();
         }
 
         setFoodName(pizzaType);
-    }
-
-    public Pizza(){
-
     }
 
     //This constructor is a constructor used in food.BYO so that PizzaType is not needed
@@ -67,27 +65,4 @@ public class Pizza extends FoodItems {
         this.price = price;
     }
 
-//    public float getSmall() {
-//        return small;
-//    }
-//
-//    public void setSmall(float small) {
-//        this.small = small;
-//    }
-//
-//    public float getMedium() {
-//        return medium;
-//    }
-//
-//    public void setMedium(float medium) {
-//        this.medium = medium;
-//    }
-//
-//    public float getLarge() {
-//        return large;
-//    }
-//
-//    public void setLarge(float large) {
-//        this.large = large;
-//    }
 }

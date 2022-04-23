@@ -26,7 +26,7 @@ public class Menu {
     public static String BONELESS_WINGS = "Boneless Wings";
     public static String COKE = "Coke";
     public static String DIET_COKE = "Diet Coke";
-    public static String MOUNTAIN_DEW = "Mountain Dew";
+    public static String DR_PEPPER = "Dr. Pepper";
     public static String SPRITE = "Sprite";
     public static String SMALL = "Small";
     public static String MEDIUM = "Medium";
