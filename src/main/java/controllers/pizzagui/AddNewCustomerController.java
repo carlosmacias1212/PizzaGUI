@@ -54,7 +54,7 @@ public class AddNewCustomerController {
 
     public void addNewCustomer(ActionEvent actionEvent) throws IOException {
 
-        if (isFieldIsEmpty()) {
+        if (isFieldEmpty()) {
             setUpController("empty field");
         }
         else if(isDuplicate(phoneNumber.getText())){
@@ -157,7 +157,7 @@ public class AddNewCustomerController {
         changeView("Staff-View.fxml");
     }
 
-    public boolean isFieldIsEmpty() {
+    public boolean isFieldEmpty() {
         if(firstName.getText().equals("")){
             return true;
         }
@@ -177,6 +177,8 @@ public class AddNewCustomerController {
             return true;
         }
         else return phoneNumber.getText().equals("");
+
+
     }
 
 
