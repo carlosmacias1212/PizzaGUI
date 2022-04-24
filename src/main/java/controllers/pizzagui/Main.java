@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Order-Menu-View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("PieHackers Pizza Restaurant!");
         stage.setScene(scene);
@@ -23,26 +23,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-//        try {
-//            //orderList = deserializeAnOrderList("Order.json");
-//            Staff newStaff = new Staff("Albert", "Villalobos", "200408625", "lobos");
-//            JsonController json = new JsonController();
-//            json.serializeAList(newStaff);
-//         staffList = deserializeAStaffList("Staff.json");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        try {
-            staffList = deserializeAStaffList();
-            customerList = deserializeACustomerList();
-            orderList = deserializeAnOrderList();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void main(String[] args) throws IOException {
+
+        deserializeStaff();
+        deserializeCustomers();
+        deserializeOrders();
+
         launch();
 
-        //push to raybranch
 
     }
 }

@@ -6,16 +6,60 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.ManagerViewController">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="label" layoutX="140.0" layoutY="79.0" text="Great this shit is workinng" textFill="#f20000">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Button layoutX="273.0" layoutY="249.0" mnemonicParsing="false" onAction="#buttonManager" text="Bro press this" />
-         </children></AnchorPane>
-   </center>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.ManagerViewController">
+   <children>
+      <BorderPane layoutX="200.0" layoutY="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A#F4B06A;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="currentUser" layoutX="13.0" layoutY="11.0" text="Current User: Employee" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="650.0" layoutY="6.0" mnemonicParsing="false" onAction="#logOut" prefHeight="48.0" prefWidth="221.0" text="LogOut" textFill="#f4b06a">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="29.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="label" layoutX="146.0" layoutY="19.0" text="Customer Info :">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font></Label>
+                  <Button layoutX="253.0" layoutY="71.0" mnemonicParsing="false" onAction="#createCustomerAccount" prefHeight="48.0" prefWidth="409.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Create Customer Acount" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="252.0" layoutY="133.0" mnemonicParsing="false" onAction="#updateCustomerInfo" prefHeight="48.0" prefWidth="409.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Update Customer Info" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="144.0" layoutY="209.0" text="Start Order :">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="355.0" layoutY="263.0" mnemonicParsing="false" onAction="#orderNow" prefHeight="48.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Order Now" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="144.0" layoutY="328.0" text="Manager Controls: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

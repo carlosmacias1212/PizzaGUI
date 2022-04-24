@@ -1,0 +1,24 @@
+[
+  {
+    "firstName": "qwer",
+    "lastName": "qwer",
+    "address": {
+      "streetAddress": "qwer",
+      "city": "qwer",
+      "state": "qwer",
+      "zipCode": "qwer"
+    },
+    "phoneNumber": "qwer"
+  },
+  {
+    "firstName": "qwer",
+    "lastName": "qwer",
+    "address": {
+      "streetAddress": "qwer",
+      "city": "qwer",
+      "state": "qwer",
+      "zipCode": "qwer"
+    },
+    "phoneNumber": "qwer"
+  }
+]

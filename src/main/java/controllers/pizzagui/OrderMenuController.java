@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static list.JsonController.*;
 import static management.Menu.*;
 
 public class OrderMenuController {
@@ -173,8 +174,6 @@ public class OrderMenuController {
         }
 
 
-
-
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
         ////This preloads the next fxml
@@ -202,22 +201,6 @@ public class OrderMenuController {
                 System.out.println(item.getFoodName());
             }
         }
-
-    }
-
-    public void finishOrder(ActionEvent actionEvent) throws IOException {
-
-        Order order = new Order ("99", true);
-
-        order.items = foodList;
-
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Checkout");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
 
     }
 
@@ -256,6 +239,22 @@ public class OrderMenuController {
 
     public void setFoodList(List<FoodItems> foodList) {
         this.foodList = foodList;
+    }
+
+    public void finishOrder(ActionEvent actionEvent) throws IOException {
+        Order newOrder = new Order("5747", true);
+        newOrder.addToCart(foodList);
+        newOrder.setOrderTotal();
+        orderList.add(newOrder);
+        serializeOrders();
+
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("Staff View");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
     }
 
     public void changeView(String viewName) throws IOException {
