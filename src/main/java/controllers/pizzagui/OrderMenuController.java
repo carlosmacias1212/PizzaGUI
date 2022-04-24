@@ -202,6 +202,8 @@ public class OrderMenuController {
         ////Sets employee attribute in the controller to the user here
         orderMenuController.setFoodList(foodList);
         orderMenuController.setEmployee(employee);
+        orderMenuController.setCurrentCustomer(currentCustomer);
+        orderMenuController.setOrderType(orderType);
         orderMenuController.displayName();
 
 
@@ -289,7 +291,7 @@ public class OrderMenuController {
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
 
-        Order newOrder = new Order("5747", true);
+        Order newOrder = new Order(currentCustomer.getText(), true);
         newOrder.addToCart(foodList);
         newOrder.setOrderTotal();
         orderList.add(newOrder);
@@ -322,7 +324,13 @@ public class OrderMenuController {
     }
 
     public void displayName(){
-        currentUser.setText("Hello " + employee.employeeType);
+        currentUser.setText("Hello, " + employee.employeeType);
+        currentCustomer.setText("Cust: " + currentCustomer.getText());
+        orderType.setText(orderType.getText() + " Order");
+
+        System.out.println(currentUser.getText());
+        System.out.println(currentCustomer.getText());
+        System.out.println(orderType.getText());
     }
 
     public Staff getEmployee() {
@@ -337,11 +345,11 @@ public class OrderMenuController {
         return currentCustomer;
     }
 
-    public void setCurrentCustomer(String currentCustomer) {
-        this.currentCustomer.setText("Cust #: " + currentCustomer);
+    public void setCurrentCustomer(Label currentCustomer) {
+        this.currentCustomer = currentCustomer;
     }
 
-    public void setOrderType(String newOrderType){
-        orderType.setText(newOrderType + " Order");
+    public void setOrderType(Label orderType){
+        this.orderType = orderType;
     }
 }

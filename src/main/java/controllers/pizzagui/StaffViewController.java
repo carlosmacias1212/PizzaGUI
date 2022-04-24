@@ -6,22 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import com.google.gson.*;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import management.Order;
 import management.Staff;
 
 import java.io.IOException;
 
 public class StaffViewController {
 
-    public ToggleGroup $orderType;
+
     private Staff employee;
     @FXML
-    private String orderType;
+    private Label orderType = new Label();
 
     @FXML
     private Label label;
@@ -35,9 +33,14 @@ public class StaffViewController {
     private TextField custPhoneNumber;
 
     @FXML
+    private Label currentCustomer = new Label();
+
+    @FXML
     private RadioButton pickUp;
     @FXML
     private RadioButton delivery;
+
+    public ToggleGroup $orderType;
 
 
 
@@ -81,23 +84,24 @@ public class StaffViewController {
 
         else {
 
-            if(pickUp.isSelected()){
-                setOrderType("Pick-up");
-            }
-            else{
-                setOrderType("Delivery");
-            }
+            currentCustomer.setText(custPhoneNumber.getText());
+
+//            if(pickUp.isSelected()){
+//                orderType.setText("Pick-up");
+//            }
+//            else{
+//                orderType.setText("Delivery");
+//            }
+            orderType.setText("pickup");
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
             Parent root = fxmlLoader.load();
             OrderMenuController orderMenuController = fxmlLoader.getController();
             fxmlLoader.setController(orderMenuController);
 
-            orderMenuController.setCurrentCustomer(custPhoneNumber.getText());
-            orderMenuController.setOrderType(orderType);
             orderMenuController.setEmployee(employee);
-
-//            orderMenuController.setCurrentCustomer(label1);
+            orderMenuController.setCurrentCustomer(currentCustomer);
+            orderMenuController.setOrderType(orderType);
             orderMenuController.displayName();
 
 
@@ -145,11 +149,11 @@ public class StaffViewController {
         this.custPhoneNumber = custPhoneNumber;
     }
 
-    public String getOrderType(){
+    public Label getOrderType(){
         return this.orderType;
     }
 
-    public void setOrderType(String orderType){
+    public void setOrderType(Label orderType){
         this.orderType = orderType;
     }
 }
