@@ -27,6 +27,8 @@ public class BYOController {
     public ToggleGroup cheeseType;
     public ToggleButton lightCheese;
     public ToggleButton xtraCheese;
+    public ToggleButton regularSauce;
+    public ToggleButton xtraSauce;
     private List<FoodItems> list = new ArrayList<>();
 
     public Label label;
