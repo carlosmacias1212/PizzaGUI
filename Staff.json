@@ -1,1 +1,303 @@
-[{"firstName":"Albert","lastName":"Villalobos","password":"admin","employeeType":"Staff","employeeID":"admin"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"},{"firstName":"Albert","lastName":"Villalobos","password":"200408625","employeeType":"Staff","employeeID":"lobos"}]
+[
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "admin",
+    "employeeType": "Staff",
+    "employeeID": "admin"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "staff",
+    "employeeType": "Staff",
+    "employeeID": "staff"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "manager",
+    "employeeType": "Staff",
+    "employeeID": "manager"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  },
+  {
+    "firstName": "Albert",
+    "lastName": "Villalobos",
+    "password": "200408625",
+    "employeeType": "Staff",
+    "employeeID": "lobos"
+  }
+]

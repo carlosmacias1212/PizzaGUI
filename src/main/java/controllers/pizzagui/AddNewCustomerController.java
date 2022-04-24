@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class AddNewCustomerController {
 
-
     private Staff employee;
 
     @FXML

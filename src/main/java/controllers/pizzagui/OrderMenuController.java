@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import management.Order;
 import management.Menu;
+import management.Staff;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ import static management.Menu.*;
 
 public class OrderMenuController {
 
+    Staff employee;
+    @FXML
+    private Label currentUser;
     private List<FoodItems> foodList = new ArrayList<>();
     public ToggleGroup sideGroup;
     @FXML
@@ -64,10 +68,6 @@ public class OrderMenuController {
 
     @FXML
     public Label label;
-
-
-
-
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
@@ -183,6 +183,7 @@ public class OrderMenuController {
         fxmlLoader.setController(orderMenuController);
         ////Sets employee attribute in the controller to the user here
         orderMenuController.setFoodList(foodList);
+        orderMenuController.setEmployee(employee);
 
 
         /*
@@ -229,7 +230,43 @@ public class OrderMenuController {
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
-        changeView("Staff-View.fxml");
+
+        if(employee.getEmployeeType().equals("Manager")){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(employee);
+            staffViewController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(employee);
+            staffViewController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
@@ -265,5 +302,17 @@ public class OrderMenuController {
         window.setScene(scene);
         window.setResizable(false);
         window.show();
+    }
+
+    public void displayName(){
+        currentUser.setText("EmployeeID: " + employee.employeeID);
+    }
+
+    public Staff getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Staff employee) {
+        this.employee = employee;
     }
 }

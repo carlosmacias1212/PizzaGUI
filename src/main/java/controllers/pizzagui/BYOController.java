@@ -17,32 +17,18 @@ import java.util.List;
 
 public class BYOController {
 
-    public ToggleButton lightSauce;
-    public ToggleGroup PizzaTypes;
-    public ToggleButton stuffed;
-    public ToggleButton handToss;
+    public ToggleButton handTossed;
+    public ToggleGroup crustType;
     public ToggleButton pan;
-    public ToggleButton regSauce;
-    public ToggleButton small;
-    public ToggleGroup sizeGroup;
-    public ToggleButton medium;
-    public ToggleButton large;
-    public ToggleButton xlarge;
+    public ToggleButton stuffed;
+    public ToggleButton lightSauce;
+    public ToggleGroup sauceType;
+    public ToggleButton regularCheese;
+    public ToggleGroup cheeseType;
     public ToggleButton lightCheese;
-    public ToggleGroup cheeseGroup;
-    public ToggleButton regCheese;
-    public ToggleButton pepperoni;
-    public ToggleButton mushrooms;
-    public ToggleGroup toppingsGroup;
-    public ToggleButton ham;
-    public ToggleButton chicken;
-    public ToggleButton veggies;
-    public ToggleButton sausage;
-    public ToggleGroup crustGroup;
-    public ToggleButton onion;
     public ToggleButton xtraCheese;
+    public ToggleButton regularSauce;
     public ToggleButton xtraSauce;
-    public ToggleGroup sauceGroup;
     private List<FoodItems> list = new ArrayList<>();
     private Label customerPhoneNum;
 
