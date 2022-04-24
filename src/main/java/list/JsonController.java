@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Reader;
 
 public class JsonController <T>{
     public static List<Order> orderList = new ArrayList<>();
@@ -24,99 +25,231 @@ public class JsonController <T>{
     public static String customerJSON;
     public static String staffJSON;
 
-    //push from ray to master
-
     public JsonController() {
 
     }
 
-    //    test with generics - WORKS
-    public void serializeAList(T object) throws IOException {
-        String jsonToUpdate = jsonFileToUpdate(object);
+//    public static void serializeAnOrderList(Order order) throws IOException {
+//        Gson gson = new Gson();
+//
+//
+//        List<Order> updatedListToBeSerialized;
+//        updatedListToBeSerialized = deserializeAnOrderList();
+//
+//        updatedListToBeSerialized.add(order);
+//
+//        String orderJSON = gson.toJson(updatedListToBeSerialized);
+//
+//        try{
+//            FileWriter file = new FileWriter("Order.json");
+//            file.write(orderJSON);
+//            file.flush();
+//
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void serializeAnOrderList() throws IOException {
+//        Gson gson = new Gson();
+//
+//        String orderJSON = gson.toJson(orderList);
+//
+//        try{
+//            FileWriter file = new FileWriter("Order.json");
+//            file.write(orderJSON);
+//            file.flush();
+//
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void serializeACustomerList(Customer customer) throws IOException {
+//        Gson gson = new Gson();
+//
+//        List<Customer> updatedListToBeSer;
+//        updatedListToBeSer = deserializeACustomerList();
+//
+//        updatedListToBeSer.add(customer);
+//
+//        String custJSON = gson.toJson(updatedListToBeSer);
+//
+//        try{
+//            FileWriter file = new FileWriter("Customer.json");
+//            file.write(custJSON);
+//            file.flush();
+//
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void serializeACustomerList() throws IOException {
+//        Gson gson = new Gson();
+//
+//        String custJSON = gson.toJson(customerList);
+//
+//        try{
+//            FileWriter file = new FileWriter("Customer.json");
+//            file.write(custJSON);
+//            file.flush();
+//
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void serializeAStaffList(Staff staff) throws IOException {
+//        Gson gson = new Gson();
+//
+//        List<Staff> updatedListToBeSerialized;
+//        updatedListToBeSerialized = deserializeAStaffList();
+//
+//        updatedListToBeSerialized.add(staff);
+//
+//        String staffJSON = gson.toJson(updatedListToBeSerialized);
+//
+//        try{
+//            FileWriter file = new FileWriter("Staff.json");
+//            file.write(staffJSON);
+//            file.flush();
+//
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void serializeAStaffList() throws IOException {
+//        Gson gson = new Gson();
+//
+//        String staffJSON = gson.toJson(staffList);
+//
+//        try{
+//            FileWriter file = new FileWriter("Staff.json");
+//            file.write(staffJSON);
+//            file.flush();
+//
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static ArrayList<Order> deserializeAnOrderList() throws IOException {
+//        // get name/location of json file from the user and store it in a string - DONE IN MAIN
+//
+//        String file = "Order.json";
+//
+//        File newFile = new File(file);
+//        if(newFile.createNewFile()) {
+//            System.out.println(newFile.getName() + " has been created.");
+//
+//            try {
+//                FileWriter fileWriter = new FileWriter(file);
+//                fileWriter.write("[]");
+//                fileWriter.flush();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        String readInJson = new String(Files.readAllBytes(Paths.get(file)));
+//
+//////        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
+////        Type orderListType = new TypeToken<ArrayList<Order>>(){}.getType();
+////
+//////        returns deserialized object
+////        return new Gson().fromJson(readInJson, orderListType);
+//
+//        TypeToken<ArrayList<Order>> typeToken = new TypeToken<ArrayList<Order>>(){};
+//        return new Gson().fromJson(readInJson, typeToken.getType());
+//    }
+//
+//    //    deserializes Customer.json and updates the class list
+//    public static ArrayList<Customer> deserializeACustomerList() throws IOException {
+//        String file = "Customer.json";
+//
+//        File newFile = new File(file);
+//        if(newFile.createNewFile()) {
+//            System.out.println(newFile.getName() + " has been created.");
+//
+//            try {
+//                FileWriter fileWriter = new FileWriter(file);
+//                fileWriter.write("[]");
+//                fileWriter.flush();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        String readInJson = new String(Files.readAllBytes(Paths.get(file)));
+//
+////        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
+//        Type customerListType = new TypeToken<ArrayList<Customer>>(){}.getType();
+//
+////        returns deserialized object
+//        return new Gson().fromJson(readInJson, customerListType);
+//    }
+//
+//    public static ArrayList<Staff> deserializeAStaffList() throws IOException {
+//        String file = "Staff.json";
+//
+//        File newFile = new File(file);
+//        if(newFile.createNewFile()) {
+//            System.out.println(newFile.getName() + " has been created.");
+//
+//            try {
+//                FileWriter fileWriter = new FileWriter(file);
+//                fileWriter.write("[]");
+//                fileWriter.flush();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        String readInJson = new String(Files.readAllBytes(Paths.get(file)));
+//
+////        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
+////        Type staffListType = new TypeToken<ArrayList<Staff>>(){}.getType();
+//
+//        //        returns deserialized object
+////        return new Gson().fromJson(readInJson, staffListType);
+//
+//        TypeToken<ArrayList<Staff>> typeToken = new TypeToken<ArrayList<Staff>>(){};
+//        return new Gson().fromJson(readInJson, typeToken.getType());
+//
+//    }
+//
+//    public static String convertJsonIntoString(String file) throws IOException {
+//
+//        return new String(Files.readAllBytes(Paths.get(file)));
+//    }
+//
+//    public String jsonFileToUpdate(T object) {
+//        if (object.getClass() == Order.class) {
+//            return "management.Order.json";
+//        } else if (object.getClass() == Customer.class) {
+//            return "Customer.json";
+//        } else if (object.getClass() == Staff.class || object.getClass() == Manager.class) {
+//            return "Staff.json";
+//        }
+//        return "";
+//    }
 
-        Gson gson = new Gson();
-
-        List<T> updatedListToBeSer;
-        updatedListToBeSer = deserializeAList(jsonToUpdate);
-
-        updatedListToBeSer.add(object);
-
-        String JSON = gson.toJson(updatedListToBeSer);
-
-        try{
-            FileWriter file = new FileWriter(jsonToUpdate);
-            file.write(JSON);
-            file.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
+    public static Staff searchAndReturn(String userName){
+        for (Staff staff: staffList) {
+            if(staff.employeeID.equals(userName))
+            {
+                return staff;
+            }
         }
+        return null;
     }
 
-    //      Deserialize does not work with generics
-    public ArrayList<T> deserializeAList(String file) throws IOException {
-        // get name/location of json file from the user and store it in a string - DONE IN MAIN
+    public static void deserializeOrders() throws IOException {
 
-        // convert json file to a string to be deserialized
-//        String readInJson = getFileName();
-        String readInJson = convertJsonIntoString(file);
+        String file = "Orders.json";
 
-//        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
-        Type genericListType = new TypeToken<ArrayList<T>>(){}.getType();
-
-//        returns deserialized object
-        return new Gson().fromJson(readInJson, genericListType);
-    }
-
-    public static ArrayList<Order> deserializeAnOrderList(String file) throws IOException {
-        // get name/location of json file from the user and store it in a string - DONE IN MAIN
-
-        // convert json file to a string to be deserialized
-//        String readInJson = getFileName();
-//        String readInJson = convertOrderJsonIntoString(file);
-        String readInJson = convertJsonIntoString(file);
-
-//        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
-        Type orderListType = new TypeToken<ArrayList<Order>>(){}.getType();
-
-//        returns deserialized object
-        return new Gson().fromJson(readInJson, orderListType);
-    }
-
-    //    deserializes Customer.json and updates the class list
-    public static ArrayList<Customer> deserializeACustomerList(String file) throws IOException {
-        // get name/location of json file from the user and store it in a string - DONE IN MAIN
-
-        Gson gson = new Gson();
-
-        // convert json file to a string to be deserialized
-//        String readInJson = getFileName();
-        String readInJson = convertJsonIntoString(file);
-
-//        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
-        Type customerListType = new TypeToken<ArrayList<Customer>>(){}.getType();
-
-        customerList = gson.fromJson(readInJson, customerListType);
-
-        return gson.fromJson(readInJson, customerListType);
-    }
-
-    public static ArrayList<Staff> deserializeAStaffList(String file) throws IOException {
-        // get name/location of json file from the user and store it in a string - DONE IN MAIN
-
-        // convert json file to a string to be deserialized
-//        String readInJson = getFileName();
-        String readInJson = convertJsonIntoString(file);
-
-//        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
-        Type staffListType = new TypeToken<ArrayList<Staff>>(){}.getType();
-
-//        returns deserialized object
-        return new Gson().fromJson(readInJson, staffListType);
-    }
-
-    public static String convertJsonIntoString(String file) throws IOException {
-//        If the file doesn't exist then create it and add the VERY important [] (to avoid a nullPointerException)
         File newFile = new File(file);
         if(newFile.createNewFile()) {
             System.out.println(newFile.getName() + " has been created.");
@@ -130,121 +263,166 @@ public class JsonController <T>{
             }
         }
 
-        return new String(Files.readAllBytes(Paths.get(file)));
+        try {
+            // create Gson instance
+            Gson gson = new Gson();
+
+            // create a reader
+            Reader reader = Files.newBufferedReader(Paths.get("Orders.json"));
+
+            // convert JSON array to list of users
+            orderList = new Gson().fromJson(reader, new TypeToken<List<Order>>() {}.getType());
+            if(orderList == null) {
+                orderList = new ArrayList<>();
+            }
+            // close reader
+            reader.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
-    public String jsonFileToUpdate(T object){
-        if (object.getClass() == Order.class) {
-            return "Order.json";
-        }
-        else if (object.getClass() == Customer.class){
-            return "Customer.json";
-        }
-        else if (object.getClass() == Staff.class || object.getClass() == Manager.class) {
-            return "Staff.json";
-        }
-        return "";
-    }
+    public static void deserializeCustomers() throws IOException {
 
-    //      w/o generics
-    public static void serializeAnOrderList(Order order) throws IOException {
-        Gson gson = new Gson();
+        String file = "Customers.json";
 
-        List<Order> updatedListToBeSerialized;
-        updatedListToBeSerialized = deserializeAnOrderList("Order.json");
+        File newFile = new File(file);
+        if(newFile.createNewFile()) {
+            System.out.println(newFile.getName() + " has been created.");
 
-        updatedListToBeSerialized.add(order);
-
-        String orderJSON = gson.toJson(updatedListToBeSerialized);
-
-        try{
-            FileWriter file = new FileWriter("Order.json");
-            file.write(orderJSON);
-            file.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void serializeACustomerList(Customer customer) throws IOException {
-        Gson gson = new Gson();
-
-        List<Customer> updatedListToBeSer;
-        updatedListToBeSer = deserializeACustomerList("Customer.json");
-
-        updatedListToBeSer.add(customer);
-
-        String custJSON = gson.toJson(updatedListToBeSer);
-
-        try{
-            FileWriter file = new FileWriter("Customer.json");
-            file.write(custJSON);
-            file.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void serializeACustomerList() throws IOException {
-        Gson gson = new Gson();
-
-        String custJSON = gson.toJson(customerList);
-
-        try{
-            FileWriter file = new FileWriter("Customer.json");
-            file.write(custJSON);
-            file.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void serializeAStaffList(Staff staff) throws IOException {
-        Gson gson = new Gson();
-
-        List<Staff> updatedListToBeSerialized;
-        updatedListToBeSerialized = deserializeAStaffList("Staff.json");
-
-        updatedListToBeSerialized.add(staff);
-
-        String staffJSON = gson.toJson(updatedListToBeSerialized);
-
-        try{
-            FileWriter file = new FileWriter("Staff.json");
-            file.write(staffJSON);
-            file.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void serializeAStaffList() throws IOException {
-        Gson gson = new Gson();
-
-        String staffJSON = gson.toJson(staffList);
-
-        try{
-            FileWriter file = new FileWriter("Staff.json");
-            file.write(staffJSON);
-            file.flush();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Staff searchAndReturn(String userName){
-        for (Staff staff: staffList) {
-            if(staff.employeeID.equals(userName))
-            {
-                return staff;
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.write("[]");
+                fileWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        return null;
+
+        try {
+            // create Gson instance
+            Gson gson = new Gson();
+
+            // create a reader
+            Reader reader = Files.newBufferedReader(Paths.get("Customers.json"));
+
+            // convert JSON array to list of users
+            customerList = new Gson().fromJson(reader, new TypeToken<List<Customer>>() {}.getType());
+            if (customerList == null) {
+                customerList = new ArrayList<>();
+            }
+
+            // close reader
+            reader.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public static void deserializeStaff() throws IOException {
+
+        String file = "Staff.json";
+
+        File newFile = new File(file);
+        if(newFile.createNewFile()) {
+            System.out.println(newFile.getName() + " has been created.");
+
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.write("[]");
+                fileWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        try {
+            // create Gson instance
+            Gson gson = new Gson();
+
+            // create a reader
+            Reader reader = Files.newBufferedReader(Paths.get("Staff.json"));
+
+            // convert JSON array to list of users
+            staffList = new Gson().fromJson(reader, new TypeToken<List<Staff>>() {}.getType());
+
+            if (staffList == null) {
+                staffList = new ArrayList<>();
+            }
+            // close reader
+            reader.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    public static void serializeCustomers(){
+
+        Gson gson = new Gson();
+
+        String customerToJson = gson.toJson(customerList);
+
+        try{
+            FileWriter file = new FileWriter("Customers.json");
+            file.write(customerToJson);
+            file.close();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return;
+
+
+    }
+
+    public static void serializeStaff(){
+
+        Gson gson = new Gson();
+
+        String customerToJson = gson.toJson(staffList);
+
+        try{
+            FileWriter file = new FileWriter("Staff.json");
+            file.write(customerToJson);
+            file.close();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return;
+
+
+    }
+
+    public static void serializeOrders(){
+
+        Gson gson = new Gson();
+
+        String customerToJson = gson.toJson(orderList);
+
+        try{
+            FileWriter file = new FileWriter("Orders.json");
+            file.write(customerToJson);
+            file.close();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return;
+
+
+
     }
 
 }

@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import management.Staff;
 
 import static list.JsonController.*;
 
@@ -15,6 +17,8 @@ import java.io.IOException;
 
 public class AddNewCustomerController {
 
+
+    private Staff employee;
 
     @FXML
     private TextField firstName;
@@ -51,13 +55,16 @@ public class AddNewCustomerController {
     @FXML
     private Text errorText;
 
+    @FXML
+    private Label employeeID;
+
 
     public void addNewCustomer(ActionEvent actionEvent) throws IOException {
 
         if (isFieldEmpty()) {
             setUpController("empty field");
         }
-        else if(isDuplicate(phoneNumber.getText())){
+        else if(Customer.isDuplicate(phoneNumber.getText())){
             setUpController("duplicate customer");
         }
 
@@ -69,7 +76,7 @@ public class AddNewCustomerController {
             customerCreditCard newCreditCard;
             Customer newCustomer;
             if (creditNumber.getText().equals("")) {
-                newCustomer = new Customer(firstName.getText(),
+                newCustomer = Customer.createNewCustomer(firstName.getText(),
                         lastName.getText(),
                         newAddress,
                         phoneNumber.getText(),
@@ -80,7 +87,7 @@ public class AddNewCustomerController {
                         ccvNumber.getText(),
                         cardExpiration.getText());
 
-                newCustomer = new Customer(firstName.getText(),
+                newCustomer = Customer.createNewCustomer(firstName.getText(),
                         lastName.getText(),
                         newAddress,
                         phoneNumber.getText(),
@@ -90,8 +97,8 @@ public class AddNewCustomerController {
             customerList.add(newCustomer);
 
             try {
-                serializeACustomerList();
-                goBackToStaffScreen();
+                serializeCustomers();
+                backToRightStaffScreen();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -101,43 +108,84 @@ public class AddNewCustomerController {
 
     public void setUpController(String update) throws IOException {
 
-        ////This get the fxml loader ready
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
-        ////This preloads the next fxml
-        Parent root = fxmlLoader.load();
-        ////This grabs the controller being used in the current fxmlLoader
-        AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
-        fxmlLoader.setController(addNewCustomerController);
+//        ////This get the fxml loader ready
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
+//        ////This preloads the next fxml
+//        Parent root = fxmlLoader.load();
+//        ////This grabs the controller being used in the current fxmlLoader
+//        AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
+//        fxmlLoader.setController(addNewCustomerController);
+//
+//        ////Line to change
+//        if(update.equals("empty field")) {
+//            addNewCustomerController.errorText.setText("Please do not leave fields blank");
+//        }
+//        else if(update.equals("duplicate customer")){
+//            addNewCustomerController.errorText.setText("Customer Already Exists");
+//        }
+//
+//            /*
+//        This will restart the order menu page after pressing Add to Cart
+//         */
+//        Stage window = (Stage) firstName.getScene().getWindow();
+//        Scene scene = new Scene(root,900,600);
+//        window.setTitle("Staff-View.fxml");
+//        window.setScene(scene);
+//        window.setResizable(false);
+//        window.show();
 
-        ////Line to change
-        if(update.equals("empty field")) {
+        if(employee.getEmployeeType().equals("Manager")){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
+            Parent root = fxmlLoader.load();
+            AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
+            fxmlLoader.setController(addNewCustomerController);
+
+            if(update.equals("empty field")) {
             addNewCustomerController.errorText.setText("Please do not leave fields blank");
         }
         else if(update.equals("duplicate customer")){
             addNewCustomerController.errorText.setText("Customer Already Exists");
         }
 
-            /*
-        This will restart the order menu page after pressing Add to Cart
-         */
-        Stage window = (Stage) firstName.getScene().getWindow();
-        Scene scene = new Scene(root,900,600);
-        window.setTitle("Staff-View.fxml");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+            addNewCustomerController.setEmployee(employee);
+            addNewCustomerController.displayName();
 
-    }
+            Stage window = (Stage) firstName.getScene().getWindow();
 
-
-
-    public boolean isDuplicate(String newPhoneNumber) {
-        for (Customer c : customerList) {
-            if (c.getPhoneNumber().equals(newPhoneNumber)) {
-                return true;
-            }
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
         }
-        return false;
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
+            Parent root = fxmlLoader.load();
+            AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
+            fxmlLoader.setController(addNewCustomerController);
+
+            if(update.equals("empty field")) {
+                addNewCustomerController.errorText.setText("Please do not leave fields blank");
+            }
+            else if(update.equals("duplicate customer")){
+                addNewCustomerController.errorText.setText("Customer Already Exists");
+            }
+
+            addNewCustomerController.setEmployee(employee);
+            addNewCustomerController.displayName();
+
+            Stage window = (Stage) firstName.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+
     }
 
     public void changeView(String viewName) throws IOException {
@@ -151,10 +199,54 @@ public class AddNewCustomerController {
     }
 
     public void goBackToStaffScreen(ActionEvent actionEvent) throws IOException{
-        changeView("Staff-View.fxml");
+//        If it's a manager logged in, go back to manager view
+        backToRightStaffScreen();
     }
+
+//    for the back button
     public void goBackToStaffScreen() throws IOException{
-        changeView("Staff-View.fxml");
+        //        If it's a manager logged in, go back to manager view
+        backToRightStaffScreen();
+
+    }
+
+    public void backToRightStaffScreen() throws IOException {
+        if(employee.getEmployeeType().equals("Manager")){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(employee);
+            staffViewController.displayName();
+
+            Stage window = (Stage) firstName.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(employee);
+            staffViewController.displayName();
+
+            Stage window = (Stage) firstName.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
     }
 
     public boolean isFieldEmpty() {
@@ -186,6 +278,17 @@ public class AddNewCustomerController {
         changeView("Login-view.fxml");
     }
 
+    public Staff getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Staff employee) {
+        this.employee = employee;
+    }
+
+    public void displayName(){
+        employeeID.setText("Employee ID: " + employee.getEmployeeID());
+    }
 
 
 }

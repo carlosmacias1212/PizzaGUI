@@ -10,10 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import management.Order;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static list.JsonController.*;
+import static management.Menu.*;
 
 public class OrderMenuController {
 
@@ -47,114 +51,111 @@ public class OrderMenuController {
 
 
 
+
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
+        FoodItems newPizza;
         FoodItems side;
         FoodItems drink;
+
         String size = "";
         String pizzaType = "";
         String sideType;
         String drinkType;
+        String drinkSize;
 
         if(pep.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "pepperoni";
+            pizzaType = PEPPERONI;
         }else if (cheese.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "cheese";
+            pizzaType = CHEESE;
         }else if (veggie.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "veggie";
+            pizzaType = VEGGIE;
         }else if (sausage.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "sausage";
+            pizzaType = SAUSAGE;
         }else if (marinara.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "marinara";
+            pizzaType = MARINARA;
         }else if (supreme.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "supreme";
+            pizzaType = SUPREME;
         }
 
         if(small.equals(sizeGroup.getSelectedToggle())){
-            size = "small";
+            size = SMALL;
             foodList.add(new Pizza(pizzaType,size));
         }else if (medium.equals(sizeGroup.getSelectedToggle())){
-            size = "medium";
+            size = MEDIUM;
             foodList.add(new Pizza(pizzaType,size));
         }else if (large.equals(sizeGroup.getSelectedToggle())){
-            size = "large";
+            size = LARGE;
             foodList.add(new Pizza(pizzaType,size));
         }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
-            size = "xlarge";
+            size = XLARGE;
             foodList.add(new Pizza(pizzaType,size));
         }
 
         if(breadSticks.equals(sideGroup.getSelectedToggle())){
-            sideType = "breadsticks";
+            sideType = BREAD_STICKS;
         }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
-            sideType = "garlicknots";
+            sideType = GARLIC_KNOTS;
         }else if (wings.equals(sideGroup.getSelectedToggle())){
-            sideType = "wings";
+            sideType = WINGS;
         }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
-            sideType = "bonelesswings";
+            sideType = BONELESS_WINGS;
         }
         else{
             sideType = "";
         }
 
         if(coke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "coke";
+            drinkType = COKE;
         }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "dietCoke";
+            drinkType = DIET_COKE;
         }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "drPepper";
+            drinkType = DR_PEPPER;
         }else if (sprite.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "sprite";
+            drinkType = SPRITE;
         }else{
             drinkType = "";
         }
 
 
         switch (sideType) {
-            case "breadsticks" -> {
-                side = new Side("breadSticks");
+            case "Bread Sticks" -> {
+                side = new Side(BREAD_STICKS);
                 foodList.add(side);
             }
-            case "garlicknots" -> {
-                side = new Side("garlicKnots");
+            case "Garlic Knots" -> {
+                side = new Side(GARLIC_KNOTS);
                 foodList.add(side);
             }
-            case "wings" -> {
-                side = new Side("wings");
+            case "Wings" -> {
+                side = new Side(WINGS);
                 foodList.add(side);
             }
-            case "bonelesswings" -> {
-                side = new Side("bonelessWings");
+            case "Boneless Wings" -> {
+                side = new Side(BONELESS_WINGS);
                 foodList.add(side);
             }
         }
 
         switch (drinkType) {
-            case "coke" -> {
-                drink = new Drink("coke");
+            case "Coke" -> {
+                drink = new Drink(COKE);
                 foodList.add(drink);
             }
-            case "dietCoke" -> {
-                drink = new Drink("dietCoke");
+            case "Diet Coke" -> {
+                drink = new Drink(DIET_COKE);
                 foodList.add(drink);
             }
-            case "drPepper" -> {
-                drink = new Drink("mountainDew");
+            case "Dr. Pepper" -> {
+                drink = new Drink(DR_PEPPER);
                 foodList.add(drink);
             }
-            case "sprite" -> {
-                drink = new Drink("sprite");
+            case "Sprite" -> {
+                drink = new Drink(SPRITE);
                 foodList.add(drink);
             }
         }
 
-
-        for (FoodItems item : foodList) {
-            if(item.getFoodName() != null)
-            {
-                System.out.println(item.getFoodName());
-            }
-        }
 
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
@@ -177,12 +178,16 @@ public class OrderMenuController {
         window.setResizable(false);
         window.show();
 
+        for (FoodItems item : foodList) {
+            if(item.getFoodName() != null)
+            {
+                System.out.println(item.getFoodName());
+            }
+        }
 
 
 
     }
-
-
 
     public void buildYourOwnButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Build-Your-Own-View.fxml"));
@@ -207,7 +212,7 @@ public class OrderMenuController {
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
-        changeView("Login-view-View.fxml");
+        changeView("Login-view.fxml");
     }
 
 
@@ -216,6 +221,12 @@ public class OrderMenuController {
     }
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
+        Order newOrder = new Order("5747", true);
+        newOrder.addToCart(foodList);
+        newOrder.setOrderTotal();
+        orderList.add(newOrder);
+        serializeOrders();
+
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
