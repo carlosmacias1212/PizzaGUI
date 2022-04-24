@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import com.google.gson.*;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
@@ -17,6 +18,7 @@ import java.io.IOException;
 
 public class StaffViewController {
 
+    public ToggleGroup $orderType;
     private Staff employee;
     @FXML
     private String orderType;

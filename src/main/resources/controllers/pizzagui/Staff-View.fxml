@@ -69,7 +69,7 @@
                   </Label>
                   <RadioButton fx:id="pickUp" layoutX="469.0" layoutY="257.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Pick-Up">
                      <toggleGroup>
-                        <ToggleGroup fx:id="orderType" />
+                        <ToggleGroup fx:id="$orderType" />
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="delivery" layoutX="540.0" layoutY="257.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Delivery" toggleGroup="$orderType" />

@@ -342,6 +342,6 @@ public class OrderMenuController {
     }
 
     public void setOrderType(String newOrderType){
-        orderType.setText(newOrderType + "Order");
+        orderType.setText(newOrderType + " Order");
     }
 }
