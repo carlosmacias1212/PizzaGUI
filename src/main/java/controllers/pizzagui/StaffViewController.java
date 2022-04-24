@@ -30,6 +30,8 @@ public class StaffViewController {
     @FXML
     private Label failedText;
     @FXML
+    private Label failedText1;
+    @FXML
     private TextField custPhoneNumber;
 
     @FXML
@@ -40,7 +42,7 @@ public class StaffViewController {
     @FXML
     private RadioButton delivery;
 
-    public ToggleGroup $orderType;
+    public ToggleGroup toggleOrderType = new ToggleGroup();
 
 
 
@@ -81,18 +83,22 @@ public class StaffViewController {
         if (custPhoneNumber.getText().equals("")){
             failedText.setText("Please enter a phone number");
         }
+        else if (toggleOrderType.getSelectedToggle() == null){
+            failedText1.setText("Please select order type");
+        }
 
         else {
 
             currentCustomer.setText(custPhoneNumber.getText());
 
-//            if(pickUp.isSelected()){
-//                orderType.setText("Pick-up");
-//            }
-//            else{
-//                orderType.setText("Delivery");
-//            }
-            orderType.setText("pickup");
+            if(toggleOrderType.getSelectedToggle().equals(pickUp)){
+                orderType.setText("Pick-up");
+            }
+            else{
+                orderType.setText("Delivery");
+            }
+
+
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
             Parent root = fxmlLoader.load();

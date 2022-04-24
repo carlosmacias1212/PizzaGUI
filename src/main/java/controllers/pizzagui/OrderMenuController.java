@@ -206,6 +206,11 @@ public class OrderMenuController {
         orderMenuController.setOrderType(orderType);
         orderMenuController.displayName();
 
+        System.out.println(currentUser.getText());
+        System.out.println(currentCustomer.getText());
+        System.out.println(orderType.getText());
+
+
 
         /*
         This will restart the order menu page after pressing Add to Cart
@@ -291,7 +296,7 @@ public class OrderMenuController {
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
 
-        Order newOrder = new Order(currentCustomer.getText(), true);
+        Order newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
         newOrder.addToCart(foodList);
         newOrder.setOrderTotal();
         orderList.add(newOrder);
@@ -325,12 +330,9 @@ public class OrderMenuController {
 
     public void displayName(){
         currentUser.setText("Hello, " + employee.employeeType);
-        currentCustomer.setText("Cust: " + currentCustomer.getText());
-        orderType.setText(orderType.getText() + " Order");
+//        currentCustomer.setText("Cust: " + currentCustomer.getText());
+//        orderType.setText(orderType.getText() + " Order");
 
-        System.out.println(currentUser.getText());
-        System.out.println(currentCustomer.getText());
-        System.out.println(orderType.getText());
     }
 
     public Staff getEmployee() {
