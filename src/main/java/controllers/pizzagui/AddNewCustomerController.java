@@ -108,31 +108,6 @@ public class AddNewCustomerController {
 
     public void setUpController(String update) throws IOException {
 
-//        ////This get the fxml loader ready
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
-//        ////This preloads the next fxml
-//        Parent root = fxmlLoader.load();
-//        ////This grabs the controller being used in the current fxmlLoader
-//        AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
-//        fxmlLoader.setController(addNewCustomerController);
-//
-//        ////Line to change
-//        if(update.equals("empty field")) {
-//            addNewCustomerController.errorText.setText("Please do not leave fields blank");
-//        }
-//        else if(update.equals("duplicate customer")){
-//            addNewCustomerController.errorText.setText("Customer Already Exists");
-//        }
-//
-//            /*
-//        This will restart the order menu page after pressing Add to Cart
-//         */
-//        Stage window = (Stage) firstName.getScene().getWindow();
-//        Scene scene = new Scene(root,900,600);
-//        window.setTitle("Staff-View.fxml");
-//        window.setScene(scene);
-//        window.setResizable(false);
-//        window.show();
 
         if(employee.getEmployeeType().equals("Manager")){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
