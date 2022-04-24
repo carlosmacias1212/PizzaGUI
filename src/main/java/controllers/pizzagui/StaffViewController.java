@@ -7,8 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import com.google.gson.*;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import management.Order;
 import management.Staff;
 
 import java.io.IOException;
@@ -16,13 +18,26 @@ import java.io.IOException;
 public class StaffViewController {
 
     private Staff employee;
+    @FXML
+    private String orderType;
 
     @FXML
     private Label label;
 
     @FXML
     private Label currentUser;
+
+    @FXML
+    private Label failedText;
+    @FXML
     private TextField custPhoneNumber;
+
+    @FXML
+    private RadioButton pickUp;
+    @FXML
+    private RadioButton delivery;
+
+
 
     @FXML
     public void createCustomerAccount(ActionEvent actionEvent) throws IOException{
@@ -58,13 +73,39 @@ public class StaffViewController {
     @FXML
     public void orderNow(ActionEvent actionEvent) throws IOException{
 
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Order Menu");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+        if (custPhoneNumber.getText().equals("")){
+            failedText.setText("Please enter a phone number");
+        }
+
+        else {
+
+            if(pickUp.isSelected()){
+                setOrderType("Pick-up");
+            }
+            else{
+                setOrderType("Delivery");
+            }
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+            Parent root = fxmlLoader.load();
+            OrderMenuController orderMenuController = fxmlLoader.getController();
+            fxmlLoader.setController(orderMenuController);
+
+            orderMenuController.setCurrentCustomer(custPhoneNumber.getText());
+            orderMenuController.setOrderType(orderType);
+            orderMenuController.setEmployee(employee);
+
+//            orderMenuController.setCurrentCustomer(label1);
+            orderMenuController.displayName();
+
+
+            Stage window = (Stage) label.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Order Menu");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
     }
 
     @FXML
@@ -79,7 +120,7 @@ public class StaffViewController {
     }
 
     public void displayName(){
-        currentUser.setText("Hello "+employee.employeeID);
+        currentUser.setText("Hello "+employee.employeeType);
     }
 
     public Label getCurrentUser() {
@@ -100,5 +141,13 @@ public class StaffViewController {
 
     public void setCustPhoneNumber(TextField custPhoneNumber) {
         this.custPhoneNumber = custPhoneNumber;
+    }
+
+    public String getOrderType(){
+        return this.orderType;
+    }
+
+    public void setOrderType(String orderType){
+        this.orderType = orderType;
     }
 }

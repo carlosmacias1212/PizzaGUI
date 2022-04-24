@@ -25,8 +25,14 @@ import static management.Menu.*;
 public class OrderMenuController {
 
     Staff employee;
+
     @FXML
     private Label currentUser;
+    @FXML
+    private Label currentCustomer;
+
+    @FXML
+    private Label orderType;
     private List<FoodItems> foodList = new ArrayList<>();
     public ToggleGroup sideGroup;
     @FXML
@@ -173,7 +179,18 @@ public class OrderMenuController {
             }
         }
 
+        resetToggles();
 
+//        for (FoodItems item : foodList) {
+//            if(item.getFoodName() != null)
+//            {
+//                System.out.println(item.getFoodName());
+//            }
+//        }
+
+    }
+
+    public void resetToggles() throws IOException {
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
         ////This preloads the next fxml
@@ -181,9 +198,11 @@ public class OrderMenuController {
         ////This grabs the controller being used in the current fxmlLoader
         OrderMenuController orderMenuController = fxmlLoader.getController();
         fxmlLoader.setController(orderMenuController);
+
         ////Sets employee attribute in the controller to the user here
         orderMenuController.setFoodList(foodList);
         orderMenuController.setEmployee(employee);
+        orderMenuController.displayName();
 
 
         /*
@@ -195,20 +214,6 @@ public class OrderMenuController {
         window.setScene(scene);
         window.setResizable(false);
         window.show();
-
-        for (FoodItems item : foodList) {
-            if(item.getFoodName() != null)
-            {
-                System.out.println(item.getFoodName());
-            }
-        }
-
-    }
-
-    public void sizeToggleButton(ActionEvent actionEvent) {
-    }
-
-    public void SpecialtyToggleButton(ActionEvent actionEvent) {
     }
 
     public void buildYourOwnButton(ActionEvent actionEvent) throws IOException {
@@ -231,8 +236,8 @@ public class OrderMenuController {
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
 
-        if(employee.getEmployeeType().equals("Manager")){
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View"));
+        if(isManager()){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
             Parent root = fxmlLoader.load();
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
@@ -251,7 +256,7 @@ public class OrderMenuController {
 
 //        If it's a staff logged in, go back to staff view
         else{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
             Parent root = fxmlLoader.load();
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
@@ -269,6 +274,10 @@ public class OrderMenuController {
         }
     }
 
+    public boolean isManager(){
+        return employee.getEmployeeType().equals("Manager");
+    }
+
     public void logOutButton(ActionEvent actionEvent) throws IOException {
         changeView("Login-view.fxml");
     }
@@ -279,16 +288,24 @@ public class OrderMenuController {
     }
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
+
         Order newOrder = new Order("5747", true);
         newOrder.addToCart(foodList);
         newOrder.setOrderTotal();
         orderList.add(newOrder);
         serializeOrders();
 
-        Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
+        Parent root = fxmlLoader.load();
+        CheckoutController checkoutController = fxmlLoader.getController();
+        fxmlLoader.setController(checkoutController);
+
+        checkoutController.setEmployee(employee);
+        checkoutController.displayName();
+
+        Stage window = (Stage) label.getScene().getWindow();
+        Scene scene = new Scene(root,900,600);
+        window.setTitle("Checkout");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
@@ -305,7 +322,7 @@ public class OrderMenuController {
     }
 
     public void displayName(){
-        currentUser.setText("EmployeeID: " + employee.employeeID);
+        currentUser.setText("Hello " + employee.employeeType);
     }
 
     public Staff getEmployee() {
@@ -314,5 +331,17 @@ public class OrderMenuController {
 
     public void setEmployee(Staff employee) {
         this.employee = employee;
+    }
+
+    public Label getCurrentCustomer() {
+        return currentCustomer;
+    }
+
+    public void setCurrentCustomer(String currentCustomer) {
+        this.currentCustomer.setText("Cust #: " + currentCustomer);
+    }
+
+    public void setOrderType(String newOrderType){
+        orderType.setText(newOrderType + "Order");
     }
 }
