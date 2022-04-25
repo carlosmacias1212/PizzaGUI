@@ -82,7 +82,6 @@ public class OrderMenuController {
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
         if (sideGroup.getSelectedToggle() == null && drinkGroup.getSelectedToggle() == null && sizeGroup.getSelectedToggle() == null && PizzaTypes.getSelectedToggle() == null) {
-            System.out.println("empty");
             errorText.setText("Please select an item before adding to order");
         }
 
@@ -315,10 +314,10 @@ public class OrderMenuController {
 
             newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
 
-//            newOrder.addToCart(foodList);
-//            newOrder.setOrderTotal();
-//            orderList.add(newOrder);
-//            serializeOrders();
+            newOrder.addToCart(foodList);
+            newOrder.setOrderTotal();
+            orderList.add(newOrder);
+            serializeOrders();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
             Parent root = fxmlLoader.load();
@@ -328,6 +327,8 @@ public class OrderMenuController {
             checkoutController.setEmployee(employee);
             checkoutController.setFoodList(foodList);
             checkoutController.setOrder(newOrder);
+            checkoutController.setCurrentUser(currentUser);
+
 
 
             checkoutController.displayName();
@@ -384,5 +385,13 @@ public class OrderMenuController {
 
     public void setNewOrder(Order newOrder) {
         this.newOrder = newOrder;
+    }
+
+    public Label getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Label currentUser) {
+        this.currentUser = currentUser;
     }
 }

@@ -1,6 +1,10 @@
 package controllers.pizzagui;
 
+import food.BYO;
+
+import food.Drink;
 import food.FoodItems;
+import food.Pizza;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +38,8 @@ public class CheckoutController {
     public Label label;
     private Order currentOrder = orderList.get(orderList.size() - 1);
     private List<FoodItems> cart = currentOrder.getCart();
+
+    private List<FoodItems> cartView = new ArrayList<FoodItems>();
     public ArrayList<Label> pizzas = new ArrayList<Label>();
     public ArrayList<Label> sides = new ArrayList<Label>();
     public ArrayList<Label> drinks = new ArrayList<Label>();
@@ -42,28 +48,116 @@ public class CheckoutController {
     public void populateLabels() {
 
         for (FoodItems item: cart) {
+
+            //Skip if item type is already an entry in cart
+            if (isRepeat(item)) {
+                continue;
+            }
+
+
+            String desc="";
+
             if (item.getFoodName().equals("pizza")) {
+
                 String type;
+                String size;
 
                 if (item.getType().equals("Custom")) {
                     type = "Custom";
+                    size = ((BYO) item).getSize();
                 } else {
                     type = item.getType();
+                    size = ( (Pizza) item).getSize();
+
+                    desc = size + "     " + type;
+
                 }
 
-                pizzas.add(new Label(type));
+                cartView.add(item);
+                pizzas.add(new Label(desc));
+
 
 
             } else if (item.getFoodName().equals("side")) {
                 String type = item.getType();
-                pizzas.add(new Label(type));
+                cartView.add(item);
+                sides.add(new Label(type));
 
             } else if (item.getFoodName().equals("drink")) {
                 String type = item.getType();
-                sides.add(new Label(type));
+                cartView.add(item);
+                drinks.add(new Label(type));
             }
         }
 
+    }
+
+
+    //Only want one label per specific type of food item (ex. small cheese)
+    private Boolean isRepeat(FoodItems foodType) {
+        for (FoodItems f: cartView) {
+            if (foodType.getFoodName().equals("pizza")) {
+                if (foodType.getType().equals("Custom")) {
+                    if (sameCustom((BYO) f, (BYO) foodType)) {
+                        return true;
+                    }
+                } else {
+
+                    Pizza p1 = (Pizza) f;
+                    Pizza p2 = (Pizza) foodType;
+                    if (p1.getType().equals(p2.getType()) && p1.getSize().equals(p2.getSize())) {
+                        return true;
+                    }
+                }
+            } else if (foodType.getFoodName().equals("side")) {
+                if (f.getType().equals(foodType.getType())) {
+                    return true;
+                }
+            } else if (foodType.getFoodName().equals("drink")) {
+                if (f.getType().equals(foodType.getType())) {
+                    if (((Drink) f).getDrinkType().equals(((Drink) foodType).getDrinkType())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private Boolean sameCustom(BYO custom1, BYO custom2) {
+
+        if (
+                custom1.getCheese().equals(custom2.getCheese()) &&
+                        custom1.getSauce().equals(custom2.getSauce()) &&
+                        custom1.getSize().equals(custom2.getSize()) &&
+                        custom1.getCrustType().equals(custom2.getCrustType())
+        ) {
+
+        } else {
+            return false;
+        }
+
+
+        if (custom1.getToppings().size() != custom2.getToppings().size()) {
+            return false;
+        }
+
+
+        int toppingMatches = 0;
+        for (String topping: custom1.getToppings()) {
+            for (String findTopping: custom2.getToppings()) {
+                if (topping.equals(findTopping)) {
+                    toppingMatches++;
+                    break;
+                }
+            }
+        }
+
+        if (toppingMatches != custom1.getToppings().size()) {
+            return false;
+        }
+
+        return true;
     }
 
     @FXML
@@ -79,13 +173,13 @@ public class CheckoutController {
 
 
         for (Label p: pizzas) {
-            System.out.println("yea");
             HBox hbox = new HBox();
             hbox.getChildren().add(p);
             cartList.getChildren().add(hbox);
         }
 
         Label Sides = new Label("SIDES");
+        cartList.getChildren().add(Sides);
 
         for (Label s: sides) {
             HBox hbox = new HBox();
@@ -95,6 +189,7 @@ public class CheckoutController {
 
 
         Label Drinks = new Label("DRINKS");
+        cartList.getChildren().add(Drinks);
 
         for (Label d: drinks) {
             HBox hbox = new HBox();
@@ -113,6 +208,8 @@ public class CheckoutController {
 
             orderMenuController.setEmployee(employee);
             orderMenuController.setFoodList(foodList);
+            orderMenuController.setNewOrder(order);
+            orderMenuController.setCurrentUser(currentUser);
             orderMenuController.displayName();
 
 
@@ -135,6 +232,8 @@ public class CheckoutController {
             orderMenuController.setEmployee(employee);
             orderMenuController.setFoodList(foodList);
             orderMenuController.setNewOrder(order);
+            orderMenuController.setCurrentUser(currentUser);
+
             orderMenuController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -192,5 +291,13 @@ public class CheckoutController {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Label getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Label currentUser) {
+        this.currentUser = currentUser;
     }
 }

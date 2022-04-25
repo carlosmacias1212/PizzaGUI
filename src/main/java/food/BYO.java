@@ -76,7 +76,13 @@ public class BYO extends FoodItems {
         this.toppings = toppings;
     }
 
+    public String getSize() {
+        return size;
+    }
 
+    public void setSize(String size) {
+        this.size = size;
+    }
 }
 
 
