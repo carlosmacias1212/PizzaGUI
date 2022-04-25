@@ -78,14 +78,6 @@ public class ManagerViewController extends StaffViewController{
 
     }
 
-    public void addManager() {
-
-    }
-
-    public void addStaff(){
-
-    }
-
     public void removeCustomer() throws IOException {
         if(custToRemove.getText().equals("")){
             customerLabel.setText("Enter customer number");
@@ -110,8 +102,35 @@ public class ManagerViewController extends StaffViewController{
         }
     }
 
-    public void updatePayment(){
+    public void updatePayment() throws IOException {
 
+        if(custToRemove.getText().equals("")){
+            customerLabel.setText("Enter customer number");
+        }
+
+        else if (Customer.isDuplicate(custToRemove.getText())){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Update-Payment-View.fxml"));
+            Parent root = fxmlLoader.load();
+            UpdatePayment updatePayment = fxmlLoader.getController();
+            fxmlLoader.setController(updatePayment);
+
+            updatePayment.setCurrentUser(getCurrentUser());
+            updatePayment.setCustomerPhoneNumber(custToRemove.getText());
+            updatePayment.setEmployee(getEmployee());
+            updatePayment.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Update Payment");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+
+        }
+        else{
+            customerLabel.setText("Customer does not exist");
+        }
     }
 
     public void showCustomerList(){

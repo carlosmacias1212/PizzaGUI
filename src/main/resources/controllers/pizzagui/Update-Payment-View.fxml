@@ -2,28 +2,92 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.UpdatePayment">
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <AnchorPane BorderPane.alignment="CENTER">
-               <children>
-                  <Region layoutX="300.0" layoutY="1.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="1.0" />
-                  <Label layoutX="12.0" layoutY="3.0" text="Update Customer Payment" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="306.5" AnchorPane.topAnchor="3.0">
-                     <font>
-                        <Font name="Arial Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="512.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#logOut" text="LogOut" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="512.0" AnchorPane.rightAnchor="29.5" AnchorPane.topAnchor="4.0" />
-               </children>
-            </AnchorPane>
-         </top>
-      </BorderPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.UpdatePayment">
+   <BorderPane layoutX="200.0" layoutY="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <top>
+         <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A#F4B06A;" BorderPane.alignment="CENTER">
+            <Label layoutX="14.0" layoutY="26.0" text="Update Payment Info" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="29.0" />
+               </font>
+            </Label>
+            <Button layoutX="650.0" layoutY="6.0" mnemonicParsing="false" onAction="#logOut" prefHeight="48.0" prefWidth="221.0" text="LogOut" textFill="#f4b06a">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="29.0" />
+               </font>
+            </Button>
+            <Label fx:id="currentUser" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="255.0" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+         </AnchorPane>
+      </top>
+      <center>
+         <AnchorPane BorderPane.alignment="CENTER">
+            <Label layoutX="260.0" layoutY="40.0" text="Name On Card:">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="260.0" layoutY="80.0" text="Card Number:">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="260.0" layoutY="125.0" text="CCV:">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="260.0" layoutY="165.0" text="Expiration Date:">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameOnCard" layoutX="362.0" layoutY="40.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="cardNumber" layoutX="362.0" layoutY="80.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="securityCode" layoutX="362.0" layoutY="120.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="expDate" layoutX="362.0" layoutY="160.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+            <Button layoutX="26.0" layoutY="466.0" mnemonicParsing="false" onAction="#goBackToStaffView" prefHeight="46.0" prefWidth="113.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="26.0" />
+               </font>
+            </Button>
+            <Button layoutX="659.0" layoutY="464.0" mnemonicParsing="false" onAction="#update" prefHeight="48.0" prefWidth="221.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="26.0" />
+               </font>
+            </Button>
+            <Text fx:id="errorText" layoutX="269.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="287.1868896484375">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Text>
+         </AnchorPane>
+      </center>
+   </BorderPane>
 </AnchorPane>
+
