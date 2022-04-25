@@ -83,53 +83,48 @@
                   </RadioButton>
                   <Label fx:id="failedText" layoutX="315.0" layoutY="257.0" />
                   <Label fx:id="failedText1" layoutX="553.0" layoutY="257.0" />
-                  <Button layoutX="35.0" layoutY="324.0" mnemonicParsing="false" onAction="#orderNow" prefHeight="48.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Add Staff" textFill="WHITE">
+                  <Button layoutX="35.0" layoutY="324.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="60.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Add Manager/Staff" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="35.0" layoutY="379.0" mnemonicParsing="false" onAction="#orderNow" prefHeight="48.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Add Manager" textFill="WHITE">
+                  <Button layoutX="35.0" layoutY="394.0" mnemonicParsing="false" onAction="#removeWorker" prefHeight="64.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Remove Manger/Staff" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="260.0" layoutY="340.0" mnemonicParsing="false" onAction="#removeWorker" prefHeight="64.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Remove Manger/Staff" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Button layoutX="361.0" layoutY="324.0" mnemonicParsing="false" onAction="#removeCustomer" prefHeight="48.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Remove Customer" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="484.0" layoutY="324.0" mnemonicParsing="false" onAction="#removeCustomer" prefHeight="48.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Remove Customer" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="484.0" layoutY="379.0" mnemonicParsing="false" onAction="#orderNow" prefHeight="58.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Update Customer Payment Info" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Button layoutX="361.0" layoutY="379.0" mnemonicParsing="false" onAction="#updatePayment" prefHeight="58.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Update Customer Payment Info" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="employeeToRemove" layoutX="288.0" layoutY="475.0" />
-                  <TextField fx:id="custToRemove" layoutX="492.0" layoutY="475.0" />
-                  <Text layoutX="291.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee to Remove" textAlignment="CENTER" underline="true">
+                  <TextField fx:id="employeeToRemove" layoutX="64.0" layoutY="488.0" />
+                  <TextField fx:id="custToRemove" layoutX="386.0" layoutY="475.0" />
+                  <Text layoutX="67.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee to Remove" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="528.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer #" underline="true">
+                  <Text layoutX="422.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer #" underline="true">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </Text>
                   <Separator layoutX="7.0" layoutY="278.0" prefHeight="0.0" prefWidth="891.0" />
                   <Separator layoutX="7.0" layoutY="136.0" prefHeight="0.0" prefWidth="891.0" />
-                  <Label fx:id="staffLabel" layoutX="235.0" layoutY="499.0" />
-                  <Label fx:id="customerLabel" layoutX="690.0" layoutY="499.0" />
-                  <Button layoutX="710.0" layoutY="324.0" mnemonicParsing="false" onAction="#orderNow" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Customer List" textFill="WHITE">
+                  <Label fx:id="staffLabel" layoutX="92.0" layoutY="512.0" />
+                  <Label fx:id="customerLabel" layoutX="399.0" layoutY="505.0" />
+                  <Button layoutX="664.0" layoutY="330.0" mnemonicParsing="false" onAction="#showCustomerList" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Customer List" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="710.0" layoutY="384.0" mnemonicParsing="false" onAction="#orderNow" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Employee List" textFill="WHITE">
+                  <Button layoutX="664.0" layoutY="390.0" mnemonicParsing="false" onAction="#showEmployeeList" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Employee List" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>

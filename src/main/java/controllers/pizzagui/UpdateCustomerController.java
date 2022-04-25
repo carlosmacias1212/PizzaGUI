@@ -189,7 +189,7 @@ public class UpdateCustomerController {
             fxmlLoader.setController(staffViewController);
 
             staffViewController.setEmployee(employee);
-            staffViewController.displayName();
+//            staffViewController.displayName();
 
             Stage window = (Stage) firstName.getScene().getWindow();
 
@@ -208,7 +208,7 @@ public class UpdateCustomerController {
             fxmlLoader.setController(staffViewController);
 
             staffViewController.setEmployee(employee);
-            staffViewController.displayName();
+//            staffViewController.displayName();
 
             Stage window = (Stage) firstName.getScene().getWindow();
 

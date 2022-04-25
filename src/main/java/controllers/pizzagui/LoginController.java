@@ -53,7 +53,7 @@ public class LoginController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(getStaff());
+            staffViewController.setEmployee(searchAndReturn(username.getText()));
             staffViewController.displayName();
 
             Stage window = (Stage) username.getScene().getWindow();
@@ -78,6 +78,7 @@ public class LoginController {
             ////Sets employee attribute in the controller to the user here
             staffViewController.setEmployee(user);
             ////This sets the Current userName in the top lefthand corner
+
 
             staffViewController.displayName();
 

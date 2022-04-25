@@ -278,7 +278,7 @@ public class OrderMenuController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(employee);
+            staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -324,10 +324,10 @@ public class OrderMenuController {
             CheckoutController checkoutController = fxmlLoader.getController();
             fxmlLoader.setController(checkoutController);
 
-            checkoutController.setEmployee(employee);
+            checkoutController.setEmployee(getEmployee());
             checkoutController.setFoodList(foodList);
-            checkoutController.setOrder(newOrder);
-            checkoutController.setCurrentUser(currentUser);
+            checkoutController.setOrder(getNewOrder());
+            checkoutController.setCurrentUser(getCurrentUser());
 
 
 

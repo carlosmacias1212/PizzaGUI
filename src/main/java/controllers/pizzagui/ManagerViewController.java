@@ -3,10 +3,14 @@ package controllers.pizzagui;
 import customer_info.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 import management.Manager;
 import management.Staff;
 
@@ -14,7 +18,7 @@ import java.io.IOException;
 
 public class ManagerViewController extends StaffViewController{
 
-    private Staff employee;
+    public Staff employee;
 
     @FXML
     private Label orderType = new Label();
@@ -52,11 +56,34 @@ public class ManagerViewController extends StaffViewController{
     private RadioButton delivery;
     public ToggleGroup toggleOrderType = new ToggleGroup();
 
-    public void buttonManager(ActionEvent actionEvent) {
-        label.setText("Okay i channge this with buttonn");
+    public void addEmployee() throws IOException {
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Employee-View.fxml"));
+        Parent root = fxmlLoader.load();
+        AddNewEmployeeController addNewEmployeeController = fxmlLoader.getController();
+        fxmlLoader.setController(addNewEmployeeController);
+
+        addNewEmployeeController.setEmployee(getEmployee());
+
+        addNewEmployeeController.displayName();
+
+        Stage window = (Stage) label.getScene().getWindow();
+
+        Scene scene = new Scene(root,900,600);
+        window.setTitle("Add New Employee");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+
     }
 
-    public void showCustomerList(){
+    public void addManager() {
+
+    }
+
+    public void addStaff(){
+
     }
 
     public void removeCustomer() throws IOException {
@@ -83,7 +110,16 @@ public class ManagerViewController extends StaffViewController{
         }
     }
 
+    public void updatePayment(){
 
+    }
+
+    public void showCustomerList(){
+    }
+
+    public void showEmployeeList(){
+
+    }
 
 
 

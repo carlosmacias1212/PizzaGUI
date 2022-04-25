@@ -20,11 +20,11 @@ public class Manager extends Staff{
 
     public static boolean createNewStaff(String firstName, String lastName, String password, String employeeID) {
 
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeID.equals(employeeID)) {
-                return false;
-            }
-        }
+//        for (Staff s : JsonController.staffList) {
+//            if (s.employeeID.equals(employeeID)) {
+//                return false;
+//            }
+//        }
 
         Staff staff = new Staff(firstName, lastName, password, employeeID);
 
@@ -37,11 +37,11 @@ public class Manager extends Staff{
 
     public static boolean createNewManager(String firstName, String lastName, String password, String employeeID) {
 
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeID.equals(employeeID)) {
-                return false;
-            }
-        }
+//        for (Staff s : JsonController.staffList) {
+//            if (s.employeeID.equals(employeeID)) {
+//                return false;
+//            }
+//        }
 
         Staff manager = new Manager(firstName, lastName, password, employeeID);
 

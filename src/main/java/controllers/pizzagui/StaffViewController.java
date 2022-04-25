@@ -121,8 +121,6 @@ public class StaffViewController {
                 orderType.setText("Delivery");
             }
 
-
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
             Parent root = fxmlLoader.load();
             OrderMenuController orderMenuController = fxmlLoader.getController();
