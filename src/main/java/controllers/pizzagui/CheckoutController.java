@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -336,7 +337,8 @@ public class CheckoutController {
         return layout;
     }
 
-    public void goToConfirm() throws IOException {
+    public void goToConfirm(ActionEvent actionEvent) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
         Parent root = fxmlLoader.load();
         ConfirmationController confirmationController = fxmlLoader.getController();
@@ -420,10 +422,6 @@ public class CheckoutController {
 
     }
 
-    public void displayName(){
-        currentUser.setText("Hello " + employee.employeeType);
-    }
-
     public void changeView(String viewName) throws IOException {
         Stage window = (Stage) cartList.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
@@ -433,6 +431,12 @@ public class CheckoutController {
         window.setResizable(false);
         window.show();
     }
+
+    public void displayName(){
+        currentUser.setText("Hello " + employee.employeeType);
+    }
+
+
 
     public Staff getEmployee() {
         return employee;
