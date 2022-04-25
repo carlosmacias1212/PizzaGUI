@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class AddNewCustomerController {
 
-
     private Staff employee;
 
     @FXML
@@ -56,7 +55,7 @@ public class AddNewCustomerController {
     private Text errorText;
 
     @FXML
-    private Label employeeID;
+    private Label currentUser;
 
 
     public void addNewCustomer(ActionEvent actionEvent) throws IOException {
@@ -108,8 +107,7 @@ public class AddNewCustomerController {
 
     public void setUpController(String update) throws IOException {
 
-
-        if(employee.getEmployeeType().equals("Manager")){
+        if(isManager()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Add-New-Customer-View.fxml"));
             Parent root = fxmlLoader.load();
             AddNewCustomerController addNewCustomerController = fxmlLoader.getController();
@@ -117,10 +115,10 @@ public class AddNewCustomerController {
 
             if(update.equals("empty field")) {
             addNewCustomerController.errorText.setText("Please do not leave fields blank");
-        }
-        else if(update.equals("duplicate customer")){
+            }
+            else if(update.equals("duplicate customer")){
             addNewCustomerController.errorText.setText("Customer Already Exists");
-        }
+            }
 
             addNewCustomerController.setEmployee(employee);
             addNewCustomerController.displayName();
@@ -159,8 +157,10 @@ public class AddNewCustomerController {
             window.setResizable(false);
             window.show();
         }
+    }
 
-
+    public void logOut(ActionEvent actionEvent) throws IOException{
+        changeView("Login-view.fxml");
     }
 
     public void changeView(String viewName) throws IOException {
@@ -186,7 +186,7 @@ public class AddNewCustomerController {
     }
 
     public void backToRightStaffScreen() throws IOException {
-        if(employee.getEmployeeType().equals("Manager")){
+        if(isManager()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
             Parent root = fxmlLoader.load();
             StaffViewController staffViewController = fxmlLoader.getController();
@@ -224,6 +224,10 @@ public class AddNewCustomerController {
         }
     }
 
+    public boolean isManager(){
+        return employee.getEmployeeType().equals("Manager");
+    }
+
     public boolean isFieldEmpty() {
         if(firstName.getText().equals("")){
             return true;
@@ -248,11 +252,6 @@ public class AddNewCustomerController {
 
     }
 
-
-    public void logOut(ActionEvent actionEvent) throws IOException{
-        changeView("Login-view.fxml");
-    }
-
     public Staff getEmployee() {
         return employee;
     }
@@ -262,7 +261,7 @@ public class AddNewCustomerController {
     }
 
     public void displayName(){
-        employeeID.setText("Employee ID: " + employee.getEmployeeID());
+        currentUser.setText("Hello, "+employee.employeeType);
     }
 
 

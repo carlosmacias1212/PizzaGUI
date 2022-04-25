@@ -24,7 +24,7 @@
                         <Font name="Arial Rounded MT Bold" size="29.0" />
                      </font>
                   </Button>
-                  <Label fx:id="employeeID" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="255.0" textFill="WHITE">
+                  <Label fx:id="currentUser" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="255.0" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>

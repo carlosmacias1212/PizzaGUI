@@ -41,7 +41,6 @@ public class LoginController {
         else{
 
             failedText.setText("Please try again");
-
         }
 
     }
@@ -80,7 +79,6 @@ public class LoginController {
             staffViewController.setEmployee(user);
             ////This sets the Current userName in the top lefthand corner
 
-//        staffViewController.displayName(username.getText());
             staffViewController.displayName();
 
             Stage window = (Stage) username.getScene().getWindow();
@@ -104,7 +102,6 @@ public class LoginController {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -116,5 +113,4 @@ public class LoginController {
         }
         return null;
     }
-
 }

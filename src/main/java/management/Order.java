@@ -122,5 +122,9 @@ public class Order {
         return p;
 
     }
+
+    public static boolean isPickup(String orderType){
+        return orderType.equals("Pick-up");
+    }
 }
 
