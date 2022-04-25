@@ -345,7 +345,6 @@ public class CheckoutController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
         Parent root = fxmlLoader.load();
         ConfirmationController confirmationController = fxmlLoader.getController();
-//        fxmlLoader.setController(confirmationController);
 
         confirmationController.setEmployee(getEmployee());
         confirmationController.setTotalPrice(getTotalPrice());
@@ -355,8 +354,6 @@ public class CheckoutController {
 
         confirmationController.displayName();
 
-
-//        Stage window = (Stage) (Node)totalPrice.getScene().getWindow();
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(root,900,600);
