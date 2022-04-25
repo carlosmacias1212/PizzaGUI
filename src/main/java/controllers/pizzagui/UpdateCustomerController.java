@@ -108,6 +108,10 @@ public class UpdateCustomerController {
             }
         }
     }
+
+    public void setTextBoxes(){
+
+    }
     public void setUpController(String update) throws IOException {
 
         if(isManager()){

@@ -42,6 +42,8 @@ public class ManagerViewController extends StaffViewController{
     private RadioButton delivery;
     public ToggleGroup toggleOrderType = new ToggleGroup();
 
+
+
     public void buttonManager(ActionEvent actionEvent) {
         label.setText("Okay i channge this with buttonn");
     }

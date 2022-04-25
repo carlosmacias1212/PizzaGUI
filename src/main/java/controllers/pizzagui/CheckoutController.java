@@ -23,8 +23,12 @@ public class CheckoutController {
 
     Staff employee;
 
+    Order order;
+
     @FXML
     private Label currentUser;
+
+    private List<FoodItems> foodList = new ArrayList<>();
 
     @FXML
     public Label label;
@@ -108,6 +112,7 @@ public class CheckoutController {
             fxmlLoader.setController(orderMenuController);
 
             orderMenuController.setEmployee(employee);
+            orderMenuController.setFoodList(foodList);
             orderMenuController.displayName();
 
 
@@ -128,6 +133,8 @@ public class CheckoutController {
             fxmlLoader.setController(orderMenuController);
 
             orderMenuController.setEmployee(employee);
+            orderMenuController.setFoodList(foodList);
+            orderMenuController.setNewOrder(order);
             orderMenuController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -169,5 +176,21 @@ public class CheckoutController {
 
     public void setEmployee(Staff employee) {
         this.employee = employee;
+    }
+
+    public List<FoodItems> getFoodList() {
+        return foodList;
+    }
+
+    public void setFoodList(List<FoodItems> foodList) {
+        this.foodList = foodList;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

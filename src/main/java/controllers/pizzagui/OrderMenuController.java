@@ -26,6 +26,7 @@ import static management.Menu.*;
 public class OrderMenuController {
 
     Staff employee;
+    Order newOrder;
 
     @FXML
     private Label currentUser;
@@ -312,12 +313,12 @@ public class OrderMenuController {
 
         else {
 
-            Order newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
+            newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
 
-            newOrder.addToCart(foodList);
-            newOrder.setOrderTotal();
-            orderList.add(newOrder);
-            serializeOrders();
+//            newOrder.addToCart(foodList);
+//            newOrder.setOrderTotal();
+//            orderList.add(newOrder);
+//            serializeOrders();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
             Parent root = fxmlLoader.load();
@@ -325,6 +326,10 @@ public class OrderMenuController {
             fxmlLoader.setController(checkoutController);
 
             checkoutController.setEmployee(employee);
+            checkoutController.setFoodList(foodList);
+            checkoutController.setOrder(newOrder);
+
+
             checkoutController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -371,5 +376,13 @@ public class OrderMenuController {
 
     public void setOrderType(Label orderType){
         this.orderType = orderType;
+    }
+
+    public Order getNewOrder() {
+        return newOrder;
+    }
+
+    public void setNewOrder(Order newOrder) {
+        this.newOrder = newOrder;
     }
 }
