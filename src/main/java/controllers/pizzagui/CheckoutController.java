@@ -8,9 +8,14 @@ import food.Pizza;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,33 +26,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static list.JsonController.*;
-
 public class CheckoutController {
 
-    Staff employee;
-
-    Order order;
-
+    public VBox cartList;
+    private Staff employee;
+    private Order order;
     @FXML
     private Label currentUser;
+    private List<FoodItems> cart = new ArrayList<>();
 
-    private List<FoodItems> foodList = new ArrayList<>();
-
-    @FXML
-    public Label label;
-    private Order currentOrder = orderList.get(orderList.size() - 1);
-    private List<FoodItems> cart = currentOrder.getCart();
+    private Label totalPrice;
 
     private List<FoodItems> cartView = new ArrayList<FoodItems>();
-    public ArrayList<Label> pizzas = new ArrayList<Label>();
-    public ArrayList<Label> sides = new ArrayList<Label>();
-    public ArrayList<Label> drinks = new ArrayList<Label>();
+
+    private ArrayList<Label> entries = new ArrayList<Label>();
+
+    private ArrayList<Integer> quantities = new ArrayList<Integer>();
+
+
+
 
 
     public void populateLabels() {
 
+
         for (FoodItems item: cart) {
+
+
 
             //Skip if item type is already an entry in cart
             if (isRepeat(item)) {
@@ -74,31 +79,36 @@ public class CheckoutController {
                 }
 
                 cartView.add(item);
-                pizzas.add(new Label(desc));
+                quantities.add(1);
+                entries.add(new Label(desc));
 
 
 
             } else if (item.getFoodName().equals("side")) {
                 String type = item.getType();
                 cartView.add(item);
-                sides.add(new Label(type));
+                quantities.add(1);
+                entries.add(new Label(type));
 
             } else if (item.getFoodName().equals("drink")) {
                 String type = item.getType();
                 cartView.add(item);
-                drinks.add(new Label(type));
+                quantities.add(1);
+                entries.add(new Label(type));
             }
         }
 
     }
-
-
     //Only want one label per specific type of food item (ex. small cheese)
     private Boolean isRepeat(FoodItems foodType) {
         for (FoodItems f: cartView) {
-            if (foodType.getFoodName().equals("pizza")) {
+            if (foodType.getFoodName().equals("pizza") && f.getFoodName().equals("pizza")) {
                 if (foodType.getType().equals("Custom")) {
                     if (sameCustom((BYO) f, (BYO) foodType)) {
+
+                        int i = cartView.indexOf(f);
+                        int q = quantities.get(i) + 1;
+                        quantities.set(i, q);
                         return true;
                     }
                 } else {
@@ -106,16 +116,25 @@ public class CheckoutController {
                     Pizza p1 = (Pizza) f;
                     Pizza p2 = (Pizza) foodType;
                     if (p1.getType().equals(p2.getType()) && p1.getSize().equals(p2.getSize())) {
+                        int i = cartView.indexOf(f);
+                        int q = quantities.get(i) + 1;
+                        quantities.set(i, q);
                         return true;
                     }
                 }
-            } else if (foodType.getFoodName().equals("side")) {
+            } else if (foodType.getFoodName().equals("side") && f.getFoodName().equals("side")) {
                 if (f.getType().equals(foodType.getType())) {
+                    int i = cartView.indexOf(f);
+                    int q = quantities.get(i) + 1;
+                    quantities.set(i, q);
                     return true;
                 }
-            } else if (foodType.getFoodName().equals("drink")) {
+            } else if (foodType.getFoodName().equals("drink") && f.getFoodName().equals("drink")) {
                 if (f.getType().equals(foodType.getType())) {
                     if (((Drink) f).getDrinkType().equals(((Drink) foodType).getDrinkType())) {
+                        int i = cartView.indexOf(f);
+                        int q = quantities.get(i) + 1;
+                        quantities.set(i, q);
                         return true;
                     }
                 }
@@ -160,10 +179,21 @@ public class CheckoutController {
         return true;
     }
 
-    @FXML
-    private VBox cartList = new VBox();
 
-    @FXML void initialize() {
+
+   public float cartTotal() {
+       float priceTotal = 0;
+       for (FoodItems f: cart) {
+           priceTotal += f.getPrice();
+       }
+
+       return priceTotal;
+   }
+
+   public void start() {
+
+
+        System.out.println(cart.get(0).getType());
 
         populateLabels();
 
@@ -171,32 +201,166 @@ public class CheckoutController {
         cartList.getChildren().add(pizza);
 
 
+        for (Label p: entries) {
 
-        for (Label p: pizzas) {
-            HBox hbox = new HBox();
-            hbox.getChildren().add(p);
-            cartList.getChildren().add(hbox);
+            int i = entries.indexOf(p);
+            if (cartView.get(i).getFoodName().equals("pizza")) {
+
+                HBox hbox = entry(p);
+                cartList.getChildren().add(hbox);
+            }
+
         }
 
         Label Sides = new Label("SIDES");
         cartList.getChildren().add(Sides);
 
-        for (Label s: sides) {
-            HBox hbox = new HBox();
-            hbox.getChildren().add(s);
-            cartList.getChildren().add(hbox);
+        for (Label s: entries) {
+
+            int i = entries.indexOf(s);
+            if (cartView.get(i).getFoodName().equals("side")) {
+
+                HBox hbox = entry(s);
+                cartList.getChildren().add(hbox);
+            }
         }
 
 
         Label Drinks = new Label("DRINKS");
         cartList.getChildren().add(Drinks);
 
-        for (Label d: drinks) {
-            HBox hbox = new HBox();
-            hbox.getChildren().add(d);
-            cartList.getChildren().add(hbox);
+        for (Label d: entries) {
+            int i = entries.indexOf(d);
+            if (cartView.get(i).getFoodName().equals("drink")) {
+
+                HBox hbox = entry(d);
+                cartList.getChildren().add(hbox);
+            }
         }
+
+        Separator seperator = new Separator();
+        seperator.setOrientation(Orientation.HORIZONTAL);
+        cartList.getChildren().add(seperator);
+
+        HBox subtotal = total();
+        cartList.getChildren().add(subtotal);
     }
+
+    private HBox total() {
+        HBox layout = new HBox();
+        layout.setAlignment(Pos.CENTER);
+
+        Label total = new Label("Total: ");
+        total.setStyle("-fx-font-size: 15pt;");
+
+
+        float priceTotal = cartTotal();
+        this.totalPrice = new Label("$ " + String.valueOf(priceTotal));
+
+        layout.getChildren().addAll(total, this.totalPrice);
+        return layout;
+
+    }
+
+    private HBox entry(Label food) {
+
+        HBox layout = new HBox();
+        layout.setAlignment(Pos.CENTER_LEFT);
+
+        food.setPrefWidth(300);
+        food.setStyle("-fx-font-size:15pt; -fx-padding:5px");
+
+        int i = entries.indexOf(food);
+        int q = quantities.get(i);
+        String quant = String.valueOf(q);
+        Label quantity = new Label(quant);
+
+        Button minusButton = new Button("-");
+        minusButton.setStyle("-fx-padding:5px");
+        minusButton.setUserData(cartView.get(i).getType());
+        minusButton.setOnAction(e -> {
+            String name = (String) ((Node) e.getSource()).getUserData();
+
+            for (FoodItems f: cart) {
+
+                if (f.getType().equals(name)) {
+
+
+                    for (FoodItems list: cartView) {
+                        if (list.getType().equals(name)) {
+                            int j = cartView.indexOf(list);
+                            int qminus = (quantities.get(j) > 0 ? ( quantities.get(j) - 1 ): 0);
+                            quantities.set(j, qminus);
+                            cart.remove(f);
+                            quantity.setText(String.valueOf(qminus));
+                            this.totalPrice.setText("$ " +String.valueOf(cartTotal()));
+
+
+                        }
+                    }
+
+                }
+            }
+        });
+
+        Button plusButton = new Button("+");
+        plusButton.setStyle("-fx-padding:5px");
+        plusButton.setUserData(cartView.get(i).getType());
+        plusButton.setOnAction(e -> {
+            String name = (String) ((Node) e.getSource()).getUserData();
+            for (FoodItems f: cart) {
+                if (f.getType().equals(name)) {
+
+                    for (FoodItems list: cartView) {
+                        if (list.getType().equals(name)) {
+                            int j = cartView.indexOf(list);
+                            int qplus = quantities.get(j) + 1;
+                            quantities.set(j, qplus);
+                            cart.add(f);
+                            quantity.setText(String.valueOf(qplus));
+                            this.totalPrice.setText("$ " +String.valueOf(cartTotal()));
+
+                        }
+                    }
+
+                }
+            }
+        });
+
+        float amount = cartView.get(i).getPrice();
+        String p = "$ " + amount;
+        Label price = new Label(p);
+
+        layout.getChildren().addAll(food, minusButton, quantity, plusButton, price);
+
+        return layout;
+    }
+
+    public void goToConfirm() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
+        Parent root = fxmlLoader.load();
+        ConfirmationController confirmationController = fxmlLoader.getController();
+        fxmlLoader.setController(confirmationController);
+
+        confirmationController.setEmployee(getEmployee());
+        confirmationController.setTotalPrice(getTotalPrice());
+        confirmationController.setOrder(getOrder());
+        confirmationController.setCurrentUser(getCurrentUser());
+
+        confirmationController.displayName();
+
+
+        Stage window = (Stage) totalPrice.getScene().getWindow();
+
+        Scene scene = new Scene(root,900,600);
+        window.setTitle("Confirmation View");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+    }
+
+
+
 
     public void goBackToOrderMenu(ActionEvent actionEvent) throws IOException {
 
@@ -206,14 +370,15 @@ public class CheckoutController {
             OrderMenuController orderMenuController = fxmlLoader.getController();
             fxmlLoader.setController(orderMenuController);
 
-            orderMenuController.setEmployee(employee);
-            orderMenuController.setFoodList(foodList);
-            orderMenuController.setNewOrder(order);
-            orderMenuController.setCurrentUser(currentUser);
+            orderMenuController.setEmployee(getEmployee());
+            orderMenuController.setFoodList(getCart());
+            orderMenuController.setNewOrder(getOrder());
+            orderMenuController.setCurrentUser(getCurrentUser());
+
             orderMenuController.displayName();
 
 
-            Stage window = (Stage) label.getScene().getWindow();
+            Stage window = (Stage) totalPrice.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Manager View");
@@ -229,14 +394,14 @@ public class CheckoutController {
             OrderMenuController orderMenuController = fxmlLoader.getController();
             fxmlLoader.setController(orderMenuController);
 
-            orderMenuController.setEmployee(employee);
-            orderMenuController.setFoodList(foodList);
-            orderMenuController.setNewOrder(order);
-            orderMenuController.setCurrentUser(currentUser);
+            orderMenuController.setEmployee(getEmployee());
+            orderMenuController.setFoodList(getCart());
+            orderMenuController.setNewOrder(getOrder());
+            orderMenuController.setCurrentUser(getCurrentUser());
 
             orderMenuController.displayName();
 
-            Stage window = (Stage) label.getScene().getWindow();
+            Stage window = (Stage) totalPrice.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Staff View");
@@ -260,7 +425,7 @@ public class CheckoutController {
     }
 
     public void changeView(String viewName) throws IOException {
-        Stage window = (Stage) label.getScene().getWindow();
+        Stage window = (Stage) cartList.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         window.setTitle(viewName);
@@ -278,11 +443,11 @@ public class CheckoutController {
     }
 
     public List<FoodItems> getFoodList() {
-        return foodList;
+        return cart;
     }
 
     public void setFoodList(List<FoodItems> foodList) {
-        this.foodList = foodList;
+        this.cart = foodList;
     }
 
     public Order getOrder() {
@@ -299,5 +464,21 @@ public class CheckoutController {
 
     public void setCurrentUser(Label currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public List<FoodItems> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<FoodItems> cart) {
+        this.cart = cart;
+    }
+
+    public Label getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Label totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

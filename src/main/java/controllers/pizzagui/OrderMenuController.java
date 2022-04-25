@@ -25,14 +25,12 @@ import static management.Menu.*;
 
 public class OrderMenuController {
 
-    Staff employee;
-    Order newOrder;
-
+    private Staff employee;
+    private Order newOrder;
     @FXML
     private Label currentUser;
     @FXML
     private Label currentCustomer;
-
     @FXML
     private Label orderType;
     private List<FoodItems> foodList = new ArrayList<>();
@@ -46,6 +44,9 @@ public class OrderMenuController {
 
     @FXML
     public ToggleGroup size;
+
+    @FXML
+    public ToggleGroup dSize;
 
     @FXML
     public ToggleGroup sides;
@@ -64,15 +65,23 @@ public class OrderMenuController {
     public ToggleButton small;
     public ToggleButton medium;
     public ToggleButton large;
+
+    public ToggleButton xlarge;
     public ToggleButton wings;
     public ToggleButton breadSticks;
     public ToggleButton garlicKnots;
     public ToggleButton bonelessWings;
+    public ToggleButton sdrink;
+
+    public ToggleButton mdrink;
+
+    public ToggleButton ldrink;
+
     public ToggleButton coke;
     public ToggleButton dietCoke;
     public ToggleButton sprite;
     public ToggleButton drPepper;
-    public ToggleButton xlarge;
+
 
     @FXML
     public Label label;
@@ -95,7 +104,7 @@ public class OrderMenuController {
             String pizzaType = "";
             String sideType;
             String drinkType;
-            String drinkSize;
+            String drinkSize = "";
 
             if (pep.equals(PizzaTypes.getSelectedToggle())) {
                 pizzaType = PEPPERONI;
@@ -115,14 +124,18 @@ public class OrderMenuController {
                 size = SMALL;
                 foodList.add(new Pizza(pizzaType, size));
             } else if (medium.equals(sizeGroup.getSelectedToggle())) {
+                System.out.println("med");
                 size = MEDIUM;
                 foodList.add(new Pizza(pizzaType, size));
             } else if (large.equals(sizeGroup.getSelectedToggle())) {
                 size = LARGE;
                 foodList.add(new Pizza(pizzaType, size));
+                System.out.println(foodList.get(0).getType());
             } else if (xlarge.equals(sizeGroup.getSelectedToggle())) {
                 size = XLARGE;
                 foodList.add(new Pizza(pizzaType, size));
+                System.out.println(foodList.get(0).getType());
+
             }
 
             if (breadSticks.equals(sideGroup.getSelectedToggle())) {
@@ -149,6 +162,22 @@ public class OrderMenuController {
                 drinkType = "";
             }
 
+            if(dSize.getSelectedToggle() != null) {
+
+                if (sdrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "small";
+                    foodList.add(new Drink(drinkType, drinkSize));
+
+                } else if (mdrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "medium";
+                    foodList.add(new Drink(drinkType, drinkSize));
+
+                } else if (ldrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "large";
+                    foodList.add(new Drink(drinkType, drinkSize));
+                }
+            }
+
 
             switch (sideType) {
                 case "Bread Sticks" -> {
@@ -169,6 +198,8 @@ public class OrderMenuController {
                 }
             }
 
+
+            /*
             switch (drinkType) {
                 case "Coke" -> {
                     drink = new Drink(COKE);
@@ -187,6 +218,8 @@ public class OrderMenuController {
                     foodList.add(drink);
                 }
             }
+
+             */
 
             resetToggles();
 
@@ -306,31 +339,26 @@ public class OrderMenuController {
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
 
+
         if(foodList.size() == 0){
             errorText.setText("Order is Empty");
         }
 
         else {
-
             newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
-
-            newOrder.addToCart(foodList);
             newOrder.setOrderTotal();
-            orderList.add(newOrder);
-            serializeOrders();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
+            newOrder.addToCart(foodList);
+            System.out.println(foodList.get(0).getType());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
             Parent root = fxmlLoader.load();
             CheckoutController checkoutController = fxmlLoader.getController();
             fxmlLoader.setController(checkoutController);
 
             checkoutController.setEmployee(getEmployee());
-            checkoutController.setFoodList(foodList);
-            checkoutController.setOrder(getNewOrder());
+            checkoutController.setFoodList(getFoodList());
+            checkoutController.setOrder(getOrder());
             checkoutController.setCurrentUser(getCurrentUser());
-
-
-
+            checkoutController.start();
             checkoutController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -359,6 +387,9 @@ public class OrderMenuController {
 
     }
 
+    public List<FoodItems> getFoodList(){
+        return foodList;
+    }
     public Staff getEmployee() {
         return employee;
     }
@@ -394,4 +425,13 @@ public class OrderMenuController {
     public void setCurrentUser(Label currentUser) {
         this.currentUser = currentUser;
     }
+
+    public Staff getStaff(){
+        return this.employee;
+    }
+
+    public Order getOrder(){
+        return this.newOrder;
+    }
+
 }

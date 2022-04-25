@@ -207,6 +207,29 @@
                                     <Font name="Arial Rounded MT Bold" size="14.0" />
                                  </font>
                               </Text>
+
+
+                              <ToggleButton fx:id="sdrink" layoutX="90.0" layoutY="55.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" text="S">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="dSize" />
+                                 </toggleGroup></ToggleButton>
+                              <ToggleButton fx:id="mdrink" layoutX="155.0" layoutY="55.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" text="M" toggleGroup="$dSize">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font></ToggleButton>
+                              <ToggleButton fx:id="ldrink" layoutX="215.0" layoutY="55.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" text="L" toggleGroup="$dSize">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font></ToggleButton>
+                              <Text layoutX="135.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drink Size" wrappingWidth="97.2060546875">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </Text>
+
                            </children></AnchorPane>
                      </children>
                   </GridPane>
