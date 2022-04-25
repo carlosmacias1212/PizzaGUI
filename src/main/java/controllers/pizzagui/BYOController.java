@@ -5,23 +5,22 @@ import food.FoodItems;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import management.Order;
 import management.Staff;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class BYOController{
+
 
     public CheckBox pepCheckBox;
     public CheckBox sausCheckBox;
@@ -47,6 +46,7 @@ public class BYOController{
     public ToggleGroup crustTypes;
     public ToggleGroup sauceTypes;
     public ToggleGroup cheeseAmount;
+    public Label label;
 
 
 
@@ -56,8 +56,6 @@ public class BYOController{
     private Label customerPhoneNum;
 
 
-    @FXML
-    public Label label;
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
         Stage window = (Stage) label.getScene().getWindow();
@@ -189,6 +187,7 @@ public class BYOController{
          public List<FoodItems> getList() {
             return list;
          }
+
 
     }
 

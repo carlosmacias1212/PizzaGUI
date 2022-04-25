@@ -28,14 +28,16 @@ public class OrderMenuController {
     private Staff employee;
     //This employee is passed through add to cart scenes and byo scenes and checkout scene.
     private Order newOrder;
-    //This order is passed from Order Menu Controller to checkout after pressing add to cart.
+    //This order is passed from Order Menu Controller to check out after pressing add to cart.
+    private List<FoodItems> foodList = new ArrayList<>();
+    //This array list holds the food that has been added to the cart. Transfers between scenes.
     @FXML
     private Label currentUser;
     @FXML
     private Label currentCustomer;
     @FXML
     private Label orderType;
-    private List<FoodItems> foodList = new ArrayList<>();
+
     public ToggleGroup sideGroup;
     @FXML
     public ToggleGroup drinkGroup;
@@ -182,12 +184,6 @@ public class OrderMenuController {
 
             resetToggles();
 
-//        for (FoodItems item : foodList) {
-//            if(item.getFoodName() != null)
-//            {
-//                System.out.println(item.getFoodName());
-//            }
-//        }
         }
 
     }
@@ -202,10 +198,10 @@ public class OrderMenuController {
         fxmlLoader.setController(orderMenuController);
 
         ////Sets employee attribute in the controller to the user here
-        orderMenuController.setFoodList(foodList);
-        orderMenuController.setEmployee(employee);
-        orderMenuController.setCurrentCustomer(currentCustomer);
-        orderMenuController.setOrderType(orderType);
+        orderMenuController.setFoodList(getFoodList());
+        orderMenuController.setEmployee(getEmployee());
+        orderMenuController.setCurrentCustomer(getCurrentCustomer());
+        orderMenuController.setOrderType(getOrderType());
         orderMenuController.displayName();
 
         System.out.println(currentUser.getText());
@@ -365,6 +361,10 @@ public class OrderMenuController {
 
     public void setOrderType(Label orderType){
         this.orderType = orderType;
+    }
+
+    public Label getOrderType(){
+        return this.orderType;
     }
 
     public Order getNewOrder() {

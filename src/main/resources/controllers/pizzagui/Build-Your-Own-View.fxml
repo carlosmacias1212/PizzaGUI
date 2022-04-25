@@ -49,13 +49,13 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Label fx:id="label" layoutX="429.0" layoutY="6.0" text="Crust">
+                              <Label fx:id="label" alignment="CENTER" layoutX="429.0" layoutY="6.0" text="Crust" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Separator layoutY="111.0" prefHeight="13.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                              <ToggleButton layoutX="173.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="HandTossed">
+                              <ToggleButton fx:id="handTossed" layoutX="173.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Hand Tossed">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="crustTypes" />
                                  </toggleGroup>
@@ -63,12 +63,12 @@
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton layoutX="406.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="StuffedCrust" toggleGroup="$crustTypes">
+                              <ToggleButton fx:id="stuffed" layoutX="406.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Stuffed Crust" toggleGroup="$crustTypes">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton layoutX="632.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="PanCrust" toggleGroup="$crustTypes">
+                              <ToggleButton fx:id="pan" layoutX="632.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Pan Crust" toggleGroup="$crustTypes">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -77,13 +77,13 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <Label layoutX="427.0" layoutY="16.0" text="Sauce">
+                              <Label alignment="CENTER" layoutX="429.0" layoutY="16.0" text="Sauce" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Separator layoutX="200.0" layoutY="163.0" prefHeight="5.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                              <ToggleButton layoutX="189.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Light">
+                              <ToggleButton fx:id="lightSauce" layoutX="189.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Light">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -91,12 +91,12 @@
                                     <ToggleGroup fx:id="sauceTypes" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton layoutX="405.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Regular" toggleGroup="$sauceTypes">
+                              <ToggleButton fx:id="regularSauce" layoutX="406.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Regular" toggleGroup="$sauceTypes">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton layoutX="627.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Extra" toggleGroup="$sauceTypes">
+                              <ToggleButton layoutX="627.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Extra" toggleGroup="$sauceTypes" fx:id="xtraSauce">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -107,12 +107,12 @@
                                  </font>
                               </Text>
                               <Separator layoutX="350.0" layoutY="104.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                              <Label layoutX="429.0" layoutY="107.0" text="Size">
+                              <Label alignment="CENTER" layoutX="435.0" layoutY="107.0" text="Size" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <ToggleButton fx:id="smallToggle" layoutX="251.0" layoutY="128.0" mnemonicParsing="false" text="S">
+                              <ToggleButton fx:id="smallToggle" layoutX="209.0" layoutY="128.0" mnemonicParsing="false" text="Small">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -120,17 +120,17 @@
                                     <ToggleGroup fx:id="sizeGroup" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton fx:id="extraLargeToggle" layoutX="633.0" layoutY="128.0" mnemonicParsing="false" text="XL" toggleGroup="$sizeGroup">
+                              <ToggleButton fx:id="extraLargeToggle" layoutX="633.0" layoutY="128.0" mnemonicParsing="false" text="Extra Large" toggleGroup="$sizeGroup">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton fx:id="mediumToggle" layoutX="374.0" layoutY="129.0" mnemonicParsing="false" text="M" toggleGroup="$sizeGroup">
+                              <ToggleButton fx:id="mediumToggle" layoutX="345.0" layoutY="128.0" mnemonicParsing="false" text="Medium" toggleGroup="$sizeGroup">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton fx:id="largeToggle" layoutX="503.0" layoutY="127.0" mnemonicParsing="false" text="L" toggleGroup="$sizeGroup">
+                              <ToggleButton fx:id="largeToggle" layoutX="503.0" layoutY="128.0" mnemonicParsing="false" text="Large" toggleGroup="$sizeGroup">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -139,18 +139,18 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Label layoutX="422.0" layoutY="17.0" text="Cheese">
+                              <Label contentDisplay="CENTER" layoutX="429.0" layoutY="17.0" text="Cheese" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="420.0" layoutY="117.0" text="Toppings">
+                              <Label contentDisplay="CENTER" layoutX="423.0" layoutY="117.0" text="Toppings" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Separator layoutX="348.0" layoutY="97.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                              <ToggleButton layoutX="194.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Light">
+                              <ToggleButton fx:id="lightCheese" layoutX="194.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Light">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -158,12 +158,12 @@
                                     <ToggleGroup fx:id="cheeseAmount" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton layoutX="403.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Regular" toggleGroup="$cheeseAmount">
+                              <ToggleButton fx:id="regularCheese" layoutX="406.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Regular" toggleGroup="$cheeseAmount">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton layoutX="636.0" layoutY="47.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Extra" toggleGroup="$cheeseAmount">
+                              <ToggleButton layoutX="636.0" layoutY="47.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Extra" toggleGroup="$cheeseAmount" fx:id="xtraCheese">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -181,32 +181,32 @@
                                     <Font name="Arial Rounded MT Bold" size="35.0" />
                                  </font>
                               </Button>
-                              <CheckBox fx:id="pepCheckBox" layoutX="441.0" layoutY="14.0" mnemonicParsing="false" text="Pep">
+                              <CheckBox fx:id="pepCheckBox" contentDisplay="CENTER" layoutX="409.0" layoutY="7.0" mnemonicParsing="false" text="Pepperoni" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="sausCheckBox" layoutX="559.0" layoutY="16.0" mnemonicParsing="false" text="Saus">
+                              <CheckBox fx:id="sausCheckBox" contentDisplay="CENTER" layoutX="604.0" layoutY="8.0" mnemonicParsing="false" text="Sausage" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="greenPepperCheckBox" layoutX="557.0" layoutY="49.0" mnemonicParsing="false" text="Green Peppers">
+                              <CheckBox fx:id="greenPepperCheckBox" contentDisplay="CENTER" layoutX="605.0" layoutY="48.0" mnemonicParsing="false" text="Green Peppers" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="mushCheckBox" layoutX="433.0" layoutY="49.0" mnemonicParsing="false" text="Mush">
+                              <CheckBox fx:id="mushCheckBox" contentDisplay="CENTER" layoutX="410.0" layoutY="49.0" mnemonicParsing="false" text="Mushrooms" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="hamCheckBox" layoutX="314.0" layoutY="14.0" mnemonicParsing="false" text="Ham">
+                              <CheckBox fx:id="hamCheckBox" contentDisplay="CENTER" layoutX="224.0" layoutY="7.0" mnemonicParsing="false" text="Ham" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="chickenCheckBox" layoutX="307.0" layoutY="50.0" mnemonicParsing="false" text="Chicken">
+                              <CheckBox fx:id="chickenCheckBox" contentDisplay="CENTER" layoutX="224.0" layoutY="47.0" mnemonicParsing="false" text="Chicken" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
