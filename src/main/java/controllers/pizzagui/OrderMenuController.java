@@ -48,6 +48,12 @@ public class OrderMenuController {
 
     @FXML
     public ToggleGroup size;
+
+    @FXML
+    public ToggleGroup dSize;
+
+
+
     @FXML
     public ToggleButton pep;
 
@@ -59,15 +65,24 @@ public class OrderMenuController {
     public ToggleButton small;
     public ToggleButton medium;
     public ToggleButton large;
+
+    public ToggleButton xlarge;
     public ToggleButton wings;
     public ToggleButton breadSticks;
     public ToggleButton garlicKnots;
     public ToggleButton bonelessWings;
+    public ToggleButton sdrink;
+
+    public ToggleButton mdrink;
+
+    public ToggleButton ldrink;
+
     public ToggleButton coke;
     public ToggleButton dietCoke;
     public ToggleButton sprite;
     public ToggleButton drPepper;
-    public ToggleButton xlarge;
+
+
     @FXML
     public Label label;
     @FXML
@@ -89,7 +104,7 @@ public class OrderMenuController {
             String pizzaType = "";
             String sideType;
             String drinkType;
-            String drinkSize;
+            String drinkSize = "";
 
             if (pep.equals(PizzaTypes.getSelectedToggle())) {
                 pizzaType = PEPPERONI;
@@ -143,6 +158,22 @@ public class OrderMenuController {
                 drinkType = "";
             }
 
+            if(dSize.getSelectedToggle() != null) {
+
+                if (sdrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "small";
+                    foodList.add(new Drink(drinkType, drinkSize));
+
+                } else if (mdrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "medium";
+                    foodList.add(new Drink(drinkType, drinkSize));
+
+                } else if (ldrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "large";
+                    foodList.add(new Drink(drinkType, drinkSize));
+                }
+            }
+
 
             switch (sideType) {
                 case "Bread Sticks" -> {
@@ -163,6 +194,8 @@ public class OrderMenuController {
                 }
             }
 
+
+            /*
             switch (drinkType) {
                 case "Coke" -> {
                     drink = new Drink(COKE);
@@ -181,6 +214,8 @@ public class OrderMenuController {
                     foodList.add(drink);
                 }
             }
+
+             */
 
             resetToggles();
 
@@ -267,7 +302,7 @@ public class OrderMenuController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(employee);
+            staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -295,6 +330,7 @@ public class OrderMenuController {
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
 
+
         if(foodList.size() == 0){
             errorText.setText("Order is Empty");
         }
@@ -303,15 +339,17 @@ public class OrderMenuController {
             newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
             newOrder.setOrderTotal();
             newOrder.addToCart(foodList);
-            System.out.println(foodList.get(0).getFoodName());
+            System.out.println(foodList.get(0).getType());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
             Parent root = fxmlLoader.load();
             CheckoutController checkoutController = fxmlLoader.getController();
             fxmlLoader.setController(checkoutController);
+
             checkoutController.setEmployee(getEmployee());
             checkoutController.setFoodList(getFoodList());
             checkoutController.setOrder(getOrder());
             checkoutController.setCurrentUser(getCurrentUser());
+            checkoutController.start();
             checkoutController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();

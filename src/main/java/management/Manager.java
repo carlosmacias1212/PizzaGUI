@@ -2,8 +2,6 @@ package management;
 
 import list.JsonController;
 
-import java.io.IOException;
-
 import static list.JsonController.*;
 
 public class Manager extends Staff{
@@ -22,11 +20,11 @@ public class Manager extends Staff{
 
     public static boolean createNewStaff(String firstName, String lastName, String password, String employeeID) {
 
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeID.equals(employeeID)) {
-                return false;
-            }
-        }
+//        for (Staff s : JsonController.staffList) {
+//            if (s.employeeID.equals(employeeID)) {
+//                return false;
+//            }
+//        }
 
         Staff staff = new Staff(firstName, lastName, password, employeeID);
 
@@ -39,11 +37,11 @@ public class Manager extends Staff{
 
     public static boolean createNewManager(String firstName, String lastName, String password, String employeeID) {
 
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeID.equals(employeeID)) {
-                return false;
-            }
-        }
+//        for (Staff s : JsonController.staffList) {
+//            if (s.employeeID.equals(employeeID)) {
+//                return false;
+//            }
+//        }
 
         Staff manager = new Manager(firstName, lastName, password, employeeID);
 
@@ -54,36 +52,18 @@ public class Manager extends Staff{
         return true;
     }
 
-    public static boolean removeStaff(String employeeID) {
-//        Use list.JsonController.staffList to make updates to the class list to be used in the json file
-
-        boolean temp = false;
-
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeType.equals(employeeID)) {
-                JsonController.staffList.remove(s);
-                temp = true;
-            }
-        }
-
-        serializeStaff();
-
-        return temp;
-    }
-
-    public static boolean removeManager(String employeeID) {
+    public static boolean removeWorker(String employeeID) {
 //        Use list.JsonController.staffList to make updates to the class list to be used in the json file
 
         boolean temp = false;
 
         for (Staff s : staffList) {
-            if (s.employeeType.equals(employeeID)) {
-                JsonController.staffList.remove(s);
-                temp = true;
+            if (s.employeeID.equals(employeeID)) {
+                staffList.remove(s);
+                serializeStaff();
+                return true;
             }
         }
-
-        serializeStaff();
 
         return temp;
     }

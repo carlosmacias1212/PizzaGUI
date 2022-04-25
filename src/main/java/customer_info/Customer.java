@@ -5,6 +5,7 @@ import list.JsonController;
 import java.io.IOException;
 
 import static list.JsonController.customerList;
+import static list.JsonController.serializeCustomers;
 
 public class Customer {
     String firstName;
@@ -108,12 +109,10 @@ public class Customer {
         for (Customer c : customerList) {
             if (c.phoneNumber.equals(phoneNumber)) {
                 customerList.remove(c);
-                temp = true;
+                serializeCustomers();
+                return true;
             }
         }
-
-        JsonController.serializeCustomers();
-
         return temp;
     }
 

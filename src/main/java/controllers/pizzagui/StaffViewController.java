@@ -106,7 +106,6 @@ public class StaffViewController {
         if (custPhoneNumber.getText().equals("")){
             failedText.setText("Please enter a phone number");
         }
-
         else if (toggleOrderType.getSelectedToggle() == null){
             failedText1.setText("Please select order type");
         }
@@ -121,8 +120,6 @@ public class StaffViewController {
             else{
                 orderType.setText("Delivery");
             }
-
-
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
             Parent root = fxmlLoader.load();
@@ -146,7 +143,6 @@ public class StaffViewController {
         else {
             failedText.setText("Customer does not exist");
         }
-
     }
 
     @FXML

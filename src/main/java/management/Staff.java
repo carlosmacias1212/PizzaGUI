@@ -167,5 +167,15 @@ public class Staff {
         return true;
     }
 
+    public static boolean isDuplicate(String employeeID) {
+        for(Staff s : staffList) {
+            if (s.employeeID.equals(employeeID)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
 }

@@ -123,6 +123,14 @@ public class Order {
 
     }
 
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
     public static boolean isPickup(String orderType){
         return orderType.equals("Pick-up");
     }

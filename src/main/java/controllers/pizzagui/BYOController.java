@@ -176,7 +176,6 @@ public class BYOController{
             this.list = list;
         }
 
-
         public Staff getEmployee () {
             return employee;
         }
