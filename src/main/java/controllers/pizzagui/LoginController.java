@@ -98,7 +98,7 @@ public class LoginController {
 
     public boolean isManager(String username) {
         for(Staff staff : staffList){
-            if(username.equals(staff.employeeID) && staff.getEmployeeType().equals("Manager")){
+            if(username.equals(staff.employeeID) && staff.getEmployeeType().equalsIgnoreCase("Manager")){
                 return true;
             }
         }
