@@ -130,6 +130,7 @@ public class BYOController{
             }
 
             FoodItems newBYO = new BYO(sauceAmount,cheeseAmount,size,pizzaCrust,toppingsList);
+            newBYO.setFoodName("Custom");
             list.add(newBYO);
 
 

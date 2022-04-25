@@ -269,15 +269,16 @@ public class CheckoutController {
         layout.setAlignment(Pos.CENTER_LEFT);
 
         food.setPrefWidth(300);
-        food.setStyle("-fx-font-size:15pt; -fx-padding:5px");
+        food.setStyle("-fx-font-size:15pt; -fx-padding:5px ; -fx-font-family: Arial");
 
         int i = entries.indexOf(food);
         int q = quantities.get(i);
         String quant = String.valueOf(q);
         Label quantity = new Label(quant);
+        quantity.setStyle("-fx-font-family: Arial");
 
         Button minusButton = new Button("-");
-        minusButton.setStyle("-fx-padding:5px");
+        minusButton.setStyle("-fx-padding:5px; -fx-font-family: Arial");
         minusButton.setUserData(cartView.get(i).getType());
         minusButton.setOnAction(e -> {
             String name = (String) ((Node) e.getSource()).getUserData();
@@ -305,7 +306,7 @@ public class CheckoutController {
         });
 
         Button plusButton = new Button("+");
-        plusButton.setStyle("-fx-padding:5px");
+        plusButton.setStyle("-fx-padding:5px; -fx-font-family: Arial");
         plusButton.setUserData(cartView.get(i).getType());
         plusButton.setOnAction(e -> {
             String name = (String) ((Node) e.getSource()).getUserData();
@@ -435,8 +436,6 @@ public class CheckoutController {
     public void displayName(){
         currentUser.setText("Hello " + employee.employeeType);
     }
-
-
 
     public Staff getEmployee() {
         return employee;
