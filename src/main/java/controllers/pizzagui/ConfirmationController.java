@@ -4,6 +4,7 @@ import food.FoodItems;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -25,10 +26,10 @@ public class ConfirmationController {
     @FXML
     public TextField moneyGiven;
     public Label failedText1;
-    public ToggleGroup toggleOrderType1;
+
+    public ToggleGroup payGroup;
     private float customerCash;
-    @FXML
-    private Label label;
+
     private Staff employee;
     private Order order;
     private List<FoodItems> cart = new ArrayList<>();
@@ -36,20 +37,27 @@ public class ConfirmationController {
     private Label currentUser;
     private Label totalPrice;
     @FXML
-    private ToggleGroup paymentGroup;
-    @FXML
     private RadioButton cash;
     @FXML
     private RadioButton check;
     @FXML
     private RadioButton card;
+    //    @FXML
+//    private Label label;
+    //    public ToggleGroup toggleOrderType1;
 
     public void submit(){
 
         // radio buttons for payment method
-        if(paymentGroup.getSelectedToggle() != null){
+        if(payGroup.getSelectedToggle() == null){
 
-            if(paymentGroup.getSelectedToggle().equals(cash)){
+            failedText.setText("Please select payment type");
+
+        }
+
+        else{
+
+            if(payGroup.getSelectedToggle().equals(cash)){
                 order.setPayment("Cash Payment");
 
                 if(moneyGiven.getText().equals("")){
@@ -57,6 +65,7 @@ public class ConfirmationController {
                 }
                 else{
                     customerCash = Float.parseFloat(moneyGiven.getText());
+
                     if(calcChange() == 0){
                         failedText.setText("Not enough money given");
                     }
@@ -66,7 +75,7 @@ public class ConfirmationController {
                     }
                 }
             }
-            else if (paymentGroup.getSelectedToggle().equals(check)){
+            else if (payGroup.getSelectedToggle().equals(check)){
                 order.setPayment("Check Payment");
 
                 if(moneyGiven.getText().equals("")){
@@ -88,10 +97,6 @@ public class ConfirmationController {
             }
         }
 
-        else{
-            failedText.setText("Please select payment type");
-        }
-
         // show receipt method
     }
 
@@ -101,7 +106,7 @@ public class ConfirmationController {
     }
 
     public float calcChange(){
-        if(customerCash <= Float.parseFloat(totalPrice.getText())){
+        if(customerCash < Float.parseFloat(totalPrice.getText())){
             return 0;
         }
         else return (customerCash - Float.parseFloat(totalPrice.getText()));
@@ -126,13 +131,16 @@ public class ConfirmationController {
             fxmlLoader.setController(checkoutController);
 
             checkoutController.setEmployee(getEmployee());
-            checkoutController.setFoodList(getCart());
+            checkoutController.setTotalPrice(getTotalPrice());
             checkoutController.setOrder(getOrder());
+            checkoutController.setFoodList(getFoodList());
             checkoutController.setCurrentUser(getCurrentUser());
 
+            checkoutController.start();
             checkoutController.displayName();
 
-            Stage window = (Stage) failedText.getScene().getWindow();
+//            Stage window = (Stage) failedText.getScene().getWindow();
+            Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Manager View");
@@ -149,10 +157,12 @@ public class ConfirmationController {
             fxmlLoader.setController(checkoutController);
 
             checkoutController.setEmployee(getEmployee());
-            checkoutController.setFoodList(getCart());
+            checkoutController.setTotalPrice(getTotalPrice());
             checkoutController.setOrder(getOrder());
+            checkoutController.setFoodList(getFoodList());
             checkoutController.setCurrentUser(getCurrentUser());
 
+            checkoutController.start();
             checkoutController.displayName();
 
             Stage window = (Stage) failedText.getScene().getWindow();
@@ -205,11 +215,11 @@ public class ConfirmationController {
         this.totalPrice = totalPrice;
     }
 
-    public List<FoodItems> getCart() {
+    public List<FoodItems> getFoodList() {
         return cart;
     }
 
-    public void setCart(List<FoodItems> cart) {
-        this.cart = cart;
+    public void setFoodList(List<FoodItems> foodList) {
+        this.cart = foodList;
     }
 }

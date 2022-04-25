@@ -254,12 +254,12 @@ public class CheckoutController {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER);
 
-        Label total = new Label("Total: ");
+        Label total = new Label("Total: $ ");
         total.setStyle("-fx-font-size: 15pt;");
 
 
         float priceTotal = cartTotal();
-        this.totalPrice = new Label("$ " + String.valueOf(priceTotal));
+        this.totalPrice = new Label(String.valueOf(priceTotal));
 
         layout.getChildren().addAll(total, this.totalPrice);
         return layout;
@@ -297,7 +297,7 @@ public class CheckoutController {
                             quantities.set(j, qminus);
                             cart.remove(f);
                             quantity.setText(String.valueOf(qminus));
-                            this.totalPrice.setText("$ " +String.valueOf(cartTotal()));
+                            this.totalPrice.setText(String.valueOf(cartTotal()));
 
 
                         }
@@ -322,7 +322,7 @@ public class CheckoutController {
                             quantities.set(j, qplus);
                             cart.add(f);
                             quantity.setText(String.valueOf(qplus));
-                            this.totalPrice.setText("$ " +String.valueOf(cartTotal()));
+                            this.totalPrice.setText(String.valueOf(cartTotal()));
 
                         }
                     }
@@ -345,17 +345,19 @@ public class CheckoutController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
         Parent root = fxmlLoader.load();
         ConfirmationController confirmationController = fxmlLoader.getController();
-        fxmlLoader.setController(confirmationController);
+//        fxmlLoader.setController(confirmationController);
 
         confirmationController.setEmployee(getEmployee());
         confirmationController.setTotalPrice(getTotalPrice());
         confirmationController.setOrder(getOrder());
+        confirmationController.setFoodList(getFoodList());
         confirmationController.setCurrentUser(getCurrentUser());
 
         confirmationController.displayName();
 
 
-        Stage window = (Stage) cartList.getScene().getWindow();
+//        Stage window = (Stage) (Node)totalPrice.getScene().getWindow();
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(root,900,600);
         window.setTitle("Confirmation View");
@@ -379,6 +381,7 @@ public class CheckoutController {
             orderMenuController.setFoodList(getCart());
             orderMenuController.setNewOrder(getOrder());
             orderMenuController.setCurrentUser(getCurrentUser());
+            orderMenuController.setTotalPrice(getTotalPrice());
 
             orderMenuController.displayName();
 
