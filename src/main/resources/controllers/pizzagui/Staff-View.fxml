@@ -59,7 +59,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Text>
-            <Label fx:id="failedText" layoutX="351.0" layoutY="388.0" prefHeight="17.0" prefWidth="215.0" textAlignment="CENTER">
+            <Label fx:id="failedText" layoutX="352.0" layoutY="388.0" prefHeight="17.0" prefWidth="215.0" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
@@ -70,7 +70,7 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="delivery" layoutX="610.0" layoutY="250.0" mnemonicParsing="false" text="Delivery" toggleGroup="$toggleOrderType" />
-            <Label fx:id="failedText1" layoutX="347.0" layoutY="417.0" prefHeight="17.0" prefWidth="215.0" textAlignment="CENTER">
+            <Label fx:id="failedText1" layoutX="352.0" layoutY="417.0" prefHeight="17.0" prefWidth="215.0" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
