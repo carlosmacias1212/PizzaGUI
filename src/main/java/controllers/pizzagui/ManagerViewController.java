@@ -1,7 +1,6 @@
 package controllers.pizzagui;
 
 import customer_info.Customer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -133,10 +132,9 @@ public class ManagerViewController extends StaffViewController{
         }
     }
 
-    public void showCustomerList(){
-    }
+    public void showOrderList(){
 
-    public void showEmployeeList(){
+
 
     }
 
