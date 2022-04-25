@@ -5,29 +5,57 @@ import food.FoodItems;
 import food.Pizza;
 import food.Side;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.Order;
+import management.Menu;
+import management.Staff;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static list.JsonController.*;
-
+import static management.Menu.*;
 
 public class OrderMenuController {
 
+    Staff employee;
+    Order newOrder;
+
+    @FXML
+    private Label currentUser;
+    @FXML
+    private Label currentCustomer;
+
+    @FXML
+    private Label orderType;
     private List<FoodItems> foodList = new ArrayList<>();
     public ToggleGroup sideGroup;
+    @FXML
     public ToggleGroup drinkGroup;
+    @FXML
     public ToggleGroup sizeGroup;
+    @FXML
     public ToggleGroup PizzaTypes;
 
+    @FXML
+    public ToggleGroup size;
+
+    @FXML
+    public ToggleGroup sides;
+
+    @FXML
+    public ToggleGroup drink;
+
+    @FXML
     public ToggleButton pep;
+
     public ToggleButton supreme;
     public ToggleButton cheese;
     public ToggleButton sausage;
@@ -46,120 +74,133 @@ public class OrderMenuController {
     public ToggleButton drPepper;
     public ToggleButton xlarge;
 
+    @FXML
     public Label label;
-
-
-
+    @FXML
+    private Text errorText;
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
-        FoodItems side;
-        FoodItems drink;
-        String size = "";
-        String pizzaType = "";
-        String sideType;
-        String drinkType;
-
-        if(pep.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "pepperoni";
-        }else if (cheese.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "cheese";
-        }else if (veggie.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "veggie";
-        }else if (sausage.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "sausage";
-        }else if (marinara.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "marinara";
-        }else if (supreme.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = "supreme";
+        if (sideGroup.getSelectedToggle() == null && drinkGroup.getSelectedToggle() == null && sizeGroup.getSelectedToggle() == null && PizzaTypes.getSelectedToggle() == null) {
+            errorText.setText("Please select an item before adding to order");
         }
 
-        if(small.equals(sizeGroup.getSelectedToggle())){
-            size = "small";
-            foodList.add(new Pizza(pizzaType,size));
-        }else if (medium.equals(sizeGroup.getSelectedToggle())){
-            size = "medium";
-            foodList.add(new Pizza(pizzaType,size));
-        }else if (large.equals(sizeGroup.getSelectedToggle())){
-            size = "large";
-            foodList.add(new Pizza(pizzaType,size));
-        }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
-            size = "xlarge";
-            foodList.add(new Pizza(pizzaType,size));
+        else {
+
+            FoodItems newPizza;
+            FoodItems side;
+            FoodItems drink;
+
+            String size = "";
+            String pizzaType = "";
+            String sideType;
+            String drinkType;
+            String drinkSize;
+
+            if (pep.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = PEPPERONI;
+            } else if (cheese.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = CHEESE;
+            } else if (veggie.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = VEGGIE;
+            } else if (sausage.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = SAUSAGE;
+            } else if (marinara.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = MARINARA;
+            } else if (supreme.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = SUPREME;
+            }
+
+            if (small.equals(sizeGroup.getSelectedToggle())) {
+                size = SMALL;
+                foodList.add(new Pizza(pizzaType, size));
+            } else if (medium.equals(sizeGroup.getSelectedToggle())) {
+                size = MEDIUM;
+                foodList.add(new Pizza(pizzaType, size));
+            } else if (large.equals(sizeGroup.getSelectedToggle())) {
+                size = LARGE;
+                foodList.add(new Pizza(pizzaType, size));
+            } else if (xlarge.equals(sizeGroup.getSelectedToggle())) {
+                size = XLARGE;
+                foodList.add(new Pizza(pizzaType, size));
+            }
+
+            if (breadSticks.equals(sideGroup.getSelectedToggle())) {
+                sideType = BREAD_STICKS;
+            } else if (garlicKnots.equals(sideGroup.getSelectedToggle())) {
+                sideType = GARLIC_KNOTS;
+            } else if (wings.equals(sideGroup.getSelectedToggle())) {
+                sideType = WINGS;
+            } else if (bonelessWings.equals(sideGroup.getSelectedToggle())) {
+                sideType = BONELESS_WINGS;
+            } else {
+                sideType = "";
+            }
+
+            if (coke.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = COKE;
+            } else if (dietCoke.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = DIET_COKE;
+            } else if (drPepper.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = DR_PEPPER;
+            } else if (sprite.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = SPRITE;
+            } else {
+                drinkType = "";
+            }
+
+
+            switch (sideType) {
+                case "Bread Sticks" -> {
+                    side = new Side(BREAD_STICKS);
+                    foodList.add(side);
+                }
+                case "Garlic Knots" -> {
+                    side = new Side(GARLIC_KNOTS);
+                    foodList.add(side);
+                }
+                case "Wings" -> {
+                    side = new Side(WINGS);
+                    foodList.add(side);
+                }
+                case "Boneless Wings" -> {
+                    side = new Side(BONELESS_WINGS);
+                    foodList.add(side);
+                }
+            }
+
+            switch (drinkType) {
+                case "Coke" -> {
+                    drink = new Drink(COKE);
+                    foodList.add(drink);
+                }
+                case "Diet Coke" -> {
+                    drink = new Drink(DIET_COKE);
+                    foodList.add(drink);
+                }
+                case "Dr. Pepper" -> {
+                    drink = new Drink(DR_PEPPER);
+                    foodList.add(drink);
+                }
+                case "Sprite" -> {
+                    drink = new Drink(SPRITE);
+                    foodList.add(drink);
+                }
+            }
+
+            resetToggles();
+
+//        for (FoodItems item : foodList) {
+//            if(item.getFoodName() != null)
+//            {
+//                System.out.println(item.getFoodName());
+//            }
+//        }
         }
 
-        if(breadSticks.equals(sideGroup.getSelectedToggle())){
-            sideType = "breadsticks";
-        }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
-            sideType = "garlicknots";
-        }else if (wings.equals(sideGroup.getSelectedToggle())){
-            sideType = "wings";
-        }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
-            sideType = "bonelesswings";
-        }
-        else{
-            sideType = "";
-        }
+    }
 
-        if(coke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "coke";
-        }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "dietCoke";
-        }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "drPepper";
-        }else if (sprite.equals(drinkGroup.getSelectedToggle())){
-            drinkType = "sprite";
-        }else{
-            drinkType = "";
-        }
-
-
-        switch (sideType) {
-            case "breadsticks" -> {
-                side = new Side("breadSticks");
-                foodList.add(side);
-            }
-            case "garlicknots" -> {
-                side = new Side("garlicKnots");
-                foodList.add(side);
-            }
-            case "wings" -> {
-                side = new Side("wings");
-                foodList.add(side);
-            }
-            case "bonelesswings" -> {
-                side = new Side("bonelessWings");
-                foodList.add(side);
-            }
-        }
-
-        switch (drinkType) {
-            case "coke" -> {
-                drink = new Drink("coke");
-                foodList.add(drink);
-            }
-            case "dietCoke" -> {
-                drink = new Drink("dietCoke");
-                foodList.add(drink);
-            }
-            case "drPepper" -> {
-                drink = new Drink("mountainDew");
-                foodList.add(drink);
-            }
-            case "sprite" -> {
-                drink = new Drink("sprite");
-                foodList.add(drink);
-            }
-        }
-
-
-        for (FoodItems item : foodList) {
-            if(item.getFoodName() != null)
-            {
-                System.out.println(item.getFoodName());
-            }
-        }
-
+    public void resetToggles() throws IOException {
         ////This get the fxml loader ready
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
         ////This preloads the next fxml
@@ -167,8 +208,18 @@ public class OrderMenuController {
         ////This grabs the controller being used in the current fxmlLoader
         OrderMenuController orderMenuController = fxmlLoader.getController();
         fxmlLoader.setController(orderMenuController);
+
         ////Sets employee attribute in the controller to the user here
         orderMenuController.setFoodList(foodList);
+        orderMenuController.setEmployee(employee);
+        orderMenuController.setCurrentCustomer(currentCustomer);
+        orderMenuController.setOrderType(orderType);
+        orderMenuController.displayName();
+
+        System.out.println(currentUser.getText());
+        System.out.println(currentCustomer.getText());
+        System.out.println(orderType.getText());
+
 
 
         /*
@@ -180,13 +231,7 @@ public class OrderMenuController {
         window.setScene(scene);
         window.setResizable(false);
         window.show();
-
-
-
-
     }
-
-
 
     public void buildYourOwnButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Build-Your-Own-View.fxml"));
@@ -207,11 +252,51 @@ public class OrderMenuController {
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
-        changeView("Staff-View");
+
+        if(isManager()){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(employee);
+            staffViewController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(employee);
+            staffViewController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+    }
+
+    public boolean isManager(){
+        return employee.getEmployeeType().equals("Manager");
     }
 
     public void logOutButton(ActionEvent actionEvent) throws IOException {
-        changeView("Login-view-View");
+        changeView("Login-view.fxml");
     }
 
 
@@ -220,19 +305,44 @@ public class OrderMenuController {
     }
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
-        Order newOrder = new Order("5747", true);
-        newOrder.addToCart(foodList);
-        newOrder.setOrderTotal();
-        orderList.add(newOrder);
-        serializeOrders();
 
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+        if(foodList.size() == 0){
+            errorText.setText("Order is Empty");
+        }
+
+        else {
+
+            newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
+
+            newOrder.setOrderTotal();
+            newOrder.addToCart(foodList);
+
+            System.out.println(foodList.get(0).getFoodName());
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
+            Parent root = fxmlLoader.load();
+            CheckoutController checkoutController = fxmlLoader.getController();
+
+
+            fxmlLoader.setController(checkoutController);
+
+            checkoutController.setEmployee(employee);
+            checkoutController.setFoodList(foodList);
+
+            checkoutController.setOrder(newOrder);
+
+            checkoutController.setCurrentUser(currentUser);
+
+
+            checkoutController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Checkout");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
     }
 
     public void changeView(String viewName) throws IOException {
@@ -243,5 +353,52 @@ public class OrderMenuController {
         window.setScene(scene);
         window.setResizable(false);
         window.show();
+    }
+
+    public void displayName(){
+        currentUser.setText("Hello, " + employee.employeeType);
+//        currentCustomer.setText("Cust: " + currentCustomer.getText());
+//        orderType.setText(orderType.getText() + " Order");
+
+    }
+
+    public Staff getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Staff employee) {
+        this.employee = employee;
+    }
+
+    public Label getCurrentCustomer() {
+        return currentCustomer;
+    }
+
+    public void setCurrentCustomer(Label currentCustomer) {
+        this.currentCustomer = currentCustomer;
+    }
+
+    public void setOrderType(Label orderType){
+        this.orderType = orderType;
+    }
+
+    public Order getNewOrder() {
+        return newOrder;
+    }
+
+    public void setNewOrder(Order newOrder) {
+        this.newOrder = newOrder;
+    }
+
+    public Label getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Label currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public List<FoodItems> getFoodList() {
+        return foodList;
     }
 }
