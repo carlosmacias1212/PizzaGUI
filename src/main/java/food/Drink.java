@@ -9,11 +9,13 @@ public class Drink extends FoodItems {
     public Drink(String drinkType, String size) {
         if (drinkType.equalsIgnoreCase("coke")) {
             this.type = drinkType;
-        } else if (drinkType.equalsIgnoreCase("dietCoke")) {
+        } else if (drinkType.equalsIgnoreCase("diet Coke")) {
             this.type = drinkType;
-        } else if (drinkType.equalsIgnoreCase("mountainDew")) {
+        } else if (drinkType.equalsIgnoreCase("mountain Dew")) {
             this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("sprite")) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase("dr. pepper")) {
             this.type = drinkType;
         }
 
@@ -35,9 +37,9 @@ public class Drink extends FoodItems {
     public Drink(String drinkType) {
         if (drinkType.equalsIgnoreCase("coke")) {
             this.type = drinkType;
-        } else if (drinkType.equalsIgnoreCase("dietCoke")) {
+        } else if (drinkType.equalsIgnoreCase("diet coke")) {
             this.type = drinkType;
-        } else if (drinkType.equalsIgnoreCase("mountainDew")) {
+        } else if (drinkType.equalsIgnoreCase("dr. pepper")) {
             this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase("sprite")) {
             this.type = drinkType;

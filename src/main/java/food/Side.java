@@ -10,15 +10,15 @@ public class Side extends FoodItems {
             this.type = sideSelection;
             price = Menu.getWings();
         }
-        else if(sideSelection.equalsIgnoreCase("breadSticks")){
+        else if(sideSelection.equalsIgnoreCase("bread sticks")){
             this.type = sideSelection;
             price = Menu.getBreadSticks();
         }
-        else if(sideSelection.equalsIgnoreCase("garlicKnots")){
+        else if(sideSelection.equalsIgnoreCase("garlic knots")){
             this.type = sideSelection;
             price = Menu.getGarlicKnots();
         }
-        else if(sideSelection.equalsIgnoreCase("bonelessWings")){
+        else if(sideSelection.equalsIgnoreCase("boneless wings")){
             this.type = sideSelection;
             price = Menu.getBonelessWings();
         }
