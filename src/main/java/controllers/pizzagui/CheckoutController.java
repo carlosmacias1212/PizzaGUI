@@ -34,9 +34,11 @@ public class CheckoutController {
     private Order order;
     @FXML
     private Label currentUser;
-    private List<FoodItems> cart = new ArrayList<>();
 
     private Label totalPrice;
+    private List<FoodItems> cart = new ArrayList<>();
+
+
 
     private List<FoodItems> cartView = new ArrayList<FoodItems>();
 
@@ -72,8 +74,9 @@ public class CheckoutController {
                     type = "Custom";
                     size = ((BYO) item).getSize();
                 } else {
+
                     type = item.getType();
-                    size = ( (Pizza) item).getSize();
+                    size = ((Pizza) item).getSize();
 
                     desc = size + "     " + type;
 
@@ -352,7 +355,7 @@ public class CheckoutController {
         confirmationController.displayName();
 
 
-        Stage window = (Stage) totalPrice.getScene().getWindow();
+        Stage window = (Stage) cartList.getScene().getWindow();
 
         Scene scene = new Scene(root,900,600);
         window.setTitle("Confirmation View");

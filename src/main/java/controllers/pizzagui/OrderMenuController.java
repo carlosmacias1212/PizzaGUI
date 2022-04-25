@@ -275,6 +275,8 @@ public class OrderMenuController {
         fxmlLoader.setController(byoController);
         ////Sets employee attribute in the controller to the user here
         byoController.setList(foodList);
+        byoController.setEmployee(getEmployee());
+        byoController.setCurrentUser(getCurrentUser());
 
         Stage window = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(root,900,600);

@@ -108,7 +108,7 @@ public class ConfirmationController {
     }
 
     public void changeView(String viewName) throws IOException {
-        Stage window = (Stage) totalPrice.getScene().getWindow();
+        Stage window = (Stage) failedText.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         window.setTitle(viewName);
@@ -132,7 +132,7 @@ public class ConfirmationController {
 
             checkoutController.displayName();
 
-            Stage window = (Stage) totalPrice.getScene().getWindow();
+            Stage window = (Stage) failedText.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Manager View");
@@ -155,7 +155,7 @@ public class ConfirmationController {
 
             checkoutController.displayName();
 
-            Stage window = (Stage) totalPrice.getScene().getWindow();
+            Stage window = (Stage) failedText.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Staff View");
