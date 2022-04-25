@@ -1,5 +1,6 @@
 package controllers.pizzagui;
 
+import customer_info.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,13 +69,35 @@ public class StaffViewController {
 
     @FXML
     public void updateCustomerInfo(ActionEvent actionEvent) throws IOException {
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Update-Customer-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Update Customer View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+
+        if (custPhoneNumber.getText().equals("")){
+            failedText.setText("Please enter a phone number");
+        }
+
+        else if (Customer.isDuplicate(custPhoneNumber.getText())) {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Update-Customer-View.fxml"));
+            Parent root = fxmlLoader.load();
+            UpdateCustomerController updateCustomerController = fxmlLoader.getController();
+            fxmlLoader.setController(updateCustomerController);
+
+            updateCustomerController.setEmployee(employee);
+            updateCustomerController.setCurrentCustomer(currentCustomer);
+            updateCustomerController.setCustomerToUpdate(Customer.getCustomer(custPhoneNumber.getText()));
+            updateCustomerController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Update Customer View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+
+        }
+
+        else{
+            failedText.setText("Customer does not exist");
+        }
     }
 
     @FXML
@@ -87,7 +110,7 @@ public class StaffViewController {
             failedText1.setText("Please select order type");
         }
 
-        else {
+        else if (Customer.isDuplicate(custPhoneNumber.getText())) {
 
             currentCustomer.setText(custPhoneNumber.getText());
 
@@ -118,6 +141,10 @@ public class StaffViewController {
             window.setResizable(false);
             window.show();
         }
+
+        else {
+            failedText.setText("Customer does not exist");
+        }
     }
 
     @FXML
@@ -132,7 +159,7 @@ public class StaffViewController {
     }
 
     public void displayName(){
-        currentUser.setText("Hello "+employee.employeeType);
+        currentUser.setText("Hello, "+employee.employeeType);
     }
 
     public Label getCurrentUser() {
@@ -161,5 +188,13 @@ public class StaffViewController {
 
     public void setOrderType(Label orderType){
         this.orderType = orderType;
+    }
+
+    public Label getFailedText() {
+        return failedText;
+    }
+
+    public void setFailedText(Label failedText) {
+        this.failedText = failedText;
     }
 }

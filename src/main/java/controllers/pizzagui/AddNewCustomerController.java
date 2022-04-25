@@ -261,7 +261,7 @@ public class AddNewCustomerController {
     }
 
     public void displayName(){
-        currentUser.setText("Hello "+employee.employeeType);
+        currentUser.setText("Hello, "+employee.employeeType);
     }
 
 

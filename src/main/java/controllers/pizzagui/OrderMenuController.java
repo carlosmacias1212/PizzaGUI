@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.Order;
 import management.Menu;
@@ -74,112 +75,120 @@ public class OrderMenuController {
 
     @FXML
     public Label label;
+    @FXML
+    private Text errorText;
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
-        FoodItems newPizza;
-        FoodItems side;
-        FoodItems drink;
-
-        String size = "";
-        String pizzaType = "";
-        String sideType;
-        String drinkType;
-        String drinkSize;
-
-        if(pep.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = PEPPERONI;
-        }else if (cheese.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = CHEESE;
-        }else if (veggie.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = VEGGIE;
-        }else if (sausage.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = SAUSAGE;
-        }else if (marinara.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = MARINARA;
-        }else if (supreme.equals(PizzaTypes.getSelectedToggle())){
-            pizzaType = SUPREME;
+        if (sideGroup.getSelectedToggle() == null && drinkGroup.getSelectedToggle() == null && sizeGroup.getSelectedToggle() == null && PizzaTypes.getSelectedToggle() == null) {
+            System.out.println("empty");
+            errorText.setText("Please select an item before adding to order");
         }
 
-        if(small.equals(sizeGroup.getSelectedToggle())){
-            size = SMALL;
-            foodList.add(new Pizza(pizzaType,size));
-        }else if (medium.equals(sizeGroup.getSelectedToggle())){
-            size = MEDIUM;
-            foodList.add(new Pizza(pizzaType,size));
-        }else if (large.equals(sizeGroup.getSelectedToggle())){
-            size = LARGE;
-            foodList.add(new Pizza(pizzaType,size));
-        }else if (xlarge.equals(sizeGroup.getSelectedToggle())){
-            size = XLARGE;
-            foodList.add(new Pizza(pizzaType,size));
-        }
+        else {
 
-        if(breadSticks.equals(sideGroup.getSelectedToggle())){
-            sideType = BREAD_STICKS;
-        }else if (garlicKnots.equals(sideGroup.getSelectedToggle())){
-            sideType = GARLIC_KNOTS;
-        }else if (wings.equals(sideGroup.getSelectedToggle())){
-            sideType = WINGS;
-        }else if (bonelessWings.equals(sideGroup.getSelectedToggle())){
-            sideType = BONELESS_WINGS;
-        }
-        else{
-            sideType = "";
-        }
+            FoodItems newPizza;
+            FoodItems side;
+            FoodItems drink;
 
-        if(coke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = COKE;
-        }else if (dietCoke.equals(drinkGroup.getSelectedToggle())){
-            drinkType = DIET_COKE;
-        }else if (drPepper.equals(drinkGroup.getSelectedToggle())){
-            drinkType = DR_PEPPER;
-        }else if (sprite.equals(drinkGroup.getSelectedToggle())){
-            drinkType = SPRITE;
-        }else{
-            drinkType = "";
-        }
+            String size = "";
+            String pizzaType = "";
+            String sideType;
+            String drinkType;
+            String drinkSize;
+
+            if (pep.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = PEPPERONI;
+            } else if (cheese.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = CHEESE;
+            } else if (veggie.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = VEGGIE;
+            } else if (sausage.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = SAUSAGE;
+            } else if (marinara.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = MARINARA;
+            } else if (supreme.equals(PizzaTypes.getSelectedToggle())) {
+                pizzaType = SUPREME;
+            }
+
+            if (small.equals(sizeGroup.getSelectedToggle())) {
+                size = SMALL;
+                foodList.add(new Pizza(pizzaType, size));
+            } else if (medium.equals(sizeGroup.getSelectedToggle())) {
+                size = MEDIUM;
+                foodList.add(new Pizza(pizzaType, size));
+            } else if (large.equals(sizeGroup.getSelectedToggle())) {
+                size = LARGE;
+                foodList.add(new Pizza(pizzaType, size));
+            } else if (xlarge.equals(sizeGroup.getSelectedToggle())) {
+                size = XLARGE;
+                foodList.add(new Pizza(pizzaType, size));
+            }
+
+            if (breadSticks.equals(sideGroup.getSelectedToggle())) {
+                sideType = BREAD_STICKS;
+            } else if (garlicKnots.equals(sideGroup.getSelectedToggle())) {
+                sideType = GARLIC_KNOTS;
+            } else if (wings.equals(sideGroup.getSelectedToggle())) {
+                sideType = WINGS;
+            } else if (bonelessWings.equals(sideGroup.getSelectedToggle())) {
+                sideType = BONELESS_WINGS;
+            } else {
+                sideType = "";
+            }
+
+            if (coke.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = COKE;
+            } else if (dietCoke.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = DIET_COKE;
+            } else if (drPepper.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = DR_PEPPER;
+            } else if (sprite.equals(drinkGroup.getSelectedToggle())) {
+                drinkType = SPRITE;
+            } else {
+                drinkType = "";
+            }
 
 
-        switch (sideType) {
-            case "Bread Sticks" -> {
-                side = new Side(BREAD_STICKS);
-                foodList.add(side);
+            switch (sideType) {
+                case "Bread Sticks" -> {
+                    side = new Side(BREAD_STICKS);
+                    foodList.add(side);
+                }
+                case "Garlic Knots" -> {
+                    side = new Side(GARLIC_KNOTS);
+                    foodList.add(side);
+                }
+                case "Wings" -> {
+                    side = new Side(WINGS);
+                    foodList.add(side);
+                }
+                case "Boneless Wings" -> {
+                    side = new Side(BONELESS_WINGS);
+                    foodList.add(side);
+                }
             }
-            case "Garlic Knots" -> {
-                side = new Side(GARLIC_KNOTS);
-                foodList.add(side);
-            }
-            case "Wings" -> {
-                side = new Side(WINGS);
-                foodList.add(side);
-            }
-            case "Boneless Wings" -> {
-                side = new Side(BONELESS_WINGS);
-                foodList.add(side);
-            }
-        }
 
-        switch (drinkType) {
-            case "Coke" -> {
-                drink = new Drink(COKE);
-                foodList.add(drink);
+            switch (drinkType) {
+                case "Coke" -> {
+                    drink = new Drink(COKE);
+                    foodList.add(drink);
+                }
+                case "Diet Coke" -> {
+                    drink = new Drink(DIET_COKE);
+                    foodList.add(drink);
+                }
+                case "Dr. Pepper" -> {
+                    drink = new Drink(DR_PEPPER);
+                    foodList.add(drink);
+                }
+                case "Sprite" -> {
+                    drink = new Drink(SPRITE);
+                    foodList.add(drink);
+                }
             }
-            case "Diet Coke" -> {
-                drink = new Drink(DIET_COKE);
-                foodList.add(drink);
-            }
-            case "Dr. Pepper" -> {
-                drink = new Drink(DR_PEPPER);
-                foodList.add(drink);
-            }
-            case "Sprite" -> {
-                drink = new Drink(SPRITE);
-                foodList.add(drink);
-            }
-        }
 
-        resetToggles();
+            resetToggles();
 
 //        for (FoodItems item : foodList) {
 //            if(item.getFoodName() != null)
@@ -187,6 +196,7 @@ public class OrderMenuController {
 //                System.out.println(item.getFoodName());
 //            }
 //        }
+        }
 
     }
 
@@ -296,26 +306,34 @@ public class OrderMenuController {
 
     public void finishOrder(ActionEvent actionEvent) throws IOException {
 
-        Order newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
-        newOrder.addToCart(foodList);
-        newOrder.setOrderTotal();
-        orderList.add(newOrder);
-        serializeOrders();
+        if(foodList.size() == 0){
+            errorText.setText("Order is Empty");
+        }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
-        Parent root = fxmlLoader.load();
-        CheckoutController checkoutController = fxmlLoader.getController();
-        fxmlLoader.setController(checkoutController);
+        else {
 
-        checkoutController.setEmployee(employee);
-        checkoutController.displayName();
+            Order newOrder = new Order(currentCustomer.getText(), Order.isPickup(orderType.getText()));
 
-        Stage window = (Stage) label.getScene().getWindow();
-        Scene scene = new Scene(root,900,600);
-        window.setTitle("Checkout");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+            newOrder.addToCart(foodList);
+            newOrder.setOrderTotal();
+            orderList.add(newOrder);
+            serializeOrders();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-view.fxml"));
+            Parent root = fxmlLoader.load();
+            CheckoutController checkoutController = fxmlLoader.getController();
+            fxmlLoader.setController(checkoutController);
+
+            checkoutController.setEmployee(employee);
+            checkoutController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Checkout");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
     }
 
     public void changeView(String viewName) throws IOException {
