@@ -66,7 +66,7 @@ public class ConfirmationController {
                 else{
                     customerCash = Float.parseFloat(moneyGiven.getText());
 
-                    if(calcChange() == 0){
+                    if(customerCash < Float.parseFloat(totalPrice.getText())){
                         failedText.setText("Not enough money given");
                     }
                     else {
@@ -83,11 +83,12 @@ public class ConfirmationController {
                 }
                 else{
                     customerCash = Float.parseFloat(moneyGiven.getText());
-                    if(calcChange() == 0){
+                    if(customerCash < Float.parseFloat(totalPrice.getText())){
                         failedText.setText("Check is less than total price");
                     }
                     else {
-                        failedText1.setText("Payment Successful, $30 fee if check is bounced");
+                        failedText.setText("Give customer $" + calcChange() + " for change");
+                        failedText1.setText("Payment Successful, $30 fee if check bounces");
                     }
                 }
             }
@@ -106,10 +107,7 @@ public class ConfirmationController {
     }
 
     public float calcChange(){
-        if(customerCash < Float.parseFloat(totalPrice.getText())){
-            return 0;
-        }
-        else return (customerCash - Float.parseFloat(totalPrice.getText()));
+        return customerCash - Float.parseFloat(totalPrice.getText());
     }
 
     public void changeView(String viewName) throws IOException {
@@ -181,6 +179,7 @@ public class ConfirmationController {
 
     public void displayName(){
         currentUser.setText("Hello " + employee.employeeType);
+        failedText1.setText("Total Price: $" + totalPrice.getText());
     }
 
     public Order getOrder() {
