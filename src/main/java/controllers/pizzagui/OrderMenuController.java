@@ -26,7 +26,9 @@ import static management.Menu.*;
 public class OrderMenuController {
 
     private Staff employee;
+    //This employee is passed through add to cart scenes and byo scenes and checkout scene.
     private Order newOrder;
+    //This order is passed from Order Menu Controller to checkout after pressing add to cart.
     @FXML
     private Label currentUser;
     @FXML
@@ -44,13 +46,6 @@ public class OrderMenuController {
 
     @FXML
     public ToggleGroup size;
-
-    @FXML
-    public ToggleGroup sides;
-
-    @FXML
-    public ToggleGroup drink;
-
     @FXML
     public ToggleButton pep;
 
@@ -71,7 +66,6 @@ public class OrderMenuController {
     public ToggleButton sprite;
     public ToggleButton drPepper;
     public ToggleButton xlarge;
-
     @FXML
     public Label label;
     @FXML
@@ -239,7 +233,8 @@ public class OrderMenuController {
         BYOController byoController = fxmlLoader.getController();
         fxmlLoader.setController(byoController);
         ////Sets employee attribute in the controller to the user here
-        byoController.setList(foodList);
+        byoController.setList(getFoodList());
+        byoController.setEmployee(getEmployee());
 
         Stage window = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(root,900,600);

@@ -1,5 +1,6 @@
 package controllers.pizzagui;
 
+import food.BYO;
 import food.FoodItems;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,11 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import management.Order;
+import management.Staff;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,23 +21,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BYOController implements Initializable {
+public class BYOController{
 
-    ArrayList<String> toppings = new ArrayList<>(Arrays.asList("Pepperoni", "Sausage", "Chicken","Mushrooms",
-                                                                             "Ham","Onion","Green Peppers"));
-    String top1 = "";
-    String top2 = "";
-    String top3 = "";
-    String top4 = "";
-
+    public CheckBox pepCheckBox;
+    public CheckBox sausCheckBox;
+    public CheckBox greenPepperCheckBox;
+    public CheckBox mushCheckBox;
+    public CheckBox hamCheckBox;
+    public CheckBox chickenCheckBox;
+    public Text errorLabel;
+    public ToggleGroup sizeGroup;
+    public ToggleButton smallToggle;
+    public ToggleButton extraLargeToggle;
+    public ToggleButton mediumToggle;
+    public ToggleButton largeToggle;
     public ToggleButton handTossed;
-    public ToggleGroup crustType;
     public ToggleButton pan;
     public ToggleButton stuffed;
     public ToggleButton lightSauce;
-    public ToggleGroup sauceType;
     public ToggleButton regularCheese;
-    public ToggleGroup cheeseType;
     public ToggleButton lightCheese;
     public ToggleButton xtraCheese;
     public ToggleButton regularSauce;
@@ -44,13 +47,12 @@ public class BYOController implements Initializable {
     public ToggleGroup crustTypes;
     public ToggleGroup sauceTypes;
     public ToggleGroup cheeseAmount;
-    public ToggleGroup cheeseAmount1;
-    public ChoiceBox<String> topping1;
-    public ChoiceBox<String> topping2;
-    public ChoiceBox<String> topping3;
-    public ChoiceBox<String> topping4;
+
+
 
     private List<FoodItems> list = new ArrayList<>();
+    private Staff employee;
+
     private Label customerPhoneNum;
 
 
@@ -69,62 +71,124 @@ public class BYOController implements Initializable {
     }
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-        ////This preloads the next fxml
-        Parent root = fxmlLoader.load();
-        ////This grabs the controller being used in the current fxmlLoader
-        OrderMenuController orderMenuController = fxmlLoader.getController();
-        fxmlLoader.setController(orderMenuController);
-        ////Sets employee attribute in the controller to the user here
-        orderMenuController.setFoodList(list);
+
+        if (crustTypes.getSelectedToggle() == null || this.cheeseAmount.getSelectedToggle() == null ||
+                sauceTypes.getSelectedToggle() == null || sizeGroup.getSelectedToggle() == null ||list.isEmpty()) {
+            errorLabel.setText("Please make sure you choose all options before you add to cart.");
+        } else {
+            String pizzaCrust = "";
+            String sauceAmount = "";
+            String cheeseAmount = "";
+            String size = "";
+            ArrayList<String> toppingsList = new ArrayList<>();
 
 
-        Stage window = (Stage) label.getScene().getWindow();
-        Scene scene = new Scene(root,900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+            if (crustTypes.getSelectedToggle() == stuffed) {
+                pizzaCrust = "stuffed crust";
+            } else if (crustTypes.getSelectedToggle() == pan) {
+                pizzaCrust = "pan";
+            } else if (crustTypes.getSelectedToggle() == handTossed) {
+                pizzaCrust = "Hand Tossed";
+            }
+
+            if (this.cheeseAmount.getSelectedToggle() == lightCheese) {
+                cheeseAmount = "Light";
+            } else if (this.cheeseAmount.getSelectedToggle() == regularCheese) {
+                cheeseAmount = "Regular";
+            } else if (this.cheeseAmount.getSelectedToggle() == xtraCheese) {
+                cheeseAmount = "Extra";
+            }
+
+            if (sauceTypes.getSelectedToggle() == lightSauce) {
+                sauceAmount = "Light Sauce";
+            } else if (sauceTypes.getSelectedToggle() == regularSauce) {
+                sauceAmount = "Regular Sauce";
+            } else if (sauceTypes.getSelectedToggle() == xtraSauce) {
+                sauceAmount = "Extra Sauce";
+            }
+
+            if (sizeGroup.getSelectedToggle() == smallToggle) {
+                size = "Small";
+            } else if (sizeGroup.getSelectedToggle() == mediumToggle) {
+                size = "Medium";
+            } else if (sizeGroup.getSelectedToggle() == largeToggle) {
+                size = "Large";
+            }else if (sizeGroup.getSelectedToggle() == extraLargeToggle) {
+                size = "Extra Large";
+            }
+
+            if(chickenCheckBox.isSelected()){
+                toppingsList.add("Chicken");
+            }if(sausCheckBox.isSelected()){
+                toppingsList.add("Sausage");
+            }if(pepCheckBox.isSelected()){
+                toppingsList.add("Pepperoni");
+            }if(mushCheckBox.isSelected()){
+                toppingsList.add("Mushroom");
+            }if(greenPepperCheckBox.isSelected()){
+                toppingsList.add("Green Pepper");
+            }if(hamCheckBox.isSelected()){
+                toppingsList.add("Ham");
+            }
+
+            FoodItems newBYO = new BYO(sauceAmount,cheeseAmount,size,pizzaCrust,toppingsList);
+            list.add(newBYO);
+
+
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+            ////This preloads the next fxml
+            Parent root = fxmlLoader.load();
+            ////This grabs the controller being used in the current fxmlLoader
+            OrderMenuController orderMenuController = fxmlLoader.getController();
+            fxmlLoader.setController(orderMenuController);
+            ////Sets employee attribute in the controller to the user here
+            orderMenuController.setFoodList(getList());
+            orderMenuController.setEmployee(getEmployee());
+
+            for (FoodItems food :
+                    list) {
+                System.out.println(food.getFoodName());
+            }
+
+
+            Stage window = (Stage) label.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
     }
 
 
-    public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
+        public void goBackToStaffView (ActionEvent actionEvent) throws IOException {
 
-        Stage window = (Stage) label.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+            Stage window = (Stage) label.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+
+        }
+
+        public void setList (List < FoodItems > list) {
+            this.list = list;
+        }
+
+
+        public Staff getEmployee () {
+            return employee;
+        }
+
+        public void setEmployee (Staff employee){
+            this.employee = employee;
+        }
+         public List<FoodItems> getList() {
+            return list;
+         }
 
     }
 
-    public void setList(List<FoodItems> list) {
-        this.list = list;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        topping1.getItems().addAll(toppings);
-        topping2.getItems().addAll(toppings);
-        topping3.getItems().addAll(toppings);
-        topping4.getItems().addAll(toppings);
-
-        topping1.setOnAction(this::addTopping1);
-    }
-
-    public void addTopping1(ActionEvent event){
-        top1 = topping1.getValue();
-    }
-    public void addTopping2(ActionEvent event){
-        top2 = topping1.getValue();
-    }
-    public void addTopping3(ActionEvent event){
-        top3 = topping1.getValue();
-    }
-    public void addTopping4(ActionEvent event){
-        top4 = topping1.getValue();
-    }
-
-}
