@@ -5,11 +5,41 @@
 <?import javafx.scene.text.*?>
 
 <?import javafx.geometry.Insets?>
+
 <VBox prefHeight="400.0" prefWidth="600.0" fx:controller="controllers.pizzagui.CheckoutController" xmlns:fx="http://javafx.com/fxml/1">
+
+        <AnchorPane style="-fx-background-color: #F4B06A;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="14.0" layoutY="4.0" style="-fx-text-fill: #FFFFFF;" text="Checkout">
+                    <font>
+                        <Font name="Arial Rounded MT Bold" size="25.0" />
+                    </font>
+                </Label>
+                <Button layoutX="512.0" layoutY="4.0" mnemonicParsing="false" onAction="#logOutButton" prefHeight="24.0" prefWidth="78.0" text="LogOut" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
+                    <font>
+                        <Font name="Arial Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+
+
     <VBox fx:id="cartList">
         <padding>
             <Insets top="25" right="25" bottom="25" left="25"/>
         </padding>
     </VBox>
 
+    <Button fx:id="back" layoutX="34.0" layoutY="100.0" mnemonicParsing="false" onAction="#goBackToOrderMenu" prefHeight="66.0" prefWidth="169.0" text="Back">
+        <font>
+            <Font name="Arial Rounded MT Bold" size="35.0" />
+        </font>
+    </Button>
+
+    <Button fx:id="pay" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#goToConfirm" prefHeight="66.0" prefWidth="169.0" text="Pay Now">
+        <font>
+            <Font name="Arial Rounded MT Bold" size="35.0" />
+        </font>
+    </Button>
 </VBox>
+

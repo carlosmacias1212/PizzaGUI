@@ -271,6 +271,7 @@ public class OrderMenuController {
     }
 
     public void buildYourOwnButton(ActionEvent actionEvent) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Build-Your-Own-View.fxml"));
         ////This preloads the next fxml
         Parent root = fxmlLoader.load();
@@ -279,6 +280,9 @@ public class OrderMenuController {
         fxmlLoader.setController(byoController);
         ////Sets employee attribute in the controller to the user here
         byoController.setList(foodList);
+        byoController.setEmployee(getEmployee());
+        byoController.setCurrentUser(getCurrentUser());
+        byoController.displayName();
 
         Stage window = (Stage) label.getScene().getWindow();
         Scene scene = new Scene(root,900,600);
@@ -344,6 +348,7 @@ public class OrderMenuController {
     public void finishOrder(ActionEvent actionEvent) throws IOException {
 
 
+
         if(foodList.size() == 0){
             errorText.setText("Order is Empty");
         }
@@ -362,8 +367,9 @@ public class OrderMenuController {
             checkoutController.setFoodList(getFoodList());
             checkoutController.setOrder(getOrder());
             checkoutController.setCurrentUser(getCurrentUser());
-            checkoutController.start();
             checkoutController.displayName();
+            checkoutController.start();
+
 
             Stage window = (Stage) label.getScene().getWindow();
             Scene scene = new Scene(root, 900, 600);

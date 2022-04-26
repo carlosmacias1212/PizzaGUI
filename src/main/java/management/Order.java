@@ -122,5 +122,13 @@ public class Order {
         return p;
 
     }
+
+    public static boolean isPickup(String orderType){
+        return orderType.equals("Pick-up");
+    }
+
+    public void setPayment(String card_payment) {
+        this.payment = card_payment;
+    }
 }
 

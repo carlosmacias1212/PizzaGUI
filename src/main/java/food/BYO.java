@@ -44,6 +44,8 @@ public class BYO extends FoodItems {
         return type;
     }
 
+    public String getSize() { return size;}
+
     public String getCrustType() {
         return crustType;
     }
@@ -77,6 +79,9 @@ public class BYO extends FoodItems {
     }
 
 
+    public void setSize(String size) {
+        this.size = size;
+    }
 }
 
 
