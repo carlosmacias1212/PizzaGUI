@@ -91,11 +91,11 @@ public class LoginController {
         }
     }
 
-    public void devLogIn(ActionEvent actionEvent) throws IOException {
-        username.setText("admin");
-        password.setText("admin");
-        switchToStaffView();
-    }
+//    public void devLogIn(ActionEvent actionEvent) throws IOException {
+//        username.setText("admin");
+//        password.setText("admin");
+//        switchToStaffView();
+//    }
 
     public boolean isManager(String username) {
         for(Staff staff : staffList){
