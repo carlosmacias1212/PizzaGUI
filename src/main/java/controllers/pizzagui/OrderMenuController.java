@@ -200,37 +200,8 @@ public class OrderMenuController {
                 }
             }
 
-
-            /*
-            switch (drinkType) {
-                case "Coke" -> {
-                    drink = new Drink(COKE);
-                    foodList.add(drink);
-                }
-                case "Diet Coke" -> {
-                    drink = new Drink(DIET_COKE);
-                    foodList.add(drink);
-                }
-                case "Dr. Pepper" -> {
-                    drink = new Drink(DR_PEPPER);
-                    foodList.add(drink);
-                }
-                case "Sprite" -> {
-                    drink = new Drink(SPRITE);
-                    foodList.add(drink);
-                }
-            }
-
-             */
-
             resetToggles();
 
-//        for (FoodItems item : foodList) {
-//            if(item.getFoodName() != null)
-//            {
-//                System.out.println(item.getFoodName());
-//            }
-//        }
         }
 
     }
@@ -379,7 +350,7 @@ public class OrderMenuController {
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();

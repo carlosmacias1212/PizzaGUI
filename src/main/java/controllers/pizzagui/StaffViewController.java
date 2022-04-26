@@ -88,7 +88,7 @@ public class StaffViewController {
 
             Stage window = (Stage) label.getScene().getWindow();
             Scene scene = new Scene(root, 900, 600);
-            window.setTitle("Update Customer View");
+            window.setTitle("Update Customer");
             window.setScene(scene);
             window.setResizable(false);
             window.show();

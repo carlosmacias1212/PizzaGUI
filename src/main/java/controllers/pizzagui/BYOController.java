@@ -91,11 +91,11 @@ public class BYOController{
             }
 
             if (this.cheeseAmount.getSelectedToggle() == lightCheese) {
-                cheeseAmount = "Light";
+                cheeseAmount = "Light Cheese";
             } else if (this.cheeseAmount.getSelectedToggle() == regularCheese) {
-                cheeseAmount = "Regular";
+                cheeseAmount = "Regular Cheese";
             } else if (this.cheeseAmount.getSelectedToggle() == xtraCheese) {
-                cheeseAmount = "Extra";
+                cheeseAmount = "Extra Cheese";
             }
 
             if (sauceTypes.getSelectedToggle() == lightSauce) {
@@ -134,8 +134,6 @@ public class BYOController{
 
             FoodItems newBYO = new BYO(sauceAmount,cheeseAmount,size,pizzaCrust,toppingsList);
 
-            newBYO.setFoodName("Custom");
-
             list.add(newBYO);
 
 
@@ -158,7 +156,7 @@ public class BYOController{
 
             Stage window = (Stage) label.getScene().getWindow();
             Scene scene = new Scene(root, 900, 600);
-            window.setTitle("Staff View");
+            window.setTitle("Order Menu");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -185,7 +183,7 @@ public class BYOController{
                 Stage window = (Stage) label.getScene().getWindow();
 
                 Scene scene = new Scene(root,900,600);
-                window.setTitle("Manager View");
+                window.setTitle("Order Menu");
                 window.setScene(scene);
                 window.setResizable(false);
                 window.show();
@@ -208,7 +206,7 @@ public class BYOController{
                 Stage window = (Stage) label.getScene().getWindow();
 
                 Scene scene = new Scene(root,900,600);
-                window.setTitle("Staff View");
+                window.setTitle("Order Menu");
                 window.setScene(scene);
                 window.setResizable(false);
                 window.show();

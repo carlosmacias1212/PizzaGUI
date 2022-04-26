@@ -114,7 +114,7 @@ public class ConfirmationController {
         Stage window = (Stage) failedText.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
@@ -141,7 +141,7 @@ public class ConfirmationController {
             Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
-            window.setTitle("Manager View");
+            window.setTitle("Check Out");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -166,7 +166,7 @@ public class ConfirmationController {
             Stage window = (Stage) failedText.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
-            window.setTitle("Staff View");
+            window.setTitle("Check Out");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -178,7 +178,9 @@ public class ConfirmationController {
     }
 
     public void displayName(){
-        currentUser.setText("Hello " + employee.employeeType);
+        System.out.println(employee.employeeType);
+
+        currentUser.setText("Hello, " + employee.employeeType);
         failedText1.setText("Total Price: $" + totalPrice.getText());
     }
 

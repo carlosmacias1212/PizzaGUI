@@ -13,15 +13,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
-import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,17 +32,21 @@ public class CheckoutController {
     private Order order;
     @FXML
     private Label currentUser;
-
-    private Label totalPrice;
     private List<FoodItems> cart = new ArrayList<>();
 
-
+    private Label totalPrice;
 
     private List<FoodItems> cartView = new ArrayList<FoodItems>();
 
     private ArrayList<Label> entries = new ArrayList<Label>();
 
     private ArrayList<Integer> quantities = new ArrayList<Integer>();
+
+
+    public Button back;
+    public Button pay;
+
+
 
 
 
@@ -70,15 +72,29 @@ public class CheckoutController {
                 String type;
                 String size;
 
-                if (item.getType().equals("Custom")) {
-                    type = "Custom";
+                if (item.getType().equals("custom")) {
+                    type = "▶Custom";
+                    Label t = new Label(type);
+                    t.setStyle("-fx-font-style: bold");
+
+                    String sauce = "\n  -" + ((BYO) item).getSauce();
+                    String cheese = "\n  -" + ((BYO) item).getCheese();
+                    String crust = "\n  -" + ((BYO) item).getCrustType();
                     size = ((BYO) item).getSize();
+                    String topping = "\n  -toppings: ";
+                    for (String top: ((BYO) item).getToppings()) {
+                        topping += "\n   " + top;
+                    }
+
+
+                    System.out.println(((BYO) item).getSauce());
+                    desc = t.getText() + " " + size + sauce + cheese + crust + topping;
+
                 } else {
+                    type = "▶"+item.getType();
+                    size = ( (Pizza) item).getSize();
 
-                    type = item.getType();
-                    size = ((Pizza) item).getSize();
-
-                    desc = size + "     " + type;
+                    desc = type + " " + size;
 
                 }
 
@@ -89,16 +105,18 @@ public class CheckoutController {
 
 
             } else if (item.getFoodName().equals("side")) {
-                String type = item.getType();
+                String type = "▶"+item.getType();
                 cartView.add(item);
                 quantities.add(1);
                 entries.add(new Label(type));
 
             } else if (item.getFoodName().equals("drink")) {
-                String type = item.getType();
+                String type = "▶"+item.getType();
+                String size = ((Drink) item).getSize();
+                desc = type + " " + size;
                 cartView.add(item);
                 quantities.add(1);
-                entries.add(new Label(type));
+                entries.add(new Label(desc));
             }
         }
 
@@ -107,7 +125,7 @@ public class CheckoutController {
     private Boolean isRepeat(FoodItems foodType) {
         for (FoodItems f: cartView) {
             if (foodType.getFoodName().equals("pizza") && f.getFoodName().equals("pizza")) {
-                if (foodType.getType().equals("Custom")) {
+                if (foodType.getType().equals("custom") && f.getType().equals("custom")) {
                     if (sameCustom((BYO) f, (BYO) foodType)) {
 
                         int i = cartView.indexOf(f);
@@ -115,7 +133,7 @@ public class CheckoutController {
                         quantities.set(i, q);
                         return true;
                     }
-                } else {
+                } else if (f.getType().equals(foodType.getType())){
 
                     Pizza p1 = (Pizza) f;
                     Pizza p2 = (Pizza) foodType;
@@ -135,7 +153,7 @@ public class CheckoutController {
                 }
             } else if (foodType.getFoodName().equals("drink") && f.getFoodName().equals("drink")) {
                 if (f.getType().equals(foodType.getType())) {
-                    if (((Drink) f).getDrinkType().equals(((Drink) foodType).getDrinkType())) {
+                    if (((Drink) f).getSize().equals(((Drink) foodType).getSize())) {
                         int i = cartView.indexOf(f);
                         int q = quantities.get(i) + 1;
                         quantities.set(i, q);
@@ -197,11 +215,11 @@ public class CheckoutController {
    public void start() {
 
 
-        System.out.println(cart.get(0).getType());
-
         populateLabels();
 
-        Label pizza = new Label("PIZZAS");
+
+        Label pizza = new Label("PIZZAS:");
+        pizza.setStyle("-fx-font-size:13pt; -fx-font-family:'Arial Rounded MT Bold'");
         cartList.getChildren().add(pizza);
 
 
@@ -211,13 +229,15 @@ public class CheckoutController {
             if (cartView.get(i).getFoodName().equals("pizza")) {
 
                 HBox hbox = entry(p);
+                hbox.setStyle("-fx-background-color: lightgrey");
                 cartList.getChildren().add(hbox);
             }
 
         }
 
-        Label Sides = new Label("SIDES");
-        cartList.getChildren().add(Sides);
+        Label Sides = new Label("SIDES:");
+       Sides.setStyle("-fx-font-size:13pt; -fx-font-family:'Arial Rounded MT Bold'");
+       cartList.getChildren().add(Sides);
 
         for (Label s: entries) {
 
@@ -225,19 +245,22 @@ public class CheckoutController {
             if (cartView.get(i).getFoodName().equals("side")) {
 
                 HBox hbox = entry(s);
+                hbox.setStyle("-fx-background-color: lightgrey");
                 cartList.getChildren().add(hbox);
             }
         }
 
 
-        Label Drinks = new Label("DRINKS");
-        cartList.getChildren().add(Drinks);
+        Label Drinks = new Label("DRINKS:");
+       Drinks.setStyle("-fx-font-size:13pt; -fx-font-family:'Arial Rounded MT Bold'");
+       cartList.getChildren().add(Drinks);
 
         for (Label d: entries) {
             int i = entries.indexOf(d);
             if (cartView.get(i).getFoodName().equals("drink")) {
 
                 HBox hbox = entry(d);
+                hbox.setStyle("-fx-background-color: lightgrey; -fx-border-radius:50px");
                 cartList.getChildren().add(hbox);
             }
         }
@@ -254,12 +277,13 @@ public class CheckoutController {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER);
 
-        Label total = new Label("Total: $ ");
+        Label total = new Label("Order Total: $");
         total.setStyle("-fx-font-size: 15pt;");
 
 
         float priceTotal = cartTotal();
         this.totalPrice = new Label(String.valueOf(priceTotal));
+        totalPrice.setStyle("-fx-font-size: 14pt; -fx-font-family: 'Arial Rounded MT Bold'");
 
         layout.getChildren().addAll(total, this.totalPrice);
         return layout;
@@ -271,16 +295,18 @@ public class CheckoutController {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER_LEFT);
 
-        food.setPrefWidth(300);
+        food.setPrefWidth(400);
         food.setStyle("-fx-font-size:15pt; -fx-padding:5px");
 
         int i = entries.indexOf(food);
         int q = quantities.get(i);
         String quant = String.valueOf(q);
         Label quantity = new Label(quant);
+        quantity.setStyle("-fx-padding: 5px");
 
         Button minusButton = new Button("-");
-        minusButton.setStyle("-fx-padding:5px");
+        minusButton.setStyle("-fx-background-color: orange; -fx-border-style: solid");
+        minusButton.setShape(new Circle(1.5));
         minusButton.setUserData(cartView.get(i).getType());
         minusButton.setOnAction(e -> {
             String name = (String) ((Node) e.getSource()).getUserData();
@@ -308,7 +334,8 @@ public class CheckoutController {
         });
 
         Button plusButton = new Button("+");
-        plusButton.setStyle("-fx-padding:5px");
+        plusButton.setStyle("-fx-background-color: orange; -fx-border-style: solid");
+        plusButton.setShape(new Circle(1.5));
         plusButton.setUserData(cartView.get(i).getType());
         plusButton.setOnAction(e -> {
             String name = (String) ((Node) e.getSource()).getUserData();
@@ -322,6 +349,7 @@ public class CheckoutController {
                             quantities.set(j, qplus);
                             cart.add(f);
                             quantity.setText(String.valueOf(qplus));
+
                             this.totalPrice.setText(String.valueOf(cartTotal()));
 
                         }
@@ -336,7 +364,6 @@ public class CheckoutController {
         Label price = new Label(p);
 
         layout.getChildren().addAll(food, minusButton, quantity, plusButton, price);
-
         return layout;
     }
 
@@ -345,25 +372,30 @@ public class CheckoutController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
         Parent root = fxmlLoader.load();
         ConfirmationController confirmationController = fxmlLoader.getController();
+//        fxmlLoader.setController(confirmationController);
 
         confirmationController.setEmployee(getEmployee());
         confirmationController.setTotalPrice(getTotalPrice());
         confirmationController.setOrder(getOrder());
         confirmationController.setFoodList(getFoodList());
-        confirmationController.setCurrentUser(getCurrentUser());
+        confirmationController.setEmployee(getEmployee());
 
         confirmationController.displayName();
 
+
+//        Stage window = (Stage) (Node)totalPrice.getScene().getWindow();
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(root,900,600);
-        window.setTitle("Confirmation View");
+        window.setTitle("Pay Here");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
     }
 
-
+    private Label getTotalPrice() {
+        return this.totalPrice;
+    }
 
 
     public void goBackToOrderMenu(ActionEvent actionEvent) throws IOException {
@@ -375,15 +407,13 @@ public class CheckoutController {
             fxmlLoader.setController(orderMenuController);
 
             orderMenuController.setEmployee(getEmployee());
-            orderMenuController.setFoodList(getCart());
-            orderMenuController.setNewOrder(getOrder());
-            orderMenuController.setCurrentUser(getCurrentUser());
-            orderMenuController.setTotalPrice(getTotalPrice());
-
+            orderMenuController.setFoodList(cart);
+            orderMenuController.setNewOrder(order);
+            orderMenuController.setCurrentUser(currentUser);
             orderMenuController.displayName();
 
 
-            Stage window = (Stage) totalPrice.getScene().getWindow();
+            Stage window = (Stage) cartList.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Manager View");
@@ -399,14 +429,14 @@ public class CheckoutController {
             OrderMenuController orderMenuController = fxmlLoader.getController();
             fxmlLoader.setController(orderMenuController);
 
-            orderMenuController.setEmployee(getEmployee());
-            orderMenuController.setFoodList(getCart());
-            orderMenuController.setNewOrder(getOrder());
-            orderMenuController.setCurrentUser(getCurrentUser());
+            orderMenuController.setEmployee(employee);
+            orderMenuController.setFoodList(cart);
+            orderMenuController.setNewOrder(order);
+            orderMenuController.setCurrentUser(currentUser);
 
             orderMenuController.displayName();
 
-            Stage window = (Stage) totalPrice.getScene().getWindow();
+            Stage window = (Stage) cartList.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Staff View");
@@ -415,6 +445,8 @@ public class CheckoutController {
             window.show();
         }
     }
+
+
 
     public boolean isManager(){
         return employee.getEmployeeType().equals("Manager");
@@ -425,21 +457,19 @@ public class CheckoutController {
 
     }
 
-    public void changeView(String viewName) throws IOException {
-        Stage window = (Stage) cartList.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
-        Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
-    }
-
     public void displayName(){
         currentUser.setText("Hello " + employee.employeeType);
     }
 
-
+    public void changeView(String viewName) throws IOException {
+        Stage window = (Stage) cartList.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("PieHackers Pizza Restaurant!");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+    }
 
     public Staff getEmployee() {
         return employee;
@@ -457,6 +487,7 @@ public class CheckoutController {
         this.cart = foodList;
     }
 
+
     public Order getOrder() {
         return order;
     }
@@ -473,19 +504,7 @@ public class CheckoutController {
         this.currentUser = currentUser;
     }
 
-    public List<FoodItems> getCart() {
-        return cart;
-    }
-
-    public void setCart(List<FoodItems> cart) {
-        this.cart = cart;
-    }
-
-    public Label getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Label totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotalPrice(Label price) {
+        this.totalPrice = price;
     }
 }

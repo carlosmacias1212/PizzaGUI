@@ -109,9 +109,6 @@ public class UpdateCustomerController {
         }
     }
 
-    public void setTextBoxes(){
-
-    }
     public void setUpController(String update) throws IOException {
 
         if(isManager()){
@@ -228,7 +225,7 @@ public class UpdateCustomerController {
         Stage window = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
