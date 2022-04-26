@@ -51,7 +51,7 @@ public class UpdatePayment {
         Stage window = (Stage) nameOnCard.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Login View");
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();

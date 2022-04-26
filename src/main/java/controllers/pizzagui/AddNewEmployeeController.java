@@ -67,9 +67,9 @@ public class AddNewEmployeeController {
 
     public void logOut(ActionEvent actionEvent) throws IOException {
         Stage window = (Stage) firstName.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddNewView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle("Login View");
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();

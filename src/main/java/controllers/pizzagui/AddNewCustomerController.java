@@ -126,7 +126,7 @@ public class AddNewCustomerController {
             Stage window = (Stage) firstName.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
-            window.setTitle("Manager View");
+            window.setTitle("Add Customer");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -152,7 +152,7 @@ public class AddNewCustomerController {
             Stage window = (Stage) firstName.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
-            window.setTitle("Manager View");
+            window.setTitle("Add Customer");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -167,7 +167,7 @@ public class AddNewCustomerController {
         Stage window = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();

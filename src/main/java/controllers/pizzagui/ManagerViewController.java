@@ -132,9 +132,23 @@ public class ManagerViewController extends StaffViewController{
         }
     }
 
-    public void showOrderList(){
+    public void showOrderList() throws IOException {
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Show-Orders-View.fxml"));
+        Parent root = fxmlLoader.load();
+        ShowOrdersController showOrdersController = fxmlLoader.getController();
+        fxmlLoader.setController(showOrdersController);
 
+        showOrdersController.setEmployee(getEmployee());
+        showOrdersController.displayOrders();
+
+        Stage window = (Stage) label.getScene().getWindow();
+
+        Scene scene = new Scene(root, 900, 600);
+        window.setTitle("Order List");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
 
     }
 

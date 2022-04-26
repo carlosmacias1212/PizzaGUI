@@ -48,8 +48,6 @@ public class BYOController{
     public ToggleGroup cheeseAmount;
     public Label label;
 
-
-
     private List<FoodItems> list = new ArrayList<>();
     private Staff employee;
 

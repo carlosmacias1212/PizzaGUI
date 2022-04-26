@@ -176,7 +176,7 @@
                                     <Font name="Arial Rounded MT Bold" size="31.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="34.0" layoutY="79.0" mnemonicParsing="false" onAction="#goBackToStaffView" prefHeight="66.0" prefWidth="169.0" text="Back">
+                              <Button layoutX="34.0" layoutY="79.0" mnemonicParsing="false" onAction="#goBackToOrderMenu" prefHeight="66.0" prefWidth="169.0" text="Back">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="35.0" />
                                  </font>

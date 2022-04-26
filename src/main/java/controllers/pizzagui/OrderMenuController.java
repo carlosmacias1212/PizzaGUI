@@ -25,6 +25,8 @@ import static management.Menu.*;
 
 public class OrderMenuController {
 
+
+    private Label totalPrice;
     private Staff employee;
     //This employee is passed through add to cart scenes and byo scenes and checkout scene.
     private Order newOrder;
@@ -194,29 +196,6 @@ public class OrderMenuController {
                 }
             }
 
-
-            /*
-            switch (drinkType) {
-                case "Coke" -> {
-                    drink = new Drink(COKE);
-                    foodList.add(drink);
-                }
-                case "Diet Coke" -> {
-                    drink = new Drink(DIET_COKE);
-                    foodList.add(drink);
-                }
-                case "Dr. Pepper" -> {
-                    drink = new Drink(DR_PEPPER);
-                    foodList.add(drink);
-                }
-                case "Sprite" -> {
-                    drink = new Drink(SPRITE);
-                    foodList.add(drink);
-                }
-            }
-
-             */
-
             resetToggles();
 
         }
@@ -349,6 +328,7 @@ public class OrderMenuController {
             checkoutController.setFoodList(getFoodList());
             checkoutController.setOrder(getOrder());
             checkoutController.setCurrentUser(getCurrentUser());
+            checkoutController.setTotalPrice(getTotalPrice());
             checkoutController.start();
             checkoutController.displayName();
 
@@ -365,7 +345,7 @@ public class OrderMenuController {
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
@@ -373,8 +353,6 @@ public class OrderMenuController {
 
     public void displayName(){
         currentUser.setText("Hello, " + employee.employeeType);
-//        currentCustomer.setText("Cust: " + currentCustomer.getText());
-//        orderType.setText(orderType.getText() + " Order");
 
     }
 
@@ -429,4 +407,11 @@ public class OrderMenuController {
         return this.newOrder;
     }
 
+    public Label getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Label totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
