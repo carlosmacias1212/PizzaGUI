@@ -14,6 +14,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
+import static list.JsonController.serializeOrders;
+import static list.JsonController.orderList;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,9 +44,6 @@ public class ConfirmationController {
     private RadioButton check;
     @FXML
     private RadioButton card;
-    //    @FXML
-//    private Label label;
-    //    public ToggleGroup toggleOrderType1;
 
     public void submit(){
 
@@ -72,6 +71,13 @@ public class ConfirmationController {
                     else {
                         failedText.setText("Give customer $" + calcChange() + " for change");
                         failedText1.setText("Payment Successful");
+                        orderList.add(order);
+                        serializeOrders();
+                        try {
+                            logOut();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }
@@ -89,19 +95,33 @@ public class ConfirmationController {
                     else {
                         failedText.setText("Give customer $" + calcChange() + " for change");
                         failedText1.setText("Payment Successful, $30 fee if check bounces");
+                        orderList.add(order);
+                        serializeOrders();
+                        try {
+                            logOut();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }
             else{
                 order.setPayment("Card Payment");
                 failedText.setText("Payment Successful");
+                orderList.add(order);
+                serializeOrders();
+                try {
+                    logOut();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
         // show receipt method
     }
 
-    public void logOut(ActionEvent actionEvent) throws IOException {
+    public void logOut() throws IOException {
         changeView("Login-view.fxml");
 
     }

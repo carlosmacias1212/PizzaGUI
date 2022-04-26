@@ -9,23 +9,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import management.Order;
-import management.Menu;
 import management.Staff;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static list.JsonController.*;
 import static management.Menu.*;
 
 public class OrderMenuController {
 
 
+    public ToggleButton beer;
     private Label totalPrice;
     private Staff employee;
     //This employee is passed through add to cart scenes and byo scenes and checkout scene.
@@ -105,7 +106,7 @@ public class OrderMenuController {
             String size = "";
             String pizzaType = "";
             String sideType;
-            String drinkType;
+            String drinkType = "";
             String drinkSize = "";
 
             if (pep.equals(PizzaTypes.getSelectedToggle())) {
@@ -156,8 +157,8 @@ public class OrderMenuController {
                 drinkType = DR_PEPPER;
             } else if (sprite.equals(drinkGroup.getSelectedToggle())) {
                 drinkType = SPRITE;
-            } else {
-                drinkType = "";
+            } else if(beer.equals(drinkGroup.getSelectedToggle())){
+                drinkType = BEER;
             }
 
             if(dSize.getSelectedToggle() != null) {

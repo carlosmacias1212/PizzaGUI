@@ -12,6 +12,8 @@ import list.JsonController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import static list.JsonController.orderList;
+import static list.JsonController.customerList;
 
 public class Order {
 
@@ -133,6 +135,20 @@ public class Order {
 
     public static boolean isPickup(String orderType){
         return orderType.equals("Pick-up");
+    }
+
+    @Override
+    public String toString(){
+        String string = "";
+        Customer newCustomer;
+        String PhoneNumber;
+
+        for (Customer customer :
+                customerList) {
+            
+        }
+
+        return string;
     }
 }
 
