@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import management.Order;
@@ -23,9 +24,10 @@ public class ShowOrdersController {
     public VBox orderVbox;
     private Staff employee;
 
+    public ScrollBar newScroll;
+
     public void displayOrders(){
-        orderVbox.setSpacing(60);
-        orderVbox.setAlignment(Pos.CENTER);
+        orderVbox.setSpacing(10);
 
 
         for (Customer c : customerList) {
@@ -43,12 +45,11 @@ public class ShowOrdersController {
                     }
                 }
             }
-            text += "    " + "Address" + "      " + c.getAddress().toString()+"\n";
+            text += "    " + "Address" + "      " + c.getAddress().toString()+"\n\n";
 
             Label newLabel = new Label();
             newLabel.setStyle("-fx-font-family: Arial");
             newLabel.setText(text);
-            newLabel.setAlignment(Pos.CENTER);
             orderVbox.getChildren().add(newLabel);
             }
 
