@@ -20,6 +20,8 @@ public class ShowOrdersController {
 
     public void displayOrders(){
 
+
+
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
@@ -60,6 +62,20 @@ public class ShowOrdersController {
             window.setResizable(false);
             window.show();
         }
+    }
+
+    public void logOut(ActionEvent actionEvent) throws IOException{
+        changeView("Login-view.fxml");
+    }
+
+    public void changeView(String viewName) throws IOException {
+        Stage window = (Stage) label.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        window.setTitle("PieHackers Pizza Restaurant!");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
     }
 
     public boolean isManager(){
