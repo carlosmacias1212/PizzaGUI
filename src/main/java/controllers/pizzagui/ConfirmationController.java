@@ -42,9 +42,6 @@ public class ConfirmationController {
     private RadioButton check;
     @FXML
     private RadioButton card;
-    //    @FXML
-//    private Label label;
-    //    public ToggleGroup toggleOrderType1;
 
     public void submit(){
 
@@ -137,7 +134,6 @@ public class ConfirmationController {
             checkoutController.start();
             checkoutController.displayName();
 
-//            Stage window = (Stage) failedText.getScene().getWindow();
             Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
@@ -147,7 +143,6 @@ public class ConfirmationController {
             window.show();
         }
 
-//        If it's a staff logged in, go back to staff view
         else{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
             Parent root = fxmlLoader.load();
@@ -177,9 +172,47 @@ public class ConfirmationController {
         return employee.getEmployeeType().equals("Manager");
     }
 
-    public void displayName(){
-        System.out.println(employee.employeeType);
+    public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
 
+        if(isManager()){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(getEmployee());
+            staffViewController.displayName();
+
+            Stage window = (Stage) failedText.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(getEmployee());
+            staffViewController.displayName();
+
+            Stage window = (Stage) failedText.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+    }
+
+    public void displayName(){
         currentUser.setText("Hello, " + employee.employeeType);
         failedText1.setText("Total Price: $" + totalPrice.getText());
     }

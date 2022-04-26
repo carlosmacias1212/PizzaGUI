@@ -267,7 +267,7 @@ public class OrderMenuController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(employee);
+            staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
