@@ -14,7 +14,8 @@ import static list.JsonController.*;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Checkout-View.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("PieHackers Pizza Restaurant!");
         stage.setScene(scene);
@@ -22,20 +23,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-            //orderList = deserializeAnOrderList("Order.json");
-        deserializeCustomers();
         deserializeStaff();
+        deserializeCustomers();
         deserializeOrders();
-        Staff newStaff = new Staff("Albert", "Villalobos", "200408625", "lobos");
-        staffList.add(newStaff);
-        serializeStaff();
-
 
         launch();
 
-        //push to raybranch
 
     }
 }

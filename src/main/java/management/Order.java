@@ -94,16 +94,36 @@ public class Order {
         payment = userSelection;
     }
 
-    public void generateReceipt(){
-        for(FoodItems item: items) {
-            System.out.print(item.getFoodName() + " ");
-            System.out.println(item.getPrice());
+    public String[][] generateReceipt(){
+
+        //create 2d array with rows as foodItem and 2 columns, column[0]-foodItemName, column[1]-foodItemPrice
+        String[][] itemsPlusPrice = new String[items.size() + 2][2];
+
+
+
+        for(int i = 0; i < itemsPlusPrice.length - 2; i++) {
+
+            itemsPlusPrice[i][0] = items.get(i).getFoodName();
+            itemsPlusPrice[i][1] = String.valueOf(items.get(i).getPrice());
 
         }
 
-        if(payment.equals("credit")) {
-            System.out.println("Sign Here");
+        itemsPlusPrice[items.size()][0] = "Order Total:";
+        itemsPlusPrice[items.size()][1] = String.valueOf(orderTotal);
+
+
+
+        if (payment.equals("credit")) {
+
+            itemsPlusPrice[items.size() + 1][0] = "Sign Here: ";
+            itemsPlusPrice[items.size() + 1][1] = "_________";
         }
+
+
+        return itemsPlusPrice;
+
+
+
     }
 
 
