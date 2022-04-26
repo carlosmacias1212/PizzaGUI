@@ -35,8 +35,16 @@ public class UpdatePayment {
     private Text errorText;
     @FXML
     private Label currentUser;
+    @FXML
+    private Label currName;
+    @FXML
+    private Label currCard;
+    @FXML
+    private Label currCCV;
+    @FXML
+    private Label currEXP;
 
-    public void update(ActionEvent actionEvent) {
+    public void update(ActionEvent actionEvent) throws IOException {
         customerCreditCard cc = new customerCreditCard(nameOnCard.getText(), cardNumber.getText(), securityCode.getText(), expDate.getText());
 
         for (Customer c : customerList){
@@ -45,6 +53,8 @@ public class UpdatePayment {
                 serializeCustomers();
             }
         }
+
+        goBackToStaffView();
     }
 
     public void logOut(ActionEvent actionEvent) throws IOException {
@@ -57,7 +67,7 @@ public class UpdatePayment {
         window.show();
     }
 
-    public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
+    public void goBackToStaffView() throws IOException {
 
         if(isManager()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
@@ -119,6 +129,14 @@ public class UpdatePayment {
 
     public void displayName(){
         currentUser.setText("Hello, "+employee.employeeType);
+
+        Customer customer = Customer.getCustomer(customerPhoneNumber);
+
+        currName.setText(customer.getCreditCard().getNameOnCard());
+        currCard.setText(customer.getCreditCard().getCardNumber());
+        currCCV.setText(customer.getCreditCard().getSecurityCode());
+        currEXP.setText(customer.getCreditCard().getExpirationDate());
+
     }
 
     public String getCustomerPhoneNumber() {

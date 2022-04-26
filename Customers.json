@@ -53,5 +53,22 @@
       "zipCode": "q"
     },
     "phoneNumber": "q"
+  },
+  {
+    "firstName": "j",
+    "lastName": "j",
+    "address": {
+      "streetAddress": "j",
+      "city": "j",
+      "state": "j",
+      "zipCode": "j"
+    },
+    "phoneNumber": "j",
+    "creditCard": {
+      "nameOnCard": "yar oirasor",
+      "cardNumber": "321654987",
+      "securityCode": "032",
+      "expirationDate": "09/87"
+    }
   }
 ]
