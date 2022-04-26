@@ -123,8 +123,9 @@ public class ConfirmationController {
     }
 
     public void goBackToCheckout(ActionEvent actionEvent) throws IOException {
-
+        System.out.println(order.getOrderTotal());
         if(isManager()){
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
             Parent root = fxmlLoader.load();
             CheckoutController checkoutController = fxmlLoader.getController();

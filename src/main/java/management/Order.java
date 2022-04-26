@@ -83,6 +83,11 @@ public class Order {
         return true;
     }
 
+    public void setCart(List<FoodItems> cart) {
+        items = cart;
+
+    }
+
     public boolean confirmOrder(){
 
 
@@ -140,6 +145,10 @@ public class Order {
 
         return p;
 
+    }
+
+    public float getOrderTotal() {
+        return this.orderTotal;
     }
 
     public static boolean isPickup(String orderType){

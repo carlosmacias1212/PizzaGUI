@@ -47,7 +47,9 @@ public class CheckoutController {
     public Button pay;
 
 
-
+/*
+    hbox.getChildren().add(new Scrollbar)
+ */
 
 
 
@@ -369,7 +371,7 @@ public class CheckoutController {
 
     public void goToConfirm(ActionEvent actionEvent) throws IOException {
 
-        order.addToCart(cart);
+        order.setCart(cart);
         order.setOrderTotal();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
