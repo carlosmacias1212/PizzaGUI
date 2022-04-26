@@ -14,11 +14,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
-import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static list.JsonController.*;
 
 public class ConfirmationController {
 
@@ -44,7 +45,7 @@ public class ConfirmationController {
     @FXML
     private RadioButton card;
 
-    public void submit(){
+    public void submit() throws IOException {
 
         // radio buttons for payment method
         if(payGroup.getSelectedToggle() == null){
@@ -70,6 +71,8 @@ public class ConfirmationController {
                     else {
                         failedText.setText("Give customer $" + calcChange() + " for change");
                         failedText1.setText("Payment Successful");
+                        orderList.add(order);
+                        serializeOrders();
                     }
                 }
             }
@@ -87,17 +90,20 @@ public class ConfirmationController {
                     else {
                         failedText.setText("Give customer $" + calcChange() + " for change");
                         failedText1.setText("Payment Successful, $30 fee if check bounces");
+                        orderList.add(order);
+                        serializeOrders();
                     }
                 }
             }
             else{
-                order.setPayment("Card Payment");
+                order.setPayment("credit");
                 failedText.setText("Payment Successful");
+                orderList.add(order);
+                serializeOrders();
             }
         }
-
         // show receipt method
-//        goToReceipt();
+        goToReceipt();
 
     }
 
@@ -175,28 +181,28 @@ public class ConfirmationController {
         return employee.getEmployeeType().equals("Manager");
     }
 
-//    public void goToReceipt(ActionEvent actionEvent) throws IOException {
-//
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Generate-Receipt-View"));
-//        Parent root = fxmlLoader.load();
+    public void goToReceipt() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Generate-Receipt-View.fxml"));
+        Parent root = fxmlLoader.load();
 //        ReceiptController receiptController = fxmlLoader.getController();
 //        fxmlLoader.setController(receiptController);
-//
+
 //        receiptController.setEmployee(getEmployee());
 //        receiptController.setTotalPrice(getTotalPrice());
 //        receiptController.setOrder(getOrder());
 //        receiptController.setFoodList(getFoodList());
 //        receiptController.setCurrentUser(getCurrentUser());
-//
-//        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-//
-//        Scene scene = new Scene(root,900,600);
-//        window.setTitle("Receipt");
-//        window.setScene(scene);
-//        window.setResizable(false);
-//        window.show();
-//
-//    }
+
+        Stage window = new Stage();
+
+        Scene scene = new Scene(root,900,600);
+        window.setTitle("Receipt");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+
+    }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
 

@@ -331,7 +331,7 @@ public class OrderMenuController {
 
             checkoutController.setEmployee(getEmployee());
             checkoutController.setFoodList(getFoodList());
-            checkoutController.setOrder(getOrder());
+            checkoutController.setOrder(getNewOrder());
             checkoutController.setCurrentUser(getCurrentUser());
             checkoutController.setTotalPrice(getTotalPrice());
             checkoutController.start();
