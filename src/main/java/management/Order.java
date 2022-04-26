@@ -4,6 +4,7 @@ import customer_info.Customer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import food.Drink;
+import food.FoodItems;
 import food.Pizza;
 import food.Side;
 import list.JsonController;
@@ -12,156 +13,121 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+    // instantiates a list of food items to store customer order specifications:
+    public List<FoodItems> items = new ArrayList<FoodItems>();
 
-    // order variable creation:
-    Customer customer;
-    String customerPhoneNumber;
-    Pizza pizza;
-
-    // lists to hold menu items:
-    List<Pizza> pizzaList = new ArrayList<>();
-    List<Side> sideList = new ArrayList<>();
-    List<Drink> drinkList = new ArrayList<>();
-    float price = 0f;
-
-    // if true = pickup, if false = deliver:
-    Boolean orderType;
+    // order variables/attributes:
+    float orderTotal;
+    String payment = "";
+    String customerPhone;
+    Boolean pickup;
     int orderID;
-    // static order counter updated in the constructor for every new order:
-    public static int nextOrderID = 1;
 
-    // management.Order overloaded constructor:
-    public Order(Customer customer, Boolean orderType) {
-        this.customer = customer;
-        this.customerPhoneNumber = customer.getPhoneNumber();
-        this.orderType = orderType;
-        orderID = nextOrderID;
-        nextOrderID++;
+    // order overloaded constructor:
+    public Order(String phone, Boolean pickup) {
+        customerPhone = phone;
+        this.pickup = pickup;
+
+        JsonController controller = new JsonController();
+        orderID = controller.orderList.size();
+
     }
 
-    // getters and setters for customer:
-    public Customer getCustomer() {
-        return customer;
+    public Order() {
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
+    // getters and setters for order:
     public String getCustomerPhoneNumber() {
-        return customerPhoneNumber;
+        return customerPhone;
     }
-
     public void setCustomerPhoneNumber(String customerPhoneNumber) {
-        this.customerPhoneNumber = customerPhoneNumber;
+        this.customerPhone = customerPhoneNumber;
     }
-
-    // getters and setters for menu items:
-    public List<Pizza> getPizzaList() {
-        return pizzaList;
-    }
-
-    public void setPizzaList(Pizza pizza) {
-        pizzaList.add(pizza);
-        price += pizza.getPrice();
-    }
-
-    public List<Side> getSideList() {
-        return sideList;
-    }
-
-    public void setSideList(Side side) {
-        sideList.add(side);
-    }
-
-    public List<Drink> getDrinkList() {
-        return drinkList;
-    }
-
-    public void setDrinkList(Drink drink) {
-        drinkList.add(drink);
-    }
-
     public float getPrice() {
-        return price;
+        return orderTotal;
     }
-
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPrice() {
+        this.orderTotal = calculatePrice();
     }
-
-    // getters and setters for customer orders:
+    public List<FoodItems> getCart() {
+        return items;
+    }
     public Boolean getOrderType() {
-        return orderType;
+        return pickup;
     }
-
     public void setOrderType(Boolean orderType) {
-        this.orderType = orderType;
+        this.pickup = orderType;
     }
-
     public int getOrderID() {
         return orderID;
     }
-
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
-    public int getNextOrderID() {
-        return nextOrderID;
-    }
-
-    public void setNextOrderID(int nextOrderID) {
-        Order.nextOrderID = nextOrderID;
-    }
-
-    // adds menu items in the cart:
-    public boolean addToCart( boolean side, boolean drink) {
+    // adds food items into the system's cart:
+    public boolean addToCart(List<FoodItems> add){
+        for (FoodItems cart: add) {
+            items.add(cart);
+        }
         return true;
     }
 
-    // verifies customer order:
+    // returns true to confirm customer orders:
     public boolean confirmOrder(){
         return true;
     }
 
-    // specifies customer payment method
-    public String selectPaymentMethod(String userSelection){
-        return userSelection;
+    // sets payment type to the specified customer payment method selection:
+    public void selectPaymentMethod(String userSelection){
+
+        payment = userSelection;
     }
 
-    // generates a receipt based on the customer's order:
-    public void generateReceipt(){
+    // generates customer receipt from order(s):
+    public String[][] generateReceipt(){
+
+        String[][] itemsPlusPrice = new String[items.size() + 2][2];
+
+        for(int i = 0; i < itemsPlusPrice.length - 2; i++) {
+
+            itemsPlusPrice[i][0] = items.get(i).getFoodName();
+            itemsPlusPrice[i][1] = String.valueOf(items.get(i).getPrice());
+        }
+
+        itemsPlusPrice[items.size()][0] = "Order Total:";
+        itemsPlusPrice[items.size()][1] = String.valueOf(orderTotal);
+
+        if (payment.equals("credit")) {
+
+            itemsPlusPrice[items.size() + 1][0] = "Sign Here: ";
+            itemsPlusPrice[items.size() + 1][1] = "_________";
+        }
+        return itemsPlusPrice;
     }
 
-    // creates new customer orders within the system
-    public static boolean createNewOrder(Customer customer, boolean orderType) throws IOException {
-
-        Order order = new Order(customer, orderType);
-
-        // re-writes the json file to add the new customer
-        JsonController.orderList.add(order);
-
-        JsonController.serializeAnOrderList(order);
-
-        return true;
+    // sets the total price for a customer's order:
+    public void setOrderTotal() {
+        orderTotal = calculatePrice();
     }
 
-    // adds the selected pizza into the pizzaList:
-    public void addPizza(String pizzaType, String size) {
-        pizzaList.add(new Pizza(pizzaType, size));
+    // determines the total price for a customer's order:
+    public float calculatePrice(){
+
+        float p = 0;
+        for (FoodItems f: items) {
+            p += f.getPrice();
+        }
+        return p;
     }
 
-    public void addSide(String sideSelection) {
-        sideList.add(new Side(sideSelection));
-    }
+    // getters and setters for order:
+    public String getPayment() { return payment; }
 
-    // adds the selected drink into the drinkList:
-    public void addDrink(String drink, String size) {
-        drinkList.add(new Drink(drink, size));
-    }
+    public void setPayment(String payment) { this.payment = payment; }
 
-    // determines the total price for a customer order:
-    public void calculatePrice(){
+    // indicates whether if a customer order is for pick-up or delivery:
+    public static boolean isPickup(String orderType){
+        return orderType.equals("Pick-up");
     }
 }

@@ -6,15 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import list.JsonController;
 import management.Staff;
+
 import java.io.IOException;
-import static list.JsonController.deserializeAStaffList;
-import static list.JsonController.staffList;
+
+import static list.JsonController.*;
 
 public class Main extends Application {
-
-    // initiates system GUI:
     @Override
     public void start(Stage stage) throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("PieHackers Pizza Restaurant!");
@@ -23,17 +23,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    // user login information example:
-    public static void main(String[] args) {
-        try {
-            //orderList = deserializeAnOrderList("Order.json");
-            Staff newStaff = new Staff("Albert", "Villalobos", "200408625", "lobos");
-            JsonController json = new JsonController();
-            json.serializeAList(newStaff);
-         staffList = deserializeAStaffList("Staff.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws IOException {
+
+        deserializeStaff();
+        deserializeCustomers();
+        deserializeOrders();
+
         launch();
+
+
     }
 }

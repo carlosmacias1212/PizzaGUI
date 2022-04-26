@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.AddNewCustomerController">
     <children>
@@ -13,7 +14,7 @@
             <top>
                 <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A#F4B06A;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label layoutX="13.0" layoutY="11.0" text="Add New Cutomer" textFill="WHITE">
+                        <Label layoutX="14.0" layoutY="26.0" text="Add New Customer" textFill="WHITE">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="29.0" />
                             </font>
@@ -23,6 +24,11 @@
                         <Font name="Arial Rounded MT Bold" size="29.0" />
                      </font>
                   </Button>
+                  <Label fx:id="currentUser" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="255.0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </top>
@@ -127,6 +133,10 @@
                       <font>
                           <Font name="Arial" size="13.0" />
                       </font></TextField>
+                   <Text fx:id="errorText" layoutX="271.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="287.1868896484375">
+                       <font>
+                           <Font name="Arial Rounded MT Bold" size="15.0" />
+                       </font></Text>
                </children>
                 </AnchorPane>
             </center>

@@ -1,7 +1,5 @@
 package controllers.pizzagui;
 
-import customer_info.Customer;
-import customer_info.customerCreditCard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,44 +9,64 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import management.Manager;
 import management.Staff;
 
 import java.io.IOException;
 
-import static list.JsonController.customerList;
-import static list.JsonController.serializeCustomers;
-
-public class UpdatePayment {
+public class AddNewEmployeeController {
 
     private Staff employee;
-    private String customerPhoneNumber;
 
     @FXML
-    private TextField nameOnCard;
+    private TextField firstName;
+
     @FXML
-    private TextField cardNumber;
+    private TextField lastName;
+
     @FXML
-    private TextField securityCode;
+    private TextField password;
+
     @FXML
-    private TextField expDate;
+    private TextField employeeType;
+
+    @FXML
+    private TextField employeeID;
+
     @FXML
     private Text errorText;
+
     @FXML
     private Label currentUser;
 
-    public void update(ActionEvent actionEvent) {
-        customerCreditCard cc = new customerCreditCard(nameOnCard.getText(), cardNumber.getText(), securityCode.getText(), expDate.getText());
+    public void addNewEmployee(){
+        if(isFieldEmpty()) {
+            errorText.setText("Please do not leave fields blank");
+        }
 
-        for (Customer c : customerList){
-            if (c.getPhoneNumber().equals(getCustomerPhoneNumber())){
-                c.setCreditCard(cc);
-                serializeCustomers();
+        else if(Staff.isDuplicate(employeeID.getText())) {
+            errorText.setText("Employee already exists");
+        }
+        else {
+            if(employeeType.getText().equalsIgnoreCase("Manager")){
+                Manager.createNewManager(firstName.getText(),
+                                            lastName.getText(),
+                                            password.getText(),
+                                            employeeID.getText());
+            }
+            else{
+                Manager.createNewStaff(firstName.getText(),
+                                        lastName.getText(),
+                                        password.getText(),
+                                        employeeID.getText());
             }
         }
+
     }
 
+
     public void logOut(ActionEvent actionEvent) throws IOException {
-        Stage window = (Stage) nameOnCard.getScene().getWindow();
+        Stage window = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         window.setTitle("PieHackers Pizza Restaurant!");
@@ -68,7 +86,7 @@ public class UpdatePayment {
             staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
-            Stage window = (Stage) nameOnCard.getScene().getWindow();
+            Stage window = (Stage) firstName.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Manager View");
@@ -87,7 +105,7 @@ public class UpdatePayment {
             staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
-            Stage window = (Stage) nameOnCard.getScene().getWindow();
+            Stage window = (Stage) firstName.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Staff View");
@@ -101,6 +119,22 @@ public class UpdatePayment {
         return employee.getEmployeeType().equals("Manager");
     }
 
+    public boolean isFieldEmpty() {
+        if(firstName.getText().equals("")){
+            return true;
+        }
+        else if(lastName.getText().equals("")){
+            return true;
+        }
+        else if(password.getText().equals("")){
+            return true;
+        }
+        else if(employeeType.getText().equals("")){
+            return true;
+        }
+        else return employeeID.getText().equals("");
+    }
+
     public Staff getEmployee() {
         return employee;
     }
@@ -109,23 +143,7 @@ public class UpdatePayment {
         this.employee = employee;
     }
 
-    public Label getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(Label currentUser) {
-        this.currentUser = currentUser;
-    }
-
     public void displayName(){
         currentUser.setText("Hello, "+employee.employeeType);
-    }
-
-    public String getCustomerPhoneNumber() {
-        return customerPhoneNumber;
-    }
-
-    public void setCustomerPhoneNumber(String customerPhoneNumber) {
-        this.customerPhoneNumber = customerPhoneNumber;
     }
 }

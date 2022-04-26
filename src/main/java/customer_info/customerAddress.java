@@ -1,14 +1,13 @@
 package customer_info;
 
 public class customerAddress {
-
-    // customer address variable creation:
+    // customer address variables/attributes:
     private String streetAddress;
     private String city;
     private String state;
     private String zipCode;
 
-    // constructor and getters and setters for "customerAddress":
+    // customerAddress overloaded constructor:
     public customerAddress(String streetAddress, String city, String state, String zipCode) {
         this.streetAddress = streetAddress;
         this.city = city;
@@ -16,6 +15,7 @@ public class customerAddress {
         this.zipCode = zipCode;
     }
 
+    // getters and setters for customerAddress:
     public String getStreetAddress() {
         return streetAddress;
     }

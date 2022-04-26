@@ -1,11 +1,11 @@
 package management;
 
 public class Menu {
-
-    // menu pricing (pizza, sides, drinks):
+    // menu item pricing:
     public static float smallSpecialtyPizza = 5.00f;
     public static float mediumSpecialtyPizza = 7.50f;
     public static float largeSpecialtyPizza = 10.00f;
+    public static float xtraLargeSpecialtyPizza = 12.50f;
     public static float wings = 1.00f;
     public static float breadSticks = 1.50f;
     public static float garlicKnots = 2.00f;
@@ -14,22 +14,38 @@ public class Menu {
     public static float mediumDrink = 1.50f;
     public static float largeDrink = 2.00f;
 
-    // getters and setters for specialty pizza:
+    // menu item labeling:
+    public static String PEPPERONI = "Pepperoni Pizza";
+    public static String CHEESE = "Cheese Pizza";
+    public static String VEGGIE = "Veggie Pizza";
+    public static String SAUSAGE = "Sausage Pizza";
+    public static String MARINARA = "Marinara Pizza";
+    public static String SUPREME = "Supreme Pizza";
+    public static String BREAD_STICKS = "Bread Sticks";
+    public static String GARLIC_KNOTS = "Garlic Knots";
+    public static String WINGS = "Wings";
+    public static String BONELESS_WINGS = "Boneless Wings";
+    public static String COKE = "Coke";
+    public static String DIET_COKE = "Diet Coke";
+    public static String DR_PEPPER = "Dr. Pepper";
+    public static String SPRITE = "Sprite";
+    public static String SMALL = "Small";
+    public static String MEDIUM = "Medium";
+    public static String LARGE = "Large";
+    public static String XLARGE = "Extra Large";
+
+    // getters and setters for menu items:
     public static float getSmallSpecialtyPizza() {
         return smallSpecialtyPizza;
     }
 
-    public static void setSmallSpecialtyPizza(float smallSpecialtyPizza) {
-        Menu.smallSpecialtyPizza = smallSpecialtyPizza;
-    }
+    public static void setSmallSpecialtyPizza(float smallSpecialtyPizza) { Menu.smallSpecialtyPizza = smallSpecialtyPizza; }
 
     public static float getMediumSpecialtyPizza() {
         return mediumSpecialtyPizza;
     }
 
-    public static void setMediumSpecialtyPizza(float mediumSpecialtyPizza) {
-        Menu.mediumSpecialtyPizza = mediumSpecialtyPizza;
-    }
+    public static void setMediumSpecialtyPizza(float mediumSpecialtyPizza) { Menu.mediumSpecialtyPizza = mediumSpecialtyPizza; }
 
     public static float getLargeSpecialtyPizza() {
         return largeSpecialtyPizza;
@@ -39,7 +55,12 @@ public class Menu {
         Menu.largeSpecialtyPizza = largeSpecialtyPizza;
     }
 
-    // getters and setters for sides:
+    public static float getXtraLargeSpecialtyPizza() {
+        return xtraLargeSpecialtyPizza;
+    }
+
+    public static void setXtraLargeSpecialtyPizza(float xtraLargeSpecialtyPizza) { Menu.xtraLargeSpecialtyPizza = xtraLargeSpecialtyPizza; }
+
     public static float getWings() {
         return wings;
     }
@@ -72,7 +93,6 @@ public class Menu {
         Menu.bonelessWings = bonelessWings;
     }
 
-    // getters and setters for drinks:
     public static float getSmallDrink() {
         return smallDrink;
     }

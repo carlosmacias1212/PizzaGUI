@@ -5,19 +5,17 @@ import java.io.IOException;
 import static list.JsonController.*;
 
 public class Staff {
-
-    // staff variable creation:
+    // staff varibles/attributes:
     public String firstName;
     public String lastName;
     public String password;
     public String employeeType;
     public String employeeID;
 
-    // constructor for staff:
     public Staff(){
     }
 
-    // overloaded constructor for staff:
+    // staff overloaded constructor:
     public Staff(String firstName, String lastName, String password, String employeeID) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,44 +28,35 @@ public class Staff {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public String getEmployeeType() {
         return employeeType;
     }
-
     public void setEmployeeType(String employeeType) {
         this.employeeType = employeeType;
     }
-
     public String getEmployeeID() {
         return employeeID;
     }
-
     public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 
-    // verifies whether if the presented employeeID and password are correct:
+    // checks whether if the specified username and password are valid:
     public boolean loginVerification(String employeeID, String password){
 
         for (Staff s : staffList) {
@@ -78,43 +67,26 @@ public class Staff {
         return false;
     }
 
-    // checks for existing customer
+    // checks for existing customer to start order:
     public static void startOrder(String phoneNumber){
+        // for loop to go through customerList to verify existing customer
     }
 
-    // boolean method that determines if the current user logs out:
+    // returns true if the current user logs out:
     public static boolean logout(){
         return true;
     }
 
-    // transitions the current user to the previously visited screen:
+    // transitions the user to the previous screen:
     public static void goToPrevScreen(){
     }
 
-    // updates customer information:
+    // returns true if customer information is updated:
     public static boolean updateCustomerInfo(String phoneNumber){
         return true;
     }
 
-    // creates new staff into system:
-    public static boolean createNewStaff(String firstName, String lastName, String password, String employeeID) throws IOException {
-
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeID.equals(employeeID)) {
-                return false;
-            }
-        }
-
-        Staff staff = new Staff(firstName, lastName, password, employeeID);
-
-        staffList.add(staff);
-
-        serializeAStaffList(staff);
-
-        return true;
-    }
-
-    // creates new manager into system:
+    // creates a new manager into the system:
     public static boolean createNewManager(String firstName, String lastName, String password, String employeeID) throws IOException {
 
         for (Staff s : JsonController.staffList) {
@@ -127,42 +99,18 @@ public class Staff {
 
         staffList.add(staff);
 
-        serializeAStaffList(staff);
+        serializeStaff();
 
         return true;
     }
 
-    // removes existing staff from system:
-    public static boolean removeStaff(String employeeID) throws IOException {
-
-        boolean temp = false;
-
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeType.equals(employeeID)) {
-                JsonController.customerList.remove(s);
-                temp = true;
+    // determines whether if there is a duplicate employeeID within the system:
+    public static boolean isDuplicate(String employeeID) {
+        for(Staff s : staffList) {
+            if (s.employeeID.equals(employeeID)) {
+                return true;
             }
         }
-
-        JsonController.serializeAStaffList();
-
-        return temp;
-    }
-
-    // removes existing manager(s) from system:
-    public static boolean removeManager(String employeeID) throws IOException {
-
-        boolean temp = false;
-
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeType.equals(employeeID)) {
-                JsonController.customerList.remove(s);
-                temp = true;
-            }
-        }
-
-        JsonController.serializeAStaffList();
-
-        return temp;
+        return false;
     }
 }

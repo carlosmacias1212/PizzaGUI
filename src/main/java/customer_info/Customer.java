@@ -1,13 +1,13 @@
 package customer_info;
 
 import list.JsonController;
-import list.JsonController.*;
 import java.io.IOException;
-import java.util.ArrayList;
+import static list.JsonController.customerList;
+import static list.JsonController.serializeCustomers;
 
 public class Customer {
 
-    // customer variable creation:
+    // customer variable/attributes:
     String firstName;
     String lastName;
     private customerAddress address;
@@ -15,10 +15,8 @@ public class Customer {
     private customerCreditCard creditCard;
 
     public Customer(){
-
     }
-
-    // constructor and getters and setters for "Customer":
+    // customer overloaded constructor
     public Customer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) {
         this.firstName = firstName;
         this.address = address;
@@ -27,7 +25,7 @@ public class Customer {
         this.creditCard = creditCard;
     }
 
-
+    // getters and setters for customer:
     public String getFirstName() {
         return firstName;
     }
@@ -68,38 +66,57 @@ public class Customer {
         this.creditCard = creditCard;
     }
 
-    // creates new customers within the system
-    public static boolean createNewCustomer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) throws IOException {
-
-        for (Customer c : JsonController.customerList) {
-            if (c.phoneNumber.equals(phoneNumber)) {
-                return false;
-            }
-        }
+    // creates a new customer within the system:
+    public static Customer createNewCustomer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) {
 
         Customer customer = new Customer(firstName, lastName, address, phoneNumber, creditCard);
 
-        // re-writes the json file to add the new customer
-        JsonController.customerList.add(customer);
-
-        JsonController.serializeACustomerList(customer);
-
-        return true;
+        return customer;
     }
 
-    // removes existing customers from the system:
-    public static boolean removeCustomer(String phoneNumber) throws IOException {
-        boolean temp = false;
+    // boolean method that determines if there is a duplicate customer phone number within the system:
+    public static boolean isDuplicate(String phoneNumber) {
 
-        for (Customer c : JsonController.customerList) {
+        for (Customer c : customerList) {
             if (c.phoneNumber.equals(phoneNumber)) {
-                JsonController.customerList.remove(c);
-                temp = true;
+                return true;
             }
         }
+        return false;
+    }
 
-        JsonController.serializeACustomerList();
+    // checks to see if a customer phone number exists within the system:
+    public static boolean doesExist(String phoneNumber) {
 
+        for (Customer c : customerList) {
+            if (c.phoneNumber.equals(phoneNumber)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // removes a customer from the system:
+    public static boolean removeCustomer(String phoneNumber) {
+        boolean temp = false;
+
+        for (Customer c : customerList) {
+            if (c.phoneNumber.equals(phoneNumber)) {
+                customerList.remove(c);
+                serializeCustomers();
+                return true;
+            }
+        }
         return temp;
+    }
+
+    // searches for and returns a customer based on phone number input:
+    public static Customer getCustomer(String phoneNumber) {
+        for (Customer c : customerList){
+            if (c.getPhoneNumber().equals(phoneNumber)){
+                return c;
+            }
+        }
+        return null;
     }
 }

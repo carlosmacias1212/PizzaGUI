@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 import list.JsonController;
 import management.Staff;
 import static list.JsonController.*;
+
 import java.io.IOException;
 
-// fxml field creation:
 public class LoginController {
     @FXML
     private Text failedText;
@@ -25,8 +25,7 @@ public class LoginController {
     @FXML
     private PasswordField password;
 
-    // user password verification:
-    // specifies whether the userName/password are correct or incorrect with system feedback:
+
     @FXML
     protected void logIn(ActionEvent actionEvent) {
         Staff newStaff = new Staff();
@@ -37,32 +36,82 @@ public class LoginController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
         else{
+
             failedText.setText("Please try again");
+        }
+
+    }
+
+    public void switchToStaffView() throws IOException {
+
+        if(isManager(username.getText())){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(searchAndReturn(username.getText()));
+            staffViewController.displayName();
+
+            Stage window = (Stage) username.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+        else {
+
+            ////This get the fxml loader ready
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+            ////This preloads the next fxml
+            Parent root = fxmlLoader.load();
+            ////This grabs the controller being used in the current fxmlLoader
+            StaffViewController staffViewController = fxmlLoader.getController();
+            ////This searches and returns a staff from the username
+            Staff user = JsonController.searchAndReturn(username.getText());
+            ////Sets employee attribute in the controller to the user here
+            staffViewController.setEmployee(user);
+            ////This sets the Current userName in the top lefthand corner
+
+
+            staffViewController.displayName();
+
+            Stage window = (Stage) username.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
         }
     }
 
-    // transitions verified current user to the staff view screen:
-    public void switchToStaffView() throws IOException {
-        // Creates the fxml loader
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        // Preloads the next fxml
-        Parent root = fxmlLoader.load();
-        // Grabs the controller being used in the current fxmlLoader
-        StaffViewController staffViewController = fxmlLoader.getController();
-        // Searches and returns a staff from the username
-        Staff user = JsonController.searchAndReturn(username.getText());
-        // Sets employee attribute in the controller to the user here
-        staffViewController.setEmployee(user);
-        // Sets the current userName in the upper left-hand corner
-        staffViewController.displayName(staffViewController.getCurrentUser().getText()+": "+username.getText());
+    public void devLogIn(ActionEvent actionEvent) throws IOException {
+        username.setText("admin");
+        password.setText("admin");
+        switchToStaffView();
+    }
 
-        Stage window = (Stage) username.getScene().getWindow();
-        Scene scene = new Scene(root,900,600);
-        window.setTitle("Staff View");
-        window.setScene(scene);
-        window.setResizable(false);
-        window.show();
+    public boolean isManager(String username) {
+        for(Staff staff : staffList){
+            if(username.equals(staff.employeeID) && staff.getEmployeeType().equalsIgnoreCase("Manager")){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Staff getStaff(){
+        for(Staff staff : staffList){
+            if(username.getText().equals(staff.employeeID)){
+                return staff;
+            }
+        }
+        return null;
     }
 }

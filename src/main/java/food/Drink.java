@@ -1,44 +1,59 @@
 package food;
 
 import management.Menu;
+import static management.Menu.*;
 
-public class Drink {
-    // drink variable creation:
-    String drinkType;
+public class Drink extends FoodItems {
+    // drink variable/attribute:
     String size;
-    private float price = 0;
 
-    // constructor and getters and setters for "Drink":
+    // drink overloaded constructors:
     public Drink(String drinkType, String size) {
-        if (drinkType.equalsIgnoreCase("coke")) {
-            this.drinkType = drinkType;
-        } else if (drinkType.equalsIgnoreCase("diet coke")) {
-            this.drinkType = drinkType;
-        } else if (drinkType.equalsIgnoreCase("mountain dew")) {
-            this.drinkType = drinkType;
-        } else if (drinkType.equalsIgnoreCase("sprite")) {
-            this.drinkType = drinkType;
+        if (drinkType.equalsIgnoreCase(COKE)) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(DIET_COKE)) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(DR_PEPPER)) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(SPRITE)) {
+            this.type = drinkType;
         }
 
-        if (size.equalsIgnoreCase("small")) {
+        setFoodName("drink");
+
+        if (size.equalsIgnoreCase(SMALL)) {
             this.size = size;
             price = Menu.getSmallDrink();
 
-        } else if (size.equalsIgnoreCase("medium")) {
+        } else if (size.equalsIgnoreCase(MEDIUM)) {
             this.size = size;
             price = Menu.getMediumDrink();
-        } else if (size.equalsIgnoreCase("large")) {
+        } else if (size.equalsIgnoreCase(LARGE)) {
             this.size = size;
             price = Menu.getLargeDrink();
         }
     }
 
+    public Drink(String drinkType) {
+        if (drinkType.equalsIgnoreCase(COKE)) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(DIET_COKE)) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(DR_PEPPER)) {
+            this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(SPRITE)) {
+            this.type = drinkType;
+        }
+        setFoodName("drink");
+    }
+
+    // getters and setters for drink:
     public String getDrinkType() {
-        return drinkType;
+        return type;
     }
 
     public void setDrinkType(String drinkType) {
-        this.drinkType = drinkType;
+        this.type = drinkType;
     }
 
     public String getSize() {

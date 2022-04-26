@@ -1,14 +1,13 @@
 package customer_info;
 
 public class customerCreditCard {
-
-    // customer credit card variable creation:
+    // customerCreditCard variables/attributes:
     private String nameOnCard;
     private String cardNumber;
     private String securityCode;
     private String expirationDate;
 
-    // constructor and getters and setters for "customerCreditCard":
+    // customerCreditCard overloaded constructor:
     public customerCreditCard(String nameOnCard, String cardNumber, String securityCode, String expirationDate) {
         this.nameOnCard = nameOnCard;
         this.cardNumber = cardNumber;
@@ -16,13 +15,10 @@ public class customerCreditCard {
         this.expirationDate = expirationDate;
     }
 
-    public String getNameOnCard() {
-        return nameOnCard;
-    }
+    // getters and setters for customerCreditCard:
+    public String getNameOnCard() { return nameOnCard; }
 
-    public void setNameOnCard(String nameOnCard) {
-        this.nameOnCard = nameOnCard;
-    }
+    public void setNameOnCard(String nameOnCard) { this.nameOnCard = nameOnCard; }
 
     public String getCardNumber() {
         return cardNumber;

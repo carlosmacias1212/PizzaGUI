@@ -1,0 +1,41 @@
+[
+  {
+    "firstName": "r",
+    "lastName": "r",
+    "address": {
+      "streetAddress": "r",
+      "city": "r",
+      "state": "r",
+      "zipCode": "rr"
+    },
+    "phoneNumber": "789456"
+  },
+  {
+    "firstName": "122",
+    "lastName": "122",
+    "address": {
+      "streetAddress": "122",
+      "city": "122",
+      "state": "122",
+      "zipCode": "122"
+    },
+    "phoneNumber": "122"
+  },
+  {
+    "firstName": "f",
+    "lastName": "f",
+    "address": {
+      "streetAddress": "f",
+      "city": "f",
+      "state": "f",
+      "zipCode": "f"
+    },
+    "phoneNumber": "f",
+    "creditCard": {
+      "nameOnCard": "ray",
+      "cardNumber": "ray",
+      "securityCode": "ray",
+      "expirationDate": ""
+    }
+  }
+]
