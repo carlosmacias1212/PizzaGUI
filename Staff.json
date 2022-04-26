@@ -3,7 +3,7 @@
     "firstName": "Albert",
     "lastName": "Villalobos",
     "password": "admin",
-    "employeeType": "Staff",
+    "employeeType": "Manager",
     "employeeID": "admin"
   },
   {
