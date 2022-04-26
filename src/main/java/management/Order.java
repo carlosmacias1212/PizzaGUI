@@ -100,8 +100,20 @@ public class Order {
 
     public String[][] generateReceipt(){
 
+
         //create 2d array with rows as foodItem and 2 columns, column[0]-foodItemName, column[1]-foodItemPrice
         String[][] itemsPlusPrice = new String[items.size() + 2][3];
+
+        String[][] receipt = new String[itemsPlusPrice.length + 2][3];
+
+
+        receipt[0][0] = "Customer Phone:";
+        receipt[0][1] = "";
+        receipt[0][2] = this.customerPhone;
+
+        receipt[1][0] = "Order Type: ";
+        receipt[1][1] = "";
+        receipt[1][2] = (this.pickup ? "pickup": "delivery");
 
 
 
@@ -127,7 +139,13 @@ public class Order {
         }
 
 
-        return itemsPlusPrice;
+        for (int i = 2; i < receipt.length; i++) {
+            receipt[i][0] = itemsPlusPrice[i -2][0];
+            receipt[i][1] = itemsPlusPrice[i - 2][1];
+            receipt[i][2] = itemsPlusPrice[i - 2][2];
+        }
+
+        return receipt;
 
 
 
