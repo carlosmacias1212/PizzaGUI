@@ -2,6 +2,7 @@ package controllers.pizzagui;
 
 import customer_info.Customer;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -55,11 +56,6 @@ public class ShowOrdersController {
            // newScroll.setContent(newLabel);
 
         }
-
-        /*
-
-         */
-
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {

@@ -50,9 +50,9 @@
                     </font>
                 </Button>
                 <TextField fx:id="moneyGiven" layoutX="292.0" layoutY="253.0" />
-                <Text layoutX="169.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Phone #: ">
+                <Text layoutX="133.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Amount Paid:">
                     <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
                     </font>
                 </Text>
                 <Label fx:id="failedText" layoutX="303.0" layoutY="415.0" prefHeight="17.0" prefWidth="381.0" textAlignment="CENTER">
@@ -82,6 +82,11 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </RadioButton>
+            <Button layoutX="680.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackToStaffView" prefHeight="82.0" prefWidth="206.0" style="-fx-background-color: #F4B06A#F4B06A #F4B06A#F4B06A;" text="Back to main menu" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="26.0" />
+               </font>
+            </Button>
             </AnchorPane>
         </center>
     </BorderPane>

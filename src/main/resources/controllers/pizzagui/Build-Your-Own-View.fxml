@@ -101,11 +101,6 @@
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <Text fx:id="errorLabel" layoutX="438.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="13.0" />
-                                 </font>
-                              </Text>
                               <Separator layoutX="350.0" layoutY="104.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                               <Label alignment="CENTER" layoutX="435.0" layoutY="107.0" text="Size" textAlignment="CENTER">
                                  <font>
@@ -144,7 +139,7 @@
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label contentDisplay="CENTER" layoutX="423.0" layoutY="117.0" text="Toppings" textAlignment="CENTER">
+                              <Label contentDisplay="CENTER" layoutX="345.0" layoutY="115.0" text="Toppings (0.50 per/max of 4) " textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -211,6 +206,11 @@
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
+                              <Text fx:id="errorLabel" layoutX="180.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="677.0">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </Text>
                               <CheckBox fx:id="anchoviesCheckBox" contentDisplay="CENTER" layoutX="526.0" layoutY="8.0" mnemonicParsing="false" text="Anchovies" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />

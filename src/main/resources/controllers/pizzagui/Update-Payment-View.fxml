@@ -86,8 +86,52 @@
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font>
             </Text>
+            <Label layoutX="315.0" layoutY="229.0" text="Current Customer Payment Info">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="235.0" layoutY="271.0" text="Name On Card:">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="240.0" layoutY="302.0" text="Card Number:">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="269.0" layoutY="331.0" text="CCV:">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="254.0" layoutY="358.0" text="Exp. Date:">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="currName" layoutX="385.0" layoutY="271.0" text="Label">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="currCard" layoutX="385.0" layoutY="302.0" text="Label">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="currCCV" layoutX="385.0" layoutY="331.0" text="Label">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="currEXP" layoutX="385.0" layoutY="358.0" text="Label">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
          </AnchorPane>
       </center>
    </BorderPane>
 </AnchorPane>
-
