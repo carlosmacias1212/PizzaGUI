@@ -75,8 +75,6 @@ public class Order {
         this.orderID = orderID;
     }
 
-
-
     public boolean addToCart(List<FoodItems> add){
         for (FoodItems cart: add) {
             items.add(cart);

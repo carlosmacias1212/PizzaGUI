@@ -108,100 +108,105 @@ public class OrderMenuController {
             String drinkType;
             String drinkSize = "";
 
-            if (pep.equals(PizzaTypes.getSelectedToggle())) {
-                pizzaType = PEPPERONI;
-            } else if (cheese.equals(PizzaTypes.getSelectedToggle())) {
-                pizzaType = CHEESE;
-            } else if (veggie.equals(PizzaTypes.getSelectedToggle())) {
-                pizzaType = VEGGIE;
-            } else if (sausage.equals(PizzaTypes.getSelectedToggle())) {
-                pizzaType = SAUSAGE;
-            } else if (marinara.equals(PizzaTypes.getSelectedToggle())) {
-                pizzaType = MARINARA;
-            } else if (supreme.equals(PizzaTypes.getSelectedToggle())) {
-                pizzaType = SUPREME;
-            }
+                if (pep.equals(PizzaTypes.getSelectedToggle())) {
+                    pizzaType = PEPPERONI;
+                } else if (cheese.equals(PizzaTypes.getSelectedToggle())) {
+                    pizzaType = CHEESE;
+                } else if (veggie.equals(PizzaTypes.getSelectedToggle())) {
+                    pizzaType = VEGGIE;
+                } else if (sausage.equals(PizzaTypes.getSelectedToggle())) {
+                    pizzaType = SAUSAGE;
+                } else if (marinara.equals(PizzaTypes.getSelectedToggle())) {
+                    pizzaType = MARINARA;
+                } else if (supreme.equals(PizzaTypes.getSelectedToggle())) {
+                    pizzaType = SUPREME;
+                }
 
-            if (small.equals(sizeGroup.getSelectedToggle())) {
-                size = SMALL;
-                foodList.add(new Pizza(pizzaType, size));
-            } else if (medium.equals(sizeGroup.getSelectedToggle())) {
-                System.out.println("med");
-                size = MEDIUM;
-                foodList.add(new Pizza(pizzaType, size));
-            } else if (large.equals(sizeGroup.getSelectedToggle())) {
-                size = LARGE;
-                foodList.add(new Pizza(pizzaType, size));
-                System.out.println(foodList.get(0).getType());
-            } else if (xlarge.equals(sizeGroup.getSelectedToggle())) {
-                size = XLARGE;
-                foodList.add(new Pizza(pizzaType, size));
-                System.out.println(foodList.get(0).getType());
+                if (small.equals(sizeGroup.getSelectedToggle())) {
+                    size = SMALL;
+                    foodList.add(new Pizza(pizzaType, size));
+                } else if (medium.equals(sizeGroup.getSelectedToggle())) {
+                    System.out.println("med");
+                    size = MEDIUM;
+                    foodList.add(new Pizza(pizzaType, size));
+                } else if (large.equals(sizeGroup.getSelectedToggle())) {
+                    size = LARGE;
+                    foodList.add(new Pizza(pizzaType, size));
+                } else if (xlarge.equals(sizeGroup.getSelectedToggle())) {
+                    size = XLARGE;
+                    foodList.add(new Pizza(pizzaType, size));
 
-            }
+                }
 
-            if (breadSticks.equals(sideGroup.getSelectedToggle())) {
-                sideType = BREAD_STICKS;
-            } else if (garlicKnots.equals(sideGroup.getSelectedToggle())) {
-                sideType = GARLIC_KNOTS;
-            } else if (wings.equals(sideGroup.getSelectedToggle())) {
-                sideType = WINGS;
-            } else if (bonelessWings.equals(sideGroup.getSelectedToggle())) {
-                sideType = BONELESS_WINGS;
-            } else {
-                sideType = "";
-            }
 
-            if (coke.equals(drinkGroup.getSelectedToggle())) {
-                drinkType = COKE;
-            } else if (dietCoke.equals(drinkGroup.getSelectedToggle())) {
-                drinkType = DIET_COKE;
-            } else if (drPepper.equals(drinkGroup.getSelectedToggle())) {
-                drinkType = DR_PEPPER;
-            } else if (sprite.equals(drinkGroup.getSelectedToggle())) {
-                drinkType = SPRITE;
-            } else {
-                drinkType = "";
-            }
+                if (breadSticks.equals(sideGroup.getSelectedToggle())) {
+                    sideType = BREAD_STICKS;
+                } else if (garlicKnots.equals(sideGroup.getSelectedToggle())) {
+                    sideType = GARLIC_KNOTS;
+                } else if (wings.equals(sideGroup.getSelectedToggle())) {
+                    sideType = WINGS;
+                } else if (bonelessWings.equals(sideGroup.getSelectedToggle())) {
+                    sideType = BONELESS_WINGS;
+                } else {
+                    sideType = "";
+                }
 
-            if(dSize.getSelectedToggle() != null) {
+            if(drinkGroup.getSelectedToggle() != null && dSize.getSelectedToggle() != null) {
 
-                if (sdrink.equals(dSize.getSelectedToggle())) {
-                    drinkSize = "small";
-                    foodList.add(new Drink(drinkType, drinkSize));
+                if (coke.equals(drinkGroup.getSelectedToggle())) {
+                    drinkType = COKE;
+                } else if (dietCoke.equals(drinkGroup.getSelectedToggle())) {
+                    drinkType = DIET_COKE;
+                } else if (drPepper.equals(drinkGroup.getSelectedToggle())) {
+                    drinkType = DR_PEPPER;
+                } else if (sprite.equals(drinkGroup.getSelectedToggle())) {
+                    drinkType = SPRITE;
+                } else {
+                    drinkType = "";
+                }
 
-                } else if (mdrink.equals(dSize.getSelectedToggle())) {
-                    drinkSize = "medium";
-                    foodList.add(new Drink(drinkType, drinkSize));
+                if (dSize.getSelectedToggle() != null) {
 
-                } else if (ldrink.equals(dSize.getSelectedToggle())) {
-                    drinkSize = "large";
-                    foodList.add(new Drink(drinkType, drinkSize));
+                    if (sdrink.equals(dSize.getSelectedToggle())) {
+                        drinkSize = "small";
+                        foodList.add(new Drink(drinkType, drinkSize));
+
+                    } else if (mdrink.equals(dSize.getSelectedToggle())) {
+                        drinkSize = "medium";
+                        foodList.add(new Drink(drinkType, drinkSize));
+
+                    } else if (ldrink.equals(dSize.getSelectedToggle())) {
+                        drinkSize = "large";
+                        foodList.add(new Drink(drinkType, drinkSize));
+                    }
                 }
             }
 
-
-            switch (sideType) {
-                case "Bread Sticks" -> {
-                    side = new Side(BREAD_STICKS);
-                    foodList.add(side);
-                }
-                case "Garlic Knots" -> {
-                    side = new Side(GARLIC_KNOTS);
-                    foodList.add(side);
-                }
-                case "Wings" -> {
-                    side = new Side(WINGS);
-                    foodList.add(side);
-                }
-                case "Boneless Wings" -> {
-                    side = new Side(BONELESS_WINGS);
-                    foodList.add(side);
-                }
+            else {
+                errorText.setText("select drink and size");
             }
 
-            resetToggles();
 
+                switch (sideType) {
+                    case "Bread Sticks" -> {
+                        side = new Side(BREAD_STICKS);
+                        foodList.add(side);
+                    }
+                    case "Garlic Knots" -> {
+                        side = new Side(GARLIC_KNOTS);
+                        foodList.add(side);
+                    }
+                    case "Wings" -> {
+                        side = new Side(WINGS);
+                        foodList.add(side);
+                    }
+                    case "Boneless Wings" -> {
+                        side = new Side(BONELESS_WINGS);
+                        foodList.add(side);
+                    }
+                }
+
+                resetToggles();
         }
 
     }
