@@ -30,16 +30,18 @@
         </padding>
     </VBox>
 
-    <Button fx:id="back" layoutX="34.0" layoutY="100.0" mnemonicParsing="false" onAction="#goBackToOrderMenu" prefHeight="66.0" prefWidth="169.0" text="Back">
+    <AnchorPane BorderPane.alignment="BOTTOM_CENTER">
+    <Button fx:id="back" layoutX="34.0" layoutY="200.0" mnemonicParsing="false" onAction="#goBackToOrderMenu" prefHeight="66.0" prefWidth="169.0" text="Back">
         <font>
             <Font name="Arial Rounded MT Bold" size="35.0" />
         </font>
     </Button>
 
-    <Button fx:id="pay" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#goToConfirm" prefHeight="66.0" prefWidth="169.0" text="Pay Now">
+    <Button fx:id="pay" layoutX="600" layoutY="200.0" mnemonicParsing="false" onAction="#goToConfirm" prefHeight="66.0" prefWidth="169.0" text="Pay">
         <font>
             <Font name="Arial Rounded MT Bold" size="35.0" />
         </font>
     </Button>
+    </AnchorPane>
 </VBox>
 
