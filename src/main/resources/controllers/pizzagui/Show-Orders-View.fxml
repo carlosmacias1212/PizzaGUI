@@ -11,17 +11,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.ShowOrdersController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <AnchorPane prefHeight="268.0" prefWidth="871.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <content>
-                        <VBox fx:id="orderVbox" prefHeight="451.0" prefWidth="413.0" />
-                     </content>
-                  </ScrollPane>
-               </children>
-            </AnchorPane>
-         </center>
           <top>
               <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A;" BorderPane.alignment="CENTER">
                   <children>
@@ -49,6 +38,17 @@
                </children>
             </AnchorPane>
          </bottom>
+         <center>
+            <ScrollPane fx:id="newScroll" BorderPane.alignment="CENTER">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <VBox fx:id="orderVbox" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
