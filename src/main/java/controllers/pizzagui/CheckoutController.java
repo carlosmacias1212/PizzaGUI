@@ -369,6 +369,9 @@ public class CheckoutController {
 
     public void goToConfirm(ActionEvent actionEvent) throws IOException {
 
+        order.addToCart(cart);
+        order.setOrderTotal();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
         Parent root = fxmlLoader.load();
         ConfirmationController confirmationController = fxmlLoader.getController();

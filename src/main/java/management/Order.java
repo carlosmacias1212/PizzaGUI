@@ -16,7 +16,6 @@ import java.util.List;
 public class Order {
 
 
-
     List<FoodItems> items = new ArrayList<FoodItems>();
     float orderTotal;
     String payment = "";
