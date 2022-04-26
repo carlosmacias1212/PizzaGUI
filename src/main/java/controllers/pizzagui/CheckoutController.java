@@ -46,7 +46,6 @@ public class CheckoutController {
     public Button back;
     public Button pay;
 
-    final ScrollPane sp = new ScrollPane();
 
 
 
@@ -293,6 +292,7 @@ public class CheckoutController {
 
     private HBox entry(Label food) {
 
+        HBox scroll = new HBox();
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER_LEFT);
 
@@ -365,10 +365,19 @@ public class CheckoutController {
         Label price = new Label(p);
 
         layout.getChildren().addAll(food, minusButton, quantity, plusButton, price);
+
+        if (cartView.get(i).getType().equals("custom")) {
+            ScrollPane s = new ScrollPane();
+            s.setContent(layout);
+        }
+
         return layout;
     }
 
     public void goToConfirm(ActionEvent actionEvent) throws IOException {
+
+        order.setCart(cart);
+        order.setOrderTotal();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Confirmation-View.fxml"));
         Parent root = fxmlLoader.load();

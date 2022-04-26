@@ -24,6 +24,7 @@ public class Menu {
     public static String GARLIC_KNOTS = "Garlic Knots";
     public static String WINGS = "Wings";
     public static String BONELESS_WINGS = "Boneless Wings";
+    public static String BEER = "Beer";
     public static String COKE = "Coke";
     public static String DIET_COKE = "Diet Coke";
     public static String DR_PEPPER = "Dr. Pepper";

@@ -12,6 +12,8 @@ import list.JsonController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import static list.JsonController.orderList;
+import static list.JsonController.customerList;
 
 public class Order {
 
@@ -82,6 +84,11 @@ public class Order {
         return true;
     }
 
+    public void setCart(List<FoodItems> cart) {
+        items = cart;
+
+    }
+
     public boolean confirmOrder(){
 
 
@@ -89,33 +96,35 @@ public class Order {
     }
 
     public void selectPaymentMethod(String userSelection){
-
         payment = userSelection;
     }
 
     public String[][] generateReceipt(){
 
         //create 2d array with rows as foodItem and 2 columns, column[0]-foodItemName, column[1]-foodItemPrice
-        String[][] itemsPlusPrice = new String[items.size() + 2][2];
+        String[][] itemsPlusPrice = new String[items.size() + 2][3];
 
 
 
         for(int i = 0; i < itemsPlusPrice.length - 2; i++) {
 
             itemsPlusPrice[i][0] = items.get(i).getFoodName();
-            itemsPlusPrice[i][1] = String.valueOf(items.get(i).getPrice());
+            itemsPlusPrice[i][1] = items.get(i).getType();
+            itemsPlusPrice[i][2] = "$" + items.get(i).getPrice();
 
         }
 
         itemsPlusPrice[items.size()][0] = "Order Total:";
-        itemsPlusPrice[items.size()][1] = String.valueOf(orderTotal);
+        itemsPlusPrice[items.size()][1] = "";
+        itemsPlusPrice[items.size()][2] = "$" + (orderTotal);
 
 
 
         if (payment.equals("credit")) {
 
             itemsPlusPrice[items.size() + 1][0] = "Sign Here: ";
-            itemsPlusPrice[items.size() + 1][1] = "_________";
+            itemsPlusPrice[items.size() + 1][1] = "";
+            itemsPlusPrice[items.size() + 1][2] = "_________________";
         }
 
 
@@ -138,16 +147,30 @@ public class Order {
 
     }
 
-    public String getPayment() {
-        return payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment;
+    public float getOrderTotal() {
+        return this.orderTotal;
     }
 
     public static boolean isPickup(String orderType){
         return orderType.equals("Pick-up");
+    }
+
+    public void setPayment(String card_payment) {
+        this.payment = card_payment;
+    }
+
+    @Override
+    public String toString(){
+        String string = "";
+        Customer newCustomer;
+        String PhoneNumber;
+
+        for (Customer customer :
+                customerList) {
+
+        }
+
+        return string;
     }
 }
 

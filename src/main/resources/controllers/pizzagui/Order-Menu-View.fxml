@@ -71,7 +71,7 @@
                                     <Font name="Arial Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="254.0" layoutY="12.0" text="Sizes">
+                              <Label layoutX="251.0" layoutY="1.0" text="Sizes">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -104,7 +104,7 @@
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
-                              <ToggleButton fx:id="small" layoutX="222.0" layoutY="41.0" mnemonicParsing="false" text="S" AnchorPane.leftAnchor="222.0">
+                              <ToggleButton fx:id="small" layoutX="224.0" layoutY="31.0" mnemonicParsing="false" text="S" AnchorPane.leftAnchor="224.0">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -112,7 +112,7 @@
                                     <ToggleGroup fx:id="sizeGroup" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton fx:id="medium" layoutX="293.0" layoutY="40.0" mnemonicParsing="false" text="M" toggleGroup="$sizeGroup">
+                              <ToggleButton fx:id="medium" layoutX="295.0" layoutY="31.0" mnemonicParsing="false" text="M" toggleGroup="$sizeGroup">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
@@ -125,6 +125,10 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
                               <Separator layoutY="111.0" prefHeight="13.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                              <Text layoutX="226.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5.00" />
+                              <Text layoutX="298.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7.50" />
+                              <Text layoutX="226.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10.00" />
+                              <Text layoutX="295.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12.50" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -155,6 +159,10 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
                               <Separator layoutX="200.0" layoutY="163.0" prefHeight="5.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                              <Text layoutX="144.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.00" />
+                              <Text layoutX="344.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.50" />
+                              <Text layoutX="532.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.00" />
+                              <Text layoutX="753.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.50" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -169,7 +177,7 @@
                                     <Font name="Arial Rounded MT Bold" size="35.0" />
                                  </font>
                               </Button>
-                              <ToggleButton fx:id="coke" layoutX="118.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Coke">
+                              <ToggleButton fx:id="coke" layoutX="76.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Coke">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -177,17 +185,17 @@
                                     <ToggleGroup fx:id="drinkGroup" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton fx:id="dietCoke" layoutX="313.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Diet Coke" toggleGroup="$drinkGroup">
+                              <ToggleButton fx:id="dietCoke" layoutX="237.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Diet Coke" toggleGroup="$drinkGroup">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton fx:id="sprite" layoutX="511.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Sprite" toggleGroup="$drinkGroup">
+                              <ToggleButton fx:id="sprite" layoutX="578.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Sprite" toggleGroup="$drinkGroup">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <ToggleButton fx:id="drPepper" layoutX="692.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Dr.Pepper" toggleGroup="$drinkGroup">
+                              <ToggleButton fx:id="drPepper" layoutX="745.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Dr.Pepper" toggleGroup="$drinkGroup">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -224,11 +232,19 @@
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font></ToggleButton>
-                              <Text layoutX="135.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drink Size" wrappingWidth="97.2060546875">
+                              <Text layoutX="135.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drink Size" wrappingWidth="97.2060546875">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </Text>
+                              <ToggleButton fx:id="beer" layoutX="405.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Beer" toggleGroup="$drinkGroup">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </ToggleButton>
+                              <Text layoutX="101.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.00" />
+                              <Text layoutX="166.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.50" />
+                              <Text layoutX="226.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.00" />
 
                            </children></AnchorPane>
                      </children>

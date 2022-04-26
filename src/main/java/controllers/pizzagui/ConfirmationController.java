@@ -14,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class ConfirmationController {
 
     }
 
-    public void logOut(ActionEvent actionEvent) throws IOException {
+    public void logOut() throws IOException {
         changeView("Login-view.fxml");
 
     }
@@ -182,26 +183,24 @@ public class ConfirmationController {
     }
 
     public void goToReceipt() throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Generate-Receipt-View.fxml"));
         Parent root = fxmlLoader.load();
-//        ReceiptController receiptController = fxmlLoader.getController();
-//        fxmlLoader.setController(receiptController);
+        ReceiptController receiptControl = fxmlLoader.getController();
+        fxmlLoader.setController(receiptControl);
 
-//        receiptController.setEmployee(getEmployee());
-//        receiptController.setTotalPrice(getTotalPrice());
-//        receiptController.setOrder(getOrder());
-//        receiptController.setFoodList(getFoodList());
-//        receiptController.setCurrentUser(getCurrentUser());
+        receiptControl.setOrder(getOrder());
+        receiptControl.setEmployee(getEmployee());
+        receiptControl.setCurrentUser(getCurrentUser());
+        receiptControl.displayName();
+        receiptControl.generate();
 
         Stage window = new Stage();
 
-        Scene scene = new Scene(root,900,600);
+        Scene scene = new Scene(root,450,300);
         window.setTitle("Receipt");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
-
     }
 
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {

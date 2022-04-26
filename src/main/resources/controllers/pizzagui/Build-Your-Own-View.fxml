@@ -139,7 +139,7 @@
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label contentDisplay="CENTER" layoutX="423.0" layoutY="117.0" text="Toppings" textAlignment="CENTER">
+                              <Label contentDisplay="CENTER" layoutX="345.0" layoutY="115.0" text="Toppings (0.50 per/max of 4) " textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -166,7 +166,7 @@
                            </children></AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
-                              <Button layoutX="635.0" layoutY="83.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="57.0" prefWidth="251.0" text="Add To Order">
+                              <Button layoutX="577.0" layoutY="85.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="57.0" prefWidth="251.0" text="Add To Order">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="31.0" />
                                  </font>
@@ -176,22 +176,22 @@
                                     <Font name="Arial Rounded MT Bold" size="35.0" />
                                  </font>
                               </Button>
-                              <CheckBox fx:id="pepCheckBox" contentDisplay="CENTER" layoutX="409.0" layoutY="7.0" mnemonicParsing="false" text="Pepperoni" textAlignment="CENTER">
+                              <CheckBox fx:id="pepCheckBox" contentDisplay="CENTER" layoutX="344.0" layoutY="7.0" mnemonicParsing="false" text="Pepperoni" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="sausCheckBox" contentDisplay="CENTER" layoutX="604.0" layoutY="8.0" mnemonicParsing="false" text="Sausage" textAlignment="CENTER">
+                              <CheckBox fx:id="sausCheckBox" contentDisplay="CENTER" layoutX="663.0" layoutY="8.0" mnemonicParsing="false" text="Sausage" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="greenPepperCheckBox" contentDisplay="CENTER" layoutX="605.0" layoutY="48.0" mnemonicParsing="false" text="Green Peppers" textAlignment="CENTER">
+                              <CheckBox fx:id="greenPepperCheckBox" contentDisplay="CENTER" layoutX="664.0" layoutY="48.0" mnemonicParsing="false" text="Green Peppers" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="mushCheckBox" contentDisplay="CENTER" layoutX="410.0" layoutY="49.0" mnemonicParsing="false" text="Mushrooms" textAlignment="CENTER">
+                              <CheckBox fx:id="mushCheckBox" contentDisplay="CENTER" layoutX="347.0" layoutY="49.0" mnemonicParsing="false" text="Mushrooms" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -211,6 +211,16 @@
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
                               </Text>
+                              <CheckBox fx:id="anchoviesCheckBox" contentDisplay="CENTER" layoutX="526.0" layoutY="8.0" mnemonicParsing="false" text="Anchovies" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="pineappleCheckBox" contentDisplay="CENTER" layoutX="526.0" layoutY="49.0" mnemonicParsing="false" text="Pineapple" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </CheckBox>
                            </children>
                         </AnchorPane>
                      </children>

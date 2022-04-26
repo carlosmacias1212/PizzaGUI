@@ -26,6 +26,7 @@ import static management.Menu.*;
 public class OrderMenuController {
 
 
+    public ToggleButton beer;
     private Label totalPrice;
     private Staff employee;
     private Order newOrder;
@@ -50,11 +51,7 @@ public class OrderMenuController {
     @FXML
     public ToggleGroup dSize;
 
-    @FXML
-    public ToggleGroup sides;
 
-    @FXML
-    public ToggleGroup drink;
 
     @FXML
     public ToggleButton pep;
@@ -126,7 +123,6 @@ public class OrderMenuController {
                     size = SMALL;
                     foodList.add(new Pizza(pizzaType, size));
                 } else if (medium.equals(sizeGroup.getSelectedToggle())) {
-                    System.out.println("med");
                     size = MEDIUM;
                     foodList.add(new Pizza(pizzaType, size));
                 } else if (large.equals(sizeGroup.getSelectedToggle())) {
@@ -161,7 +157,10 @@ public class OrderMenuController {
                     drinkType = DR_PEPPER;
                 } else if (sprite.equals(drinkGroup.getSelectedToggle())) {
                     drinkType = SPRITE;
-                } else {
+                } else if (beer.equals(drinkGroup.getSelectedToggle())) {
+                    drinkType = BEER;
+                }
+                else {
                     drinkType = "";
                 }
 
@@ -221,10 +220,10 @@ public class OrderMenuController {
         fxmlLoader.setController(orderMenuController);
 
         ////Sets employee attribute in the controller to the user here
-        orderMenuController.setFoodList(foodList);
-        orderMenuController.setEmployee(employee);
-        orderMenuController.setCurrentCustomer(currentCustomer);
-        orderMenuController.setOrderType(orderType);
+        orderMenuController.setFoodList(getFoodList());
+        orderMenuController.setEmployee(getEmployee());
+        orderMenuController.setCurrentCustomer(getCurrentCustomer());
+        orderMenuController.setOrderType(getOrderType());
         orderMenuController.displayName();
 
         System.out.println(currentUser.getText());
@@ -252,7 +251,7 @@ public class OrderMenuController {
         BYOController byoController = fxmlLoader.getController();
         fxmlLoader.setController(byoController);
         ////Sets employee attribute in the controller to the user here
-        byoController.setList(foodList);
+        byoController.setList(getFoodList());
         byoController.setEmployee(getEmployee());
         byoController.setCurrentUser(getCurrentUser());
 
@@ -387,6 +386,10 @@ public class OrderMenuController {
 
     public void setOrderType(Label orderType){
         this.orderType = orderType;
+    }
+
+    public Label getOrderType(){
+        return this.orderType;
     }
 
     public Order getNewOrder() {

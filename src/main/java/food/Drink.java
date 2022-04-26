@@ -17,6 +17,8 @@ public class Drink extends FoodItems {
             this.type = drinkType;
         } else if (drinkType.equalsIgnoreCase(SPRITE)) {
             this.type = drinkType;
+        } else if (drinkType.equalsIgnoreCase(BEER)){
+            this.type = drinkType;
         }
 
         setFoodName("drink");

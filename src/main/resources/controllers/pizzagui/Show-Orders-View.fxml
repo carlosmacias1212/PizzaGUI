@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.pizzagui.ShowOrdersController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.pizzagui.ShowOrdersController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <top>
+              <AnchorPane prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #F4B06A;" BorderPane.alignment="CENTER">
+                  <children>
+                      <Label fx:id="sceneTitle" layoutX="13.0" layoutY="11.0" text="Order List" textFill="WHITE">
+                          <font>
+                              <Font name="Arial Rounded MT Bold" size="34.0" />
+                          </font>
+                      </Label>
+                      <Button layoutX="650.0" layoutY="6.0" mnemonicParsing="false" onAction="#logOut" prefHeight="48.0" prefWidth="221.0" text="LogOut" textFill="#f4b06a">
+                          <font>
+                              <Font name="Arial Rounded MT Bold" size="29.0" />
+                          </font>
+                      </Button>
+                  </children>
+              </AnchorPane>
+          </top>
+         <bottom>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="386.0" layoutY="150.0" mnemonicParsing="false" onAction="#goBackToStaffView" prefHeight="34.0" prefWidth="68.0" text="Back" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="417.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font name="Arial" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </bottom>
+         <center>
+            <ScrollPane fx:id="newScroll" BorderPane.alignment="CENTER">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <VBox fx:id="orderVbox" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>

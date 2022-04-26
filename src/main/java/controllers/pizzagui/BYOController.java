@@ -22,6 +22,8 @@ import java.util.List;
 
 public class BYOController{
 
+    public CheckBox anchoviesCheckBox;
+    public CheckBox pineappleCheckBox;
     @FXML
     private Label currentUser;
     private Order newOrder;
@@ -128,6 +130,10 @@ public class BYOController{
                 toppingsList.add("Green Pepper");
             }if(hamCheckBox.isSelected()){
                 toppingsList.add("Ham");
+            }if(pineappleCheckBox.isSelected()){
+                toppingsList.add("Pineapple");
+            }if(anchoviesCheckBox.isSelected()){
+                toppingsList.add("Anchovies");
             }
 
             if (toppingsList.size() > 4){
@@ -138,26 +144,27 @@ public class BYOController{
 
                 FoodItems newBYO = new BYO(sauceAmount, cheeseAmount, size, pizzaCrust, toppingsList);
 
-                list.add(newBYO);
+            list.add(newBYO);
 
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-                ////This preloads the next fxml
-                Parent root = fxmlLoader.load();
-                ////This grabs the controller being used in the current fxmlLoader
-                OrderMenuController orderMenuController = fxmlLoader.getController();
-                fxmlLoader.setController(orderMenuController);
-                ////Sets employee attribute in the controller to the user here
-                orderMenuController.setFoodList(getList());
-                orderMenuController.setEmployee(getEmployee());
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+            ////This preloads the next fxml
+            Parent root = fxmlLoader.load();
+            ////This grabs the controller being used in the current fxmlLoader
+            OrderMenuController orderMenuController = fxmlLoader.getController();
+            fxmlLoader.setController(orderMenuController);
+            ////Sets employee attribute in the controller to the user here
+            orderMenuController.setFoodList(getList());
+            orderMenuController.setEmployee(getEmployee());
 
 
-                Stage window = (Stage) label.getScene().getWindow();
-                Scene scene = new Scene(root, 900, 600);
-                window.setTitle("Order Menu");
-                window.setScene(scene);
-                window.setResizable(false);
-                window.show();
+            Stage window = (Stage) label.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600);
+            window.setTitle("Order Menu");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
             }
         }
     }
