@@ -147,22 +147,7 @@ public class Staff {
 //    }
 
     //    with generics
-    public static boolean createNewStaff(String firstName, String lastName, String password, String employeeID) throws IOException {
 
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeID.equals(employeeID)) {
-                return false;
-            }
-        }
-
-        Staff staff = new Staff(firstName, lastName, password, employeeID);
-
-        staffList.add(staff);
-
-        serializeStaff();
-
-        return true;
-    }
 
     public static boolean createNewManager(String firstName, String lastName, String password, String employeeID) throws IOException {
 
@@ -182,37 +167,15 @@ public class Staff {
         return true;
     }
 
-    public static boolean removeStaff(String employeeID) throws IOException {
-//        Use list.JsonController.staffList to make updates to the class list to be used in the json file
-
-        boolean temp = false;
-
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeType.equals(employeeID)) {
-                JsonController.customerList.remove(s);
-                temp = true;
+    public static boolean isDuplicate(String employeeID) {
+        for(Staff s : staffList) {
+            if (s.employeeID.equals(employeeID)) {
+                return true;
             }
         }
 
-        serializeStaff();
-
-        return temp;
+        return false;
     }
 
-    public static boolean removeManager(String employeeID) throws IOException {
-//        Use list.JsonController.staffList to make updates to the class list to be used in the json file
 
-        boolean temp = false;
-
-        for (Staff s : JsonController.staffList) {
-            if (s.employeeType.equals(employeeID)) {
-                JsonController.customerList.remove(s);
-                temp = true;
-            }
-        }
-
-        serializeStaff();
-
-        return temp;
-    }
 }

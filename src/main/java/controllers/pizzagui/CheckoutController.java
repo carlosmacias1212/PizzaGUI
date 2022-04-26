@@ -47,10 +47,6 @@ public class CheckoutController {
     public Button pay;
 
 
-/*
-    hbox.getChildren().add(new Scrollbar)
- */
-
 
 
 
@@ -294,6 +290,7 @@ public class CheckoutController {
 
     private HBox entry(Label food) {
 
+        HBox scroll = new HBox();
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER_LEFT);
 
@@ -366,6 +363,12 @@ public class CheckoutController {
         Label price = new Label(p);
 
         layout.getChildren().addAll(food, minusButton, quantity, plusButton, price);
+
+        if (cartView.get(i).getType().equals("custom")) {
+            ScrollPane s = new ScrollPane();
+            s.setContent(layout);
+        }
+
         return layout;
     }
 
@@ -383,7 +386,7 @@ public class CheckoutController {
         confirmationController.setTotalPrice(getTotalPrice());
         confirmationController.setOrder(getOrder());
         confirmationController.setFoodList(getFoodList());
-        confirmationController.setCurrentUser(getCurrentUser());
+        confirmationController.setEmployee(getEmployee());
 
         confirmationController.displayName();
 
@@ -392,7 +395,7 @@ public class CheckoutController {
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(root,900,600);
-        window.setTitle("Confirmation View");
+        window.setTitle("Pay Here");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
@@ -411,14 +414,14 @@ public class CheckoutController {
             OrderMenuController orderMenuController = fxmlLoader.getController();
             fxmlLoader.setController(orderMenuController);
 
-            orderMenuController.setEmployee(employee);
+            orderMenuController.setEmployee(getEmployee());
             orderMenuController.setFoodList(cart);
             orderMenuController.setNewOrder(order);
             orderMenuController.setCurrentUser(currentUser);
             orderMenuController.displayName();
 
 
-            Stage window = (Stage) currentUser.getScene().getWindow();
+            Stage window = (Stage) cartList.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
             window.setTitle("Manager View");
@@ -470,7 +473,7 @@ public class CheckoutController {
         Stage window = (Stage) cartList.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();

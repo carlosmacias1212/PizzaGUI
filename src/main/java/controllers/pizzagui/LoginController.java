@@ -53,7 +53,7 @@ public class LoginController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(getStaff());
+            staffViewController.setEmployee(searchAndReturn(username.getText()));
             staffViewController.displayName();
 
             Stage window = (Stage) username.getScene().getWindow();
@@ -79,6 +79,7 @@ public class LoginController {
             staffViewController.setEmployee(user);
             ////This sets the Current userName in the top lefthand corner
 
+
             staffViewController.displayName();
 
             Stage window = (Stage) username.getScene().getWindow();
@@ -98,7 +99,7 @@ public class LoginController {
 
     public boolean isManager(String username) {
         for(Staff staff : staffList){
-            if(username.equals(staff.employeeID) && staff.getEmployeeType().equals("Manager")){
+            if(username.equals(staff.employeeID) && staff.getEmployeeType().equalsIgnoreCase("Manager")){
                 return true;
             }
         }

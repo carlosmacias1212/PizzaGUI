@@ -25,6 +25,8 @@ import static management.Menu.*;
 
 public class OrderMenuController {
 
+
+    private Label totalPrice;
     private Staff employee;
     private Order newOrder;
     @FXML
@@ -92,7 +94,7 @@ public class OrderMenuController {
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
-        if (sideGroup.getSelectedToggle() == null && drinkGroup.getSelectedToggle() == null && sizeGroup.getSelectedToggle() == null && PizzaTypes.getSelectedToggle() == null) {
+        if ((drinkGroup.getSelectedToggle() == null || dSize.getSelectedToggle() == null) && sideGroup.getSelectedToggle() == null && (PizzaTypes.getSelectedToggle() == null || sizeGroup.getSelectedToggle() == null)) {
             errorText.setText("Please select an item before adding to order");
         }
 
@@ -126,22 +128,20 @@ public class OrderMenuController {
                 size = SMALL;
                 foodList.add(new Pizza(pizzaType, size));
             } else if (medium.equals(sizeGroup.getSelectedToggle())) {
-                System.out.println("med");
                 size = MEDIUM;
                 foodList.add(new Pizza(pizzaType, size));
             } else if (large.equals(sizeGroup.getSelectedToggle())) {
                 size = LARGE;
                 foodList.add(new Pizza(pizzaType, size));
-                System.out.println(foodList.get(0).getType());
+
             } else if (xlarge.equals(sizeGroup.getSelectedToggle())) {
                 size = XLARGE;
                 foodList.add(new Pizza(pizzaType, size));
-                System.out.println(foodList.get(0).getType());
+
 
             }
 
             if (breadSticks.equals(sideGroup.getSelectedToggle())) {
-                System.out.println("yea");
                 sideType = BREAD_STICKS;
             } else if (garlicKnots.equals(sideGroup.getSelectedToggle())) {
                 sideType = GARLIC_KNOTS;
@@ -165,17 +165,20 @@ public class OrderMenuController {
                 drinkType = "";
             }
 
-            if (sdrink.equals(dSize.getSelectedToggle())) {
-                drinkSize = "small";
-                foodList.add(new Drink(drinkType, drinkSize));
+            if(dSize.getSelectedToggle() != null) {
 
-            } else if (mdrink.equals(dSize.getSelectedToggle())) {
-                drinkSize = "medium";
-                foodList.add(new Drink(drinkType, drinkSize));
+                if (sdrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "small";
+                    foodList.add(new Drink(drinkType, drinkSize));
 
-            } else if (ldrink.equals(dSize.getSelectedToggle())) {
-                drinkSize = "large";
-                foodList.add(new Drink(drinkType, drinkSize));
+                } else if (mdrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "medium";
+                    foodList.add(new Drink(drinkType, drinkSize));
+
+                } else if (ldrink.equals(dSize.getSelectedToggle())) {
+                    drinkSize = "large";
+                    foodList.add(new Drink(drinkType, drinkSize));
+                }
             }
 
 
@@ -300,7 +303,7 @@ public class OrderMenuController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(employee);
+            staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -319,7 +322,7 @@ public class OrderMenuController {
             StaffViewController staffViewController = fxmlLoader.getController();
             fxmlLoader.setController(staffViewController);
 
-            staffViewController.setEmployee(employee);
+            staffViewController.setEmployee(getEmployee());
             staffViewController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
@@ -365,11 +368,11 @@ public class OrderMenuController {
 
             checkoutController.setEmployee(getEmployee());
             checkoutController.setFoodList(getFoodList());
-            checkoutController.setOrder(getOrder());
+            checkoutController.setOrder(getNewOrder());
             checkoutController.setCurrentUser(getCurrentUser());
-            checkoutController.displayName();
+            checkoutController.setTotalPrice(getTotalPrice());
             checkoutController.start();
-
+            checkoutController.displayName();
 
             Stage window = (Stage) label.getScene().getWindow();
             Scene scene = new Scene(root, 900, 600);
@@ -384,7 +387,7 @@ public class OrderMenuController {
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
@@ -392,8 +395,6 @@ public class OrderMenuController {
 
     public void displayName(){
         currentUser.setText("Hello, " + employee.employeeType);
-//        currentCustomer.setText("Cust: " + currentCustomer.getText());
-//        orderType.setText(orderType.getText() + " Order");
 
     }
 
@@ -444,4 +445,11 @@ public class OrderMenuController {
         return this.newOrder;
     }
 
+    public Label getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public void setTotalPrice(Label totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
