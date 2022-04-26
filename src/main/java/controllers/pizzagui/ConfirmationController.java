@@ -14,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import management.Order;
 import management.Staff;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class ConfirmationController {
 //    private Label label;
     //    public ToggleGroup toggleOrderType1;
 
-    public void submit(){
+    public void submit(ActionEvent actionEvent) throws IOException {
 
         // radio buttons for payment method
         if(payGroup.getSelectedToggle() == null){
@@ -66,12 +67,14 @@ public class ConfirmationController {
                 else{
                     customerCash = Float.parseFloat(moneyGiven.getText());
 
-                    if(calcChange() == 0){
+                    if(customerCash < Float.parseFloat(totalPrice.getText())){
                         failedText.setText("Not enough money given");
                     }
                     else {
                         failedText.setText("Give customer $" + calcChange() + " for change");
                         failedText1.setText("Payment Successful");
+
+                        goToReceipt();
                     }
                 }
             }
@@ -83,21 +86,49 @@ public class ConfirmationController {
                 }
                 else{
                     customerCash = Float.parseFloat(moneyGiven.getText());
-                    if(calcChange() == 0){
+                    if(customerCash < Float.parseFloat(totalPrice.getText())){
                         failedText.setText("Check is less than total price");
                     }
                     else {
-                        failedText1.setText("Payment Successful, $30 fee if check is bounced");
+                        failedText.setText("Give customer $" + calcChange() + " for change");
+                        failedText1.setText("Payment Successful, $30 fee if check bounces");
+
+                        goToReceipt();
                     }
                 }
             }
             else{
-                order.setPayment("Card Payment");
+                order.setPayment("credit");
                 failedText.setText("Payment Successful");
+
+                goToReceipt();
+
+
             }
         }
 
         // show receipt method
+    }
+
+    public void goToReceipt() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Generate-Receipt-View.fxml"));
+        Parent root = fxmlLoader.load();
+        ReceiptController receiptControl = fxmlLoader.getController();
+        fxmlLoader.setController(receiptControl);
+
+        receiptControl.setOrder(getOrder());
+        receiptControl.setEmployee(getEmployee());
+        receiptControl.setCurrentUser(getCurrentUser());
+        receiptControl.displayName();
+        receiptControl.generate();
+
+        Stage window = new Stage();
+
+        Scene scene = new Scene(root,450,300);
+        window.setTitle("Receipt");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
     }
 
     public void logOut(ActionEvent actionEvent) throws IOException {
@@ -106,26 +137,22 @@ public class ConfirmationController {
     }
 
     public float calcChange(){
-        if(customerCash < Float.parseFloat(totalPrice.getText())){
-            return 0;
-        }
-        else return (customerCash - Float.parseFloat(totalPrice.getText()));
+        return customerCash - Float.parseFloat(totalPrice.getText());
     }
 
     public void changeView(String viewName) throws IOException {
         Stage window = (Stage) failedText.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(viewName));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
-        window.setTitle(viewName);
+        window.setTitle("PieHackers Pizza Restaurant!");
         window.setScene(scene);
         window.setResizable(false);
         window.show();
     }
 
     public void goBackToCheckout(ActionEvent actionEvent) throws IOException {
-        System.out.println(order.getOrderTotal());
-        if(isManager()){
 
+        if(isManager()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
             Parent root = fxmlLoader.load();
             CheckoutController checkoutController = fxmlLoader.getController();
@@ -144,13 +171,12 @@ public class ConfirmationController {
             Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
-            window.setTitle("Manager View");
+            window.setTitle("Check Out");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
         }
 
-//        If it's a staff logged in, go back to staff view
         else{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Checkout-View.fxml"));
             Parent root = fxmlLoader.load();
@@ -169,7 +195,7 @@ public class ConfirmationController {
             Stage window = (Stage) failedText.getScene().getWindow();
 
             Scene scene = new Scene(root,900,600);
-            window.setTitle("Staff View");
+            window.setTitle("Check Out");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -180,8 +206,72 @@ public class ConfirmationController {
         return employee.getEmployeeType().equals("Manager");
     }
 
+//    public void goToReceipt(ActionEvent actionEvent) throws IOException {
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Generate-Receipt-View"));
+//        Parent root = fxmlLoader.load();
+//        ReceiptController receiptController = fxmlLoader.getController();
+//        fxmlLoader.setController(receiptController);
+//
+//        receiptController.setEmployee(getEmployee());
+//        receiptController.setTotalPrice(getTotalPrice());
+//        receiptController.setOrder(getOrder());
+//        receiptController.setFoodList(getFoodList());
+//        receiptController.setCurrentUser(getCurrentUser());
+//
+//        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+//
+//        Scene scene = new Scene(root,900,600);
+//        window.setTitle("Receipt");
+//        window.setScene(scene);
+//        window.setResizable(false);
+//        window.show();
+//
+//    }
+
+    public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
+
+        if(isManager()){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Manager-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(getEmployee());
+            staffViewController.displayName();
+
+            Stage window = (Stage) failedText.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Manager View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
+            Parent root = fxmlLoader.load();
+            StaffViewController staffViewController = fxmlLoader.getController();
+            fxmlLoader.setController(staffViewController);
+
+            staffViewController.setEmployee(getEmployee());
+            staffViewController.displayName();
+
+            Stage window = (Stage) failedText.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Staff View");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+    }
+
     public void displayName(){
-        currentUser.setText("Hello " + employee.employeeType);
+        currentUser.setText("Hello, " + employee.employeeType);
+        failedText1.setText("Total Price: $" + totalPrice.getText());
     }
 
     public Order getOrder() {
@@ -223,4 +313,6 @@ public class ConfirmationController {
     public void setFoodList(List<FoodItems> foodList) {
         this.cart = foodList;
     }
+
+
 }

@@ -101,26 +101,29 @@ public class Order {
     public String[][] generateReceipt(){
 
         //create 2d array with rows as foodItem and 2 columns, column[0]-foodItemName, column[1]-foodItemPrice
-        String[][] itemsPlusPrice = new String[items.size() + 2][2];
+        String[][] itemsPlusPrice = new String[items.size() + 2][3];
 
 
 
         for(int i = 0; i < itemsPlusPrice.length - 2; i++) {
 
             itemsPlusPrice[i][0] = items.get(i).getFoodName();
-            itemsPlusPrice[i][1] = String.valueOf(items.get(i).getPrice());
+            itemsPlusPrice[i][1] = items.get(i).getType();
+            itemsPlusPrice[i][2] = "$" + items.get(i).getPrice();
 
         }
 
         itemsPlusPrice[items.size()][0] = "Order Total:";
-        itemsPlusPrice[items.size()][1] = String.valueOf(orderTotal);
+        itemsPlusPrice[items.size()][1] = "";
+        itemsPlusPrice[items.size()][2] = "$" + (orderTotal);
 
 
 
         if (payment.equals("credit")) {
 
             itemsPlusPrice[items.size() + 1][0] = "Sign Here: ";
-            itemsPlusPrice[items.size() + 1][1] = "_________";
+            itemsPlusPrice[items.size() + 1][1] = "";
+            itemsPlusPrice[items.size() + 1][2] = "_________________";
         }
 
 
