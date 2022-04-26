@@ -2,11 +2,13 @@ package customer_info;
 
 public class customerCreditCard {
 
+    // customer credit card variable creation:
     private String nameOnCard;
     private String cardNumber;
     private String securityCode;
     private String expirationDate;
 
+    // constructor and getters and setters for "customerCreditCard":
     public customerCreditCard(String nameOnCard, String cardNumber, String securityCode, String expirationDate) {
         this.nameOnCard = nameOnCard;
         this.cardNumber = cardNumber;

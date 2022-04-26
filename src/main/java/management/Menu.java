@@ -1,6 +1,8 @@
 package management;
 
 public class Menu {
+
+    // menu pricing (pizza, sides, drinks):
     public static float smallSpecialtyPizza = 5.00f;
     public static float mediumSpecialtyPizza = 7.50f;
     public static float largeSpecialtyPizza = 10.00f;
@@ -12,6 +14,7 @@ public class Menu {
     public static float mediumDrink = 1.50f;
     public static float largeDrink = 2.00f;
 
+    // getters and setters for specialty pizza:
     public static float getSmallSpecialtyPizza() {
         return smallSpecialtyPizza;
     }
@@ -36,6 +39,7 @@ public class Menu {
         Menu.largeSpecialtyPizza = largeSpecialtyPizza;
     }
 
+    // getters and setters for sides:
     public static float getWings() {
         return wings;
     }
@@ -68,6 +72,7 @@ public class Menu {
         Menu.bonelessWings = bonelessWings;
     }
 
+    // getters and setters for drinks:
     public static float getSmallDrink() {
         return smallDrink;
     }

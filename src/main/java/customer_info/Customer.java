@@ -2,11 +2,12 @@ package customer_info;
 
 import list.JsonController;
 import list.JsonController.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Customer {
+
+    // customer variable creation:
     String firstName;
     String lastName;
     private customerAddress address;
@@ -17,7 +18,7 @@ public class Customer {
 
     }
 
-    //    customer constructor and getters and setters
+    // constructor and getters and setters for "Customer":
     public Customer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) {
         this.firstName = firstName;
         this.address = address;
@@ -67,7 +68,7 @@ public class Customer {
         this.creditCard = creditCard;
     }
 
-    //    with generics
+    // creates new customers within the system
     public static boolean createNewCustomer(String firstName, String lastName, customerAddress address, String phoneNumber, customerCreditCard creditCard) throws IOException {
 
         for (Customer c : JsonController.customerList) {
@@ -78,7 +79,7 @@ public class Customer {
 
         Customer customer = new Customer(firstName, lastName, address, phoneNumber, creditCard);
 
-//        re-writes the json file to add the new customer
+        // re-writes the json file to add the new customer
         JsonController.customerList.add(customer);
 
         JsonController.serializeACustomerList(customer);
@@ -86,9 +87,8 @@ public class Customer {
         return true;
     }
 
+    // removes existing customers from the system:
     public static boolean removeCustomer(String phoneNumber) throws IOException {
-//        Use list.JsonController.customerList to make updates to the class list to be used in the json file
-
         boolean temp = false;
 
         for (Customer c : JsonController.customerList) {

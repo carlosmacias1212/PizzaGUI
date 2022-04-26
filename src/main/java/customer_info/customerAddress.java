@@ -1,11 +1,14 @@
 package customer_info;
 
 public class customerAddress {
+
+    // customer address variable creation:
     private String streetAddress;
     private String city;
     private String state;
     private String zipCode;
 
+    // constructor and getters and setters for "customerAddress":
     public customerAddress(String streetAddress, String city, String state, String zipCode) {
         this.streetAddress = streetAddress;
         this.city = city;

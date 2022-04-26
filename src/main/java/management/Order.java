@@ -7,29 +7,30 @@ import food.Drink;
 import food.Pizza;
 import food.Side;
 import list.JsonController;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    //    To handle a case where the customer doesn't order any drink/side
-//      make an array list of pizza, side, drink: if the size is 0 ignore that item
+
+    // order variable creation:
     Customer customer;
     String customerPhoneNumber;
     Pizza pizza;
 
+    // lists to hold menu items:
     List<Pizza> pizzaList = new ArrayList<>();
     List<Side> sideList = new ArrayList<>();
     List<Drink> drinkList = new ArrayList<>();
     float price = 0f;
-    //    True = pickup | False = deliver
+
+    // if true = pickup, if false = deliver:
     Boolean orderType;
     int orderID;
-    // static order counter | updated in the constructor for every new order
+    // static order counter updated in the constructor for every new order:
     public static int nextOrderID = 1;
 
-    // management.Order constructor
+    // management.Order overloaded constructor:
     public Order(Customer customer, Boolean orderType) {
         this.customer = customer;
         this.customerPhoneNumber = customer.getPhoneNumber();
@@ -38,6 +39,7 @@ public class Order {
         nextOrderID++;
     }
 
+    // getters and setters for customer:
     public Customer getCustomer() {
         return customer;
     }
@@ -54,6 +56,7 @@ public class Order {
         this.customerPhoneNumber = customerPhoneNumber;
     }
 
+    // getters and setters for menu items:
     public List<Pizza> getPizzaList() {
         return pizzaList;
     }
@@ -87,6 +90,7 @@ public class Order {
         this.price = price;
     }
 
+    // getters and setters for customer orders:
     public Boolean getOrderType() {
         return orderType;
     }
@@ -111,29 +115,31 @@ public class Order {
         Order.nextOrderID = nextOrderID;
     }
 
+    // adds menu items in the cart:
     public boolean addToCart( boolean side, boolean drink) {
         return true;
     }
 
+    // verifies customer order:
     public boolean confirmOrder(){
         return true;
     }
 
+    // specifies customer payment method
     public String selectPaymentMethod(String userSelection){
         return userSelection;
     }
 
+    // generates a receipt based on the customer's order:
     public void generateReceipt(){
-        // display all order items and price
-        // put a place to sign for credit card users
     }
 
-    //    w/o generics
+    // creates new customer orders within the system
     public static boolean createNewOrder(Customer customer, boolean orderType) throws IOException {
 
         Order order = new Order(customer, orderType);
 
-//        re-writes the json file to add the new customer
+        // re-writes the json file to add the new customer
         JsonController.orderList.add(order);
 
         JsonController.serializeAnOrderList(order);
@@ -141,39 +147,21 @@ public class Order {
         return true;
     }
 
+    // adds the selected pizza into the pizzaList:
     public void addPizza(String pizzaType, String size) {
         pizzaList.add(new Pizza(pizzaType, size));
     }
 
     public void addSide(String sideSelection) {
         sideList.add(new Side(sideSelection));
-
     }
 
+    // adds the selected drink into the drinkList:
     public void addDrink(String drink, String size) {
         drinkList.add(new Drink(drink, size));
     }
 
-
-
-
-////    with generics
-//    public static boolean createNewOrder(Customer customer, Pizza pizza, Side side, Drink drink, float price , boolean orderType) throws IOException {
-//        JsonController controller = new JsonController();
-//
-//        Order order = new Order(customer, pizza, side, drink, price , orderType);
-//
-////        re-writes the json file to add the new customer
-//        controller.serializeAList(order);
-//
-//        return true;
-//    }
-
+    // determines the total price for a customer order:
     public void calculatePrice(){
-//        calculate total price for the order
-
-
-
     }
 }
-

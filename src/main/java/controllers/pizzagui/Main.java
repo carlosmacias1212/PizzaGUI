@@ -6,13 +6,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import list.JsonController;
 import management.Staff;
-
 import java.io.IOException;
-
 import static list.JsonController.deserializeAStaffList;
 import static list.JsonController.staffList;
 
 public class Main extends Application {
+
+    // initiates system GUI:
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login-View.fxml"));
@@ -23,6 +23,7 @@ public class Main extends Application {
         stage.show();
     }
 
+    // user login information example:
     public static void main(String[] args) {
         try {
             //orderList = deserializeAnOrderList("Order.json");

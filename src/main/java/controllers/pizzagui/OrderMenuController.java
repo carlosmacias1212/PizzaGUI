@@ -9,14 +9,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class OrderMenuController {
     @FXML
     public Label label;
 
-
+    // GUI button implementation:
     public void sizeToggleButton(ActionEvent actionEvent) {
     }
 
@@ -26,6 +25,7 @@ public class OrderMenuController {
     public void buildYourOwnButton(ActionEvent actionEvent) {
     }
 
+    // transitions current user to the staff view screen:
     public void goBackToStaffView(ActionEvent actionEvent) throws IOException {
         Stage window = (Stage) label.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));

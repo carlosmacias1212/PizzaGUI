@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 import list.JsonController;
 import management.Staff;
 import static list.JsonController.*;
-
 import java.io.IOException;
 
+// fxml field creation:
 public class LoginController {
     @FXML
     private Text failedText;
@@ -25,7 +25,8 @@ public class LoginController {
     @FXML
     private PasswordField password;
 
-
+    // user password verification:
+    // specifies whether the userName/password are correct or incorrect with system feedback:
     @FXML
     protected void logIn(ActionEvent actionEvent) {
         Staff newStaff = new Staff();
@@ -36,27 +37,25 @@ public class LoginController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         else{
             failedText.setText("Please try again");
-
         }
-
     }
 
+    // transitions verified current user to the staff view screen:
     public void switchToStaffView() throws IOException {
-        ////This get the fxml loader ready
+        // Creates the fxml loader
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
-        ////This preloads the next fxml
+        // Preloads the next fxml
         Parent root = fxmlLoader.load();
-        ////This grabs the controller being used in the current fxmlLoader
+        // Grabs the controller being used in the current fxmlLoader
         StaffViewController staffViewController = fxmlLoader.getController();
-        ////This searches and returns a staff from the username
+        // Searches and returns a staff from the username
         Staff user = JsonController.searchAndReturn(username.getText());
-        ////Sets employee attribute in the controller to the user here
+        // Sets employee attribute in the controller to the user here
         staffViewController.setEmployee(user);
-        ////This sets the Current userName in the top lefthand corner
+        // Sets the current userName in the upper left-hand corner
         staffViewController.displayName(staffViewController.getCurrentUser().getText()+": "+username.getText());
 
         Stage window = (Stage) username.getScene().getWindow();
@@ -66,5 +65,4 @@ public class LoginController {
         window.setResizable(false);
         window.show();
     }
-
 }

@@ -6,14 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import static list.JsonController.*;
-
 import java.io.IOException;
 
+// fxml text field creation:
 public class AddNewCustomerController {
-
-
     @FXML
     private TextField firstName;
 
@@ -47,11 +44,9 @@ public class AddNewCustomerController {
     @FXML
     private TextField nameOnCard;
 
-
-
-
-
+    // adds new customer(s) to the system:
     public void addNewCustomer(ActionEvent actionEvent) {
+        // error handling for user input:
         if (firstName.getText().equals("")) {
             try {
                 goBackToStaffScreen();
@@ -59,6 +54,8 @@ public class AddNewCustomerController {
                 e.printStackTrace();
             }
         }
+
+        // new customer information creation:
         else {
             customerAddress newAddress = new customerAddress(streetAddress.getText(),
                     cityName.getText(),
@@ -85,19 +82,18 @@ public class AddNewCustomerController {
                         newCreditCard);
             }
 
+            // adds customer information into the system:
             customerList.add(newCustomer);
             try {
                 serializeACustomerList();
                 goBackToStaffScreen();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
+    // transitions current user back to staff screen (overloaded method):
     public void goBackToStaffScreen(ActionEvent actionEvent) throws IOException{
         Stage window = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
@@ -107,6 +103,8 @@ public class AddNewCustomerController {
         window.setResizable(false);
         window.show();
     }
+
+    // transitions current user back to staff screen:
     public void goBackToStaffScreen() throws IOException{
         Stage window = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Staff-View.fxml"));
@@ -117,6 +115,7 @@ public class AddNewCustomerController {
         window.show();
     }
 
+    // logs the current user out of the system and transitions back to the login screen:
     public void logOut(ActionEvent actionEvent) throws IOException{
         Stage stg = (Stage) firstName.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-view.fxml"));
@@ -126,5 +125,4 @@ public class AddNewCustomerController {
         stg.setResizable(false);
         stg.show();
     }
-
 }

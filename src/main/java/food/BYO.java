@@ -3,11 +3,13 @@ package food;
 import java.util.List;
 
 public class BYO extends Pizza{
+    // build your own pizza variable creation:
     String crustType;
     String sauce;
     String cheese;
     List<String> toppings;
 
+    // constructor and getters and setters for "BYO":
     public BYO(String crustType, String sauce, String cheese, List<String> toppings, String size) {
         super(size);
         this.crustType = crustType;
@@ -15,7 +17,6 @@ public class BYO extends Pizza{
         this.cheese = cheese;
         this.toppings = toppings;
         setPrice(getPrice() + calcToppingPrice());
-
     }
 
     public float calcToppingPrice(){
@@ -54,6 +55,3 @@ public class BYO extends Pizza{
         this.toppings = toppings;
     }
 }
-
-
-

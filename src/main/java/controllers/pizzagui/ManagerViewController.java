@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import com.google.gson.*;
 
+// manager view controller:
 public class ManagerViewController {
-
     @FXML
     private Label label;
     public void buttonManager(ActionEvent actionEvent) {

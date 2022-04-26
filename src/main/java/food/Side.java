@@ -3,14 +3,12 @@ package food;
 import management.Menu;
 
 public class Side {
+    // side variable creation:
     String sideSelection;
     private float price = 0;
     private float wings = 1.00f;
-//    private float breadSticks = 1.50f;
-//    private float garlicKnots = 2.00f;
-//    private float bonelessWings = 2.50f;
 
-    //    Sets the side type and the price
+    // constructor and getters and setters for "Side":
     public Side(String sideSelection){
         if(sideSelection.equalsIgnoreCase("wings")){
             this.sideSelection = sideSelection;
@@ -53,28 +51,4 @@ public class Side {
     public void setWings(float wings) {
         this.wings = wings;
     }
-
-//    public float getBreadSticks() {
-//        return breadSticks;
-//    }
-//
-//    public void setBreadSticks(float breadSticks) {
-//        this.breadSticks = breadSticks;
-//    }
-//
-//    public float getGarlicKnots() {
-//        return garlicKnots;
-//    }
-//
-//    public void setGarlicKnots(float garlicKnots) {
-//        this.garlicKnots = garlicKnots;
-//    }
-//
-//    public float getBonelessWings() {
-//        return bonelessWings;
-//    }
-//
-//    public void setBonelessWings(float bonelessWings) {
-//        this.bonelessWings = bonelessWings;
-//    }
 }

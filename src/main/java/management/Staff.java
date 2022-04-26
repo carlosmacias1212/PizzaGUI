@@ -1,22 +1,23 @@
 package management;
 
 import list.JsonController;
-
 import java.io.IOException;
-
 import static list.JsonController.*;
 
 public class Staff {
+
+    // staff variable creation:
     public String firstName;
     public String lastName;
     public String password;
     public String employeeType;
     public String employeeID;
 
+    // constructor for staff:
     public Staff(){
-
     }
 
+    // overloaded constructor for staff:
     public Staff(String firstName, String lastName, String password, String employeeID) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +26,7 @@ public class Staff {
         employeeType = "Staff";
     }
 
+    // getters and setters for staff:
     public String getFirstName() {
         return firstName;
     }
@@ -65,39 +67,7 @@ public class Staff {
         this.employeeID = employeeID;
     }
 
-//    //    serialize a list of Orders and return a String of the json text
-//    public static void serializeAList() {
-//
-////        GsonBuilder() will set the string to print nicely in the console
-////        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        Gson gson = new Gson();
-//
-////        list.JsonController.staffList is converted to json text
-//        staffJSON = gson.toJson(staffList);
-//
-////        create new Json file
-//        try{
-//            FileWriter file = new FileWriter("Staff.json");
-//            file.write(staffJSON);
-//            file.flush();
-//
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    //    deserialize a list of Orders and return the management.Staff list
-//    public static List<Staff> deserializeAList() {
-//
-////        we must evaluate the type of the list of orders using a typeToken before we use Gson().fromJson
-//        Type staffListType = new TypeToken<ArrayList<Staff>>(){}.getType();
-//
-////        returns deserialized / hydrated list
-//        return new Gson().fromJson(staffJSON, staffListType);
-//
-//    }
-
-    //    check username and password are valid
+    // verifies whether if the presented employeeID and password are correct:
     public boolean loginVerification(String employeeID, String password){
 
         for (Staff s : staffList) {
@@ -105,48 +75,28 @@ public class Staff {
                 return true;
             }
         }
-
         return false;
     }
 
-    //    checks for existing customer
+    // checks for existing customer
     public static void startOrder(String phoneNumber){
-        // for loop to go through customerList to verify existing customer
     }
 
+    // boolean method that determines if the current user logs out:
     public static boolean logout(){
         return true;
     }
 
+    // transitions the current user to the previously visited screen:
     public static void goToPrevScreen(){
     }
 
+    // updates customer information:
     public static boolean updateCustomerInfo(String phoneNumber){
         return true;
     }
 
-////    w/o generics
-//    public static boolean createNewStaff(String firstName, String lastName, String password, String employeeID) throws IOException {
-//        // Use list.JsonController class to make updates to the class list to be used in the json file
-//        Staff staff = new Staff(firstName, lastName, password, employeeID);
-//
-////        re-writes the json file to add the new customer
-//        JsonController.serializeAStaffList(staff);
-//
-//        return true;
-//    }
-//
-//    public static boolean createNewManager(String firstName, String lastName, String password, String employeeID) throws IOException {
-//        // Use list.JsonController class to make updates to the class list to be used in the json file
-//        Staff staff = new Manager(firstName, lastName, password, employeeID);
-//
-////        re-writes the json file to add the new customer
-//        JsonController.serializeAStaffList(staff);
-//
-//        return true;
-//    }
-
-    //    with generics
+    // creates new staff into system:
     public static boolean createNewStaff(String firstName, String lastName, String password, String employeeID) throws IOException {
 
         for (Staff s : JsonController.staffList) {
@@ -164,8 +114,8 @@ public class Staff {
         return true;
     }
 
+    // creates new manager into system:
     public static boolean createNewManager(String firstName, String lastName, String password, String employeeID) throws IOException {
-
 
         for (Staff s : JsonController.staffList) {
             if (s.employeeID.equals(employeeID)) {
@@ -182,8 +132,8 @@ public class Staff {
         return true;
     }
 
+    // removes existing staff from system:
     public static boolean removeStaff(String employeeID) throws IOException {
-//        Use list.JsonController.staffList to make updates to the class list to be used in the json file
 
         boolean temp = false;
 
@@ -199,8 +149,8 @@ public class Staff {
         return temp;
     }
 
+    // removes existing manager(s) from system:
     public static boolean removeManager(String employeeID) throws IOException {
-//        Use list.JsonController.staffList to make updates to the class list to be used in the json file
 
         boolean temp = false;
 
