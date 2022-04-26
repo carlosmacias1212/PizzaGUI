@@ -1,74 +1,13 @@
 [
   {
-    "firstName": "f",
-    "lastName": "f",
+    "firstName": "Linda",
+    "lastName": "Rosario",
     "address": {
-      "streetAddress": "f",
-      "city": "f",
-      "state": "f",
-      "zipCode": "f"
+      "streetAddress": "3070 North street",
+      "city": "Atlantis",
+      "state": "NJ",
+      "zipCode": "08123"
     },
-    "phoneNumber": "f"
-  },
-  {
-    "firstName": "ray",
-    "lastName": "rosario",
-    "address": {
-      "streetAddress": "9070",
-      "city": "Town",
-      "state": "GA",
-      "zipCode": "30127"
-    },
-    "phoneNumber": "789456123"
-  },
-  {
-    "firstName": "e",
-    "lastName": "e",
-    "address": {
-      "streetAddress": "e",
-      "city": "e",
-      "state": "e",
-      "zipCode": "e"
-    },
-    "phoneNumber": "789456"
-  },
-  {
-    "firstName": "i",
-    "lastName": "i",
-    "address": {
-      "streetAddress": "i",
-      "city": "i",
-      "state": "i",
-      "zipCode": "i"
-    },
-    "phoneNumber": "456123"
-  },
-  {
-    "firstName": "q",
-    "lastName": "q",
-    "address": {
-      "streetAddress": "q",
-      "city": "q",
-      "state": "q",
-      "zipCode": "q"
-    },
-    "phoneNumber": "q"
-  },
-  {
-    "firstName": "j",
-    "lastName": "j",
-    "address": {
-      "streetAddress": "j",
-      "city": "j",
-      "state": "j",
-      "zipCode": "j"
-    },
-    "phoneNumber": "j",
-    "creditCard": {
-      "nameOnCard": "yar oirasor",
-      "cardNumber": "321654987",
-      "securityCode": "032",
-      "expirationDate": "09/87"
-    }
+    "phoneNumber": "122"
   }
 ]

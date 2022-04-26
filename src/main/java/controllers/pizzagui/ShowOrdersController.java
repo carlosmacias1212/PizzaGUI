@@ -36,6 +36,7 @@ public class ShowOrdersController {
             String text = "";
             text += "Phone Number: " + c.getPhoneNumber() + "\n";
             text += "Delivery Information \n";
+            text += "    " + "Address" + "      " + c.getAddress().toString()+"\n\n";
             text += "    Type:       Order Number: \n";
 
             for (Order o : orderList) {
@@ -47,7 +48,7 @@ public class ShowOrdersController {
                     }
                 }
             }
-           text += "    " + "Address" + "      " + c.getAddress().toString()+"\n\n";
+
 
             Label newLabel = new Label();
             newLabel.setStyle("-fx-font-family: Arial");

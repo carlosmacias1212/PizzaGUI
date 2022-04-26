@@ -28,7 +28,5 @@ public class Main extends Application {
         deserializeOrders();
 
         launch();
-
-
     }
 }
