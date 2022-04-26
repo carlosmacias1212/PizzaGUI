@@ -181,22 +181,22 @@
                                     <Font name="Arial Rounded MT Bold" size="35.0" />
                                  </font>
                               </Button>
-                              <CheckBox fx:id="pepCheckBox" contentDisplay="CENTER" layoutX="409.0" layoutY="7.0" mnemonicParsing="false" text="Pepperoni" textAlignment="CENTER">
+                              <CheckBox fx:id="pepCheckBox" contentDisplay="CENTER" layoutX="344.0" layoutY="7.0" mnemonicParsing="false" text="Pepperoni" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="sausCheckBox" contentDisplay="CENTER" layoutX="604.0" layoutY="8.0" mnemonicParsing="false" text="Sausage" textAlignment="CENTER">
+                              <CheckBox fx:id="sausCheckBox" contentDisplay="CENTER" layoutX="663.0" layoutY="8.0" mnemonicParsing="false" text="Sausage" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="greenPepperCheckBox" contentDisplay="CENTER" layoutX="605.0" layoutY="48.0" mnemonicParsing="false" text="Green Peppers" textAlignment="CENTER">
+                              <CheckBox fx:id="greenPepperCheckBox" contentDisplay="CENTER" layoutX="664.0" layoutY="48.0" mnemonicParsing="false" text="Green Peppers" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="mushCheckBox" contentDisplay="CENTER" layoutX="410.0" layoutY="49.0" mnemonicParsing="false" text="Mushrooms" textAlignment="CENTER">
+                              <CheckBox fx:id="mushCheckBox" contentDisplay="CENTER" layoutX="347.0" layoutY="49.0" mnemonicParsing="false" text="Mushrooms" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
@@ -207,6 +207,16 @@
                                  </font>
                               </CheckBox>
                               <CheckBox fx:id="chickenCheckBox" contentDisplay="CENTER" layoutX="224.0" layoutY="47.0" mnemonicParsing="false" text="Chicken" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="anchoviesCheckBox" contentDisplay="CENTER" layoutX="526.0" layoutY="8.0" mnemonicParsing="false" text="Anchovies" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="pineappleCheckBox" contentDisplay="CENTER" layoutX="526.0" layoutY="49.0" mnemonicParsing="false" text="Pineapple" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>

@@ -22,6 +22,8 @@ import java.util.List;
 
 public class BYOController{
 
+    public CheckBox anchoviesCheckBox;
+    public CheckBox pineappleCheckBox;
     @FXML
     private Label currentUser;
     private Order newOrder;
@@ -128,6 +130,10 @@ public class BYOController{
                 toppingsList.add("Green Pepper");
             }if(hamCheckBox.isSelected()){
                 toppingsList.add("Ham");
+            }if(pineappleCheckBox.isSelected()){
+                toppingsList.add("PineApple");
+            }if(anchoviesCheckBox.isSelected()){
+                toppingsList.add("Anchovies");
             }
 
 
