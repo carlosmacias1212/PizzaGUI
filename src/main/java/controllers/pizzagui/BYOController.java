@@ -130,116 +130,141 @@ public class BYOController{
                 toppingsList.add("Ham");
             }
 
+            if (toppingsList.size() > 4){
+                resetToggles();
+            }
+
+            else {
+
+                FoodItems newBYO = new BYO(sauceAmount, cheeseAmount, size, pizzaCrust, toppingsList);
+
+                list.add(newBYO);
 
 
-            FoodItems newBYO = new BYO(sauceAmount,cheeseAmount,size,pizzaCrust,toppingsList);
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+                ////This preloads the next fxml
+                Parent root = fxmlLoader.load();
+                ////This grabs the controller being used in the current fxmlLoader
+                OrderMenuController orderMenuController = fxmlLoader.getController();
+                fxmlLoader.setController(orderMenuController);
+                ////Sets employee attribute in the controller to the user here
+                orderMenuController.setFoodList(getList());
+                orderMenuController.setEmployee(getEmployee());
 
-            list.add(newBYO);
 
+                Stage window = (Stage) label.getScene().getWindow();
+                Scene scene = new Scene(root, 900, 600);
+                window.setTitle("Order Menu");
+                window.setScene(scene);
+                window.setResizable(false);
+                window.show();
+            }
+        }
+    }
 
+    public void resetToggles() throws IOException {
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Build-Your-Own-View.fxml"));
+        ////This preloads the next fxml
+        Parent root = fxmlLoader.load();
+        ////This grabs the controller being used in the current fxmlLoader
+        BYOController byoController = fxmlLoader.getController();
+        fxmlLoader.setController(byoController);
+        ////Sets employee attribute in the controller to the user here
+        byoController.setList(list);
+        byoController.setEmployee(getEmployee());
+        byoController.setCurrentUser(getCurrentUser());
+        byoController.updateError();
+
+        Stage window = (Stage) label.getScene().getWindow();
+        Scene scene = new Scene(root,900,600);
+        window.setTitle("Build Your Own");
+        window.setScene(scene);
+        window.setResizable(false);
+        window.show();
+
+    }
+
+    public void updateError(){
+        this.errorLabel.setText("You can not choose more than 4 toppings");
+    }
+
+    public void goBackToOrderMenu(ActionEvent actionEvent) throws IOException {
+
+        if(isManager()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-            ////This preloads the next fxml
             Parent root = fxmlLoader.load();
-            ////This grabs the controller being used in the current fxmlLoader
             OrderMenuController orderMenuController = fxmlLoader.getController();
             fxmlLoader.setController(orderMenuController);
-            ////Sets employee attribute in the controller to the user here
-            orderMenuController.setFoodList(getList());
-            orderMenuController.setEmployee(getEmployee());
 
-            for (FoodItems food :
-                    list) {
-                System.out.println(food.getFoodName());
-            }
+            orderMenuController.setEmployee(getEmployee());
+//                orderMenuController.setFoodList(getCart());
+            orderMenuController.setNewOrder(getNewOrder());
+            orderMenuController.setCurrentUser(getCurrentUser());
+
+            orderMenuController.displayName();
 
 
             Stage window = (Stage) label.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600);
+
+            Scene scene = new Scene(root,900,600);
             window.setTitle("Order Menu");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
         }
+
+//        If it's a staff logged in, go back to staff view
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+            Parent root = fxmlLoader.load();
+            OrderMenuController orderMenuController = fxmlLoader.getController();
+            fxmlLoader.setController(orderMenuController);
+
+            orderMenuController.setEmployee(getEmployee());
+//                orderMenuController.setFoodList(getCart());
+            orderMenuController.setNewOrder(getNewOrder());
+            orderMenuController.setCurrentUser(getCurrentUser());
+
+            orderMenuController.displayName();
+
+            Stage window = (Stage) label.getScene().getWindow();
+
+            Scene scene = new Scene(root,900,600);
+            window.setTitle("Order Menu");
+            window.setScene(scene);
+            window.setResizable(false);
+            window.show();
+        }
+
+    }
+    public boolean isManager(){
+        return employee.getEmployeeType().equals("Manager");
+    }
+
+    public void setList (List < FoodItems > list) {
+        this.list = list;
     }
 
 
-        public void goBackToOrderMenu(ActionEvent actionEvent) throws IOException {
+    public Staff getEmployee () {
+        return employee;
+    }
 
-            if(isManager()){
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-                Parent root = fxmlLoader.load();
-                OrderMenuController orderMenuController = fxmlLoader.getController();
-                fxmlLoader.setController(orderMenuController);
+    public void setEmployee (Staff employee){
+        this.employee = employee;
+    }
+     public List<FoodItems> getList() {
+        return list;
+     }
 
-                orderMenuController.setEmployee(getEmployee());
-//                orderMenuController.setFoodList(getCart());
-                orderMenuController.setNewOrder(getNewOrder());
-                orderMenuController.setCurrentUser(getCurrentUser());
+    public Order getNewOrder() {
+        return newOrder;
+    }
 
-                orderMenuController.displayName();
-
-
-                Stage window = (Stage) label.getScene().getWindow();
-
-                Scene scene = new Scene(root,900,600);
-                window.setTitle("Order Menu");
-                window.setScene(scene);
-                window.setResizable(false);
-                window.show();
-            }
-
-//        If it's a staff logged in, go back to staff view
-            else{
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-                Parent root = fxmlLoader.load();
-                OrderMenuController orderMenuController = fxmlLoader.getController();
-                fxmlLoader.setController(orderMenuController);
-
-                orderMenuController.setEmployee(getEmployee());
-//                orderMenuController.setFoodList(getCart());
-                orderMenuController.setNewOrder(getNewOrder());
-                orderMenuController.setCurrentUser(getCurrentUser());
-
-                orderMenuController.displayName();
-
-                Stage window = (Stage) label.getScene().getWindow();
-
-                Scene scene = new Scene(root,900,600);
-                window.setTitle("Order Menu");
-                window.setScene(scene);
-                window.setResizable(false);
-                window.show();
-            }
-
-        }
-        public boolean isManager(){
-            return employee.getEmployeeType().equals("Manager");
-        }
-
-        public void setList (List < FoodItems > list) {
-            this.list = list;
-        }
-
-
-        public Staff getEmployee () {
-            return employee;
-        }
-
-        public void setEmployee (Staff employee){
-            this.employee = employee;
-        }
-         public List<FoodItems> getList() {
-            return list;
-         }
-
-        public Order getNewOrder() {
-            return newOrder;
-        }
-
-            public void setNewOrder(Order newOrder) {
-            this.newOrder = newOrder;
-        }
+        public void setNewOrder(Order newOrder) {
+        this.newOrder = newOrder;
+    }
 
     public Label getCurrentUser() {
         return currentUser;
@@ -247,6 +272,14 @@ public class BYOController{
 
     public void setCurrentUser(Label currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public Text getErrorLabel() {
+        return errorLabel;
+    }
+
+    public void setErrorLabel(Text errorLabel) {
+        this.errorLabel = errorLabel;
     }
 }
 

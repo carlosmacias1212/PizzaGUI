@@ -101,11 +101,6 @@
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </ToggleButton>
-                              <Text fx:id="errorLabel" layoutX="438.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="13.0" />
-                                 </font>
-                              </Text>
                               <Separator layoutX="350.0" layoutY="104.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                               <Label alignment="CENTER" layoutX="435.0" layoutY="107.0" text="Size" textAlignment="CENTER">
                                  <font>
@@ -171,7 +166,7 @@
                            </children></AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
-                              <Button layoutX="577.0" layoutY="85.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="57.0" prefWidth="251.0" text="Add To Order">
+                              <Button layoutX="635.0" layoutY="83.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="57.0" prefWidth="251.0" text="Add To Order">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="31.0" />
                                  </font>
@@ -211,6 +206,11 @@
                                     <Font name="Arial" size="13.0" />
                                  </font>
                               </CheckBox>
+                              <Text fx:id="errorLabel" layoutX="180.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="677.0">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </children>
