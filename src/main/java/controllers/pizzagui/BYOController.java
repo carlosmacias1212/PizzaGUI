@@ -13,6 +13,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import management.Order;
 import management.Staff;
 
 import java.io.IOException;
@@ -21,7 +22,9 @@ import java.util.List;
 
 public class BYOController{
 
-
+    @FXML
+    private Label currentUser;
+    private Order newOrder;
     public CheckBox pepCheckBox;
     public CheckBox sausCheckBox;
     public CheckBox greenPepperCheckBox;
@@ -68,8 +71,8 @@ public class BYOController{
 
     public void addToOrder(ActionEvent actionEvent) throws IOException {
 
-        if (crustTypes.getSelectedToggle() == null || this.cheeseAmount.getSelectedToggle() == null ||
-                sauceTypes.getSelectedToggle() == null || sizeGroup.getSelectedToggle() == null ||list.isEmpty()) {
+        if (crustTypes.getSelectedToggle() == null || cheeseAmount.getSelectedToggle() == null ||
+                sauceTypes.getSelectedToggle() == null || sizeGroup.getSelectedToggle() == null) {
             errorLabel.setText("Please make sure you choose all options before you add to cart.");
         } else {
             String pizzaCrust = "";
@@ -88,11 +91,11 @@ public class BYOController{
             }
 
             if (this.cheeseAmount.getSelectedToggle() == lightCheese) {
-                cheeseAmount = "Light";
+                cheeseAmount = "Light Cheese";
             } else if (this.cheeseAmount.getSelectedToggle() == regularCheese) {
-                cheeseAmount = "Regular";
+                cheeseAmount = "Regular Cheese";
             } else if (this.cheeseAmount.getSelectedToggle() == xtraCheese) {
-                cheeseAmount = "Extra";
+                cheeseAmount = "Extra Cheese";
             }
 
             if (sauceTypes.getSelectedToggle() == lightSauce) {
@@ -127,8 +130,10 @@ public class BYOController{
                 toppingsList.add("Ham");
             }
 
+
+
             FoodItems newBYO = new BYO(sauceAmount,cheeseAmount,size,pizzaCrust,toppingsList);
-            newBYO.setFoodName("Custom");
+
             list.add(newBYO);
 
 
@@ -151,7 +156,7 @@ public class BYOController{
 
             Stage window = (Stage) label.getScene().getWindow();
             Scene scene = new Scene(root, 900, 600);
-            window.setTitle("Staff View");
+            window.setTitle("Order Menu");
             window.setScene(scene);
             window.setResizable(false);
             window.show();
@@ -159,21 +164,63 @@ public class BYOController{
     }
 
 
-        public void goBackToStaffView (ActionEvent actionEvent) throws IOException {
+        public void goBackToOrderMenu(ActionEvent actionEvent) throws IOException {
 
-            Stage window = (Stage) label.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-            window.setTitle("Staff View");
-            window.setScene(scene);
-            window.setResizable(false);
-            window.show();
+            if(isManager()){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+                Parent root = fxmlLoader.load();
+                OrderMenuController orderMenuController = fxmlLoader.getController();
+                fxmlLoader.setController(orderMenuController);
 
+                orderMenuController.setEmployee(getEmployee());
+//                orderMenuController.setFoodList(getCart());
+                orderMenuController.setNewOrder(getNewOrder());
+                orderMenuController.setCurrentUser(getCurrentUser());
+
+                orderMenuController.displayName();
+
+
+                Stage window = (Stage) label.getScene().getWindow();
+
+                Scene scene = new Scene(root,900,600);
+                window.setTitle("Order Menu");
+                window.setScene(scene);
+                window.setResizable(false);
+                window.show();
+            }
+
+//        If it's a staff logged in, go back to staff view
+            else{
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order-Menu-View.fxml"));
+                Parent root = fxmlLoader.load();
+                OrderMenuController orderMenuController = fxmlLoader.getController();
+                fxmlLoader.setController(orderMenuController);
+
+                orderMenuController.setEmployee(getEmployee());
+//                orderMenuController.setFoodList(getCart());
+                orderMenuController.setNewOrder(getNewOrder());
+                orderMenuController.setCurrentUser(getCurrentUser());
+
+                orderMenuController.displayName();
+
+                Stage window = (Stage) label.getScene().getWindow();
+
+                Scene scene = new Scene(root,900,600);
+                window.setTitle("Order Menu");
+                window.setScene(scene);
+                window.setResizable(false);
+                window.show();
+            }
+
+        }
+        public boolean isManager(){
+            return employee.getEmployeeType().equals("Manager");
         }
 
         public void setList (List < FoodItems > list) {
             this.list = list;
         }
+
 
         public Staff getEmployee () {
             return employee;
@@ -186,6 +233,20 @@ public class BYOController{
             return list;
          }
 
+        public Order getNewOrder() {
+            return newOrder;
+        }
 
+            public void setNewOrder(Order newOrder) {
+            this.newOrder = newOrder;
+        }
+
+    public Label getCurrentUser() {
+        return currentUser;
     }
+
+    public void setCurrentUser(Label currentUser) {
+        this.currentUser = currentUser;
+    }
+}
 
