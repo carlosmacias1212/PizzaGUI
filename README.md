@@ -4,10 +4,10 @@ create new orders, and maintain the current customers information. This system w
 
 # Major Components of Project Development
 ## Project Plan 
--Schedule/Gantt Chart
--Technical Description
--Data Management Plan
--Test Plan
+ - Schedule/Gantt Chart
+ - Technical Description
+ - Data Management Plan
+ - Test Plan
 
 ## Requirements Docs
  - Requirements Definitions
@@ -19,6 +19,11 @@ create new orders, and maintain the current customers information. This system w
  - Writing out Epics/Stories/Tasks
 
 ## System Design Docs
--Class Diagram
--Database Descriptions
--High Fidelity Prototype
+ - Class Diagram
+ - Database Descriptions
+ - High Fidelity Prototype
+
+## Implementation
+ - Java
+ - JSON (gson library)
+ - JavaFX
