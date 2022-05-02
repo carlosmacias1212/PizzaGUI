@@ -27,3 +27,6 @@ create new orders, and maintain the current customers information. This system w
  - Java
  - JSON (gson library)
  - JavaFX
+
+
+# Functions/Features
