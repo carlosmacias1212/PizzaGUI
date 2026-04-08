@@ -1,5 +1,5 @@
 # PizzaGUI
-This is an ordering system for a Pizza Restauraunt. This system lets a staff log in and create new customers, 
+This is an ordering system for a Pizza Restaurant. This system lets a staff log in and create new customers, 
 create new orders, and maintain the current customers information. This system was created as part of a semester long group project and was developed upon completion of a project plan, requirements specification documents, and system design documents. 
 
 # Major Components of Project Development
